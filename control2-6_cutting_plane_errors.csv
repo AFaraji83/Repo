@@ -1,0 +1,9 @@
+timestamp,vm_id,instance,config_hash,solver,valid_cut_type,add_soc_cuts,random_seed,error
+1784693285.611439,LAPTOP-2JL7V62G,control2,d8ca587df9,Gurobi,linear,False,42,"No Gurobi license found (user alireza, host LAPTOP-2JL7V62G, hostid 320330a2, cores 14)"
+1784693285.6204941,LAPTOP-2JL7V62G,control2,6d60bee0df,Gurobi,linear,True,42,"No Gurobi license found (user alireza, host LAPTOP-2JL7V62G, hostid 320330a2, cores 14)"
+1784693285.634847,LAPTOP-2JL7V62G,control2,0f5cfe3099,Gurobi,soc,False,42,"No Gurobi license found (user alireza, host LAPTOP-2JL7V62G, hostid 320330a2, cores 14)"
+1784693285.644841,LAPTOP-2JL7V62G,control2,ca80150a9d,Gurobi,soc,True,42,"No Gurobi license found (user alireza, host LAPTOP-2JL7V62G, hostid 320330a2, cores 14)"
+1784695693.725702,LAPTOP-2JL7V62G,control6,d75d74e31e,Gurobi,linear,False,42,"No Gurobi license found (user alireza, host LAPTOP-2JL7V62G, hostid 320330a2, cores 14)"
+1784695693.7328491,LAPTOP-2JL7V62G,control6,b04d67e7e0,Gurobi,linear,True,42,"No Gurobi license found (user alireza, host LAPTOP-2JL7V62G, hostid 320330a2, cores 14)"
+1784695693.7377439,LAPTOP-2JL7V62G,control6,0be8a218c3,Gurobi,soc,False,42,"No Gurobi license found (user alireza, host LAPTOP-2JL7V62G, hostid 320330a2, cores 14)"
+1784695693.7408602,LAPTOP-2JL7V62G,control6,16251ebd6d,Gurobi,soc,True,42,"No Gurobi license found (user alireza, host LAPTOP-2JL7V62G, hostid 320330a2, cores 14)"

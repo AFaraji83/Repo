@@ -1,0 +1,2 @@
+timestamp,vm_id,config_hash,random_seed,instance,solver,valid,add_soc_cuts,collect_multiple_cuts,optimizer,optimizer_maxiter,ansatz_type,ansatz_layers,execution_mode,repeat,termination_reason,iterations,linear_cuts_added,linear_cuts_purged,soc_cuts_added,master_total_time,sep_total_time,objVal
+1784696301.3826134,LAPTOP-2JL7V62G,76590b4826,42,control2,MOSEK,soc,False,True,COBYLA,200,sparsity_aware,3,noiseless,1,Terminating because iteration limit was reached.,250,2030,0,0,84.6941728591919,2584.744327545166,178.99172555869976

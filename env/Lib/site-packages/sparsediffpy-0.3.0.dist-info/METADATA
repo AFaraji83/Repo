@@ -1,0 +1,28 @@
+Metadata-Version: 2.4
+Name: sparsediffpy
+Version: 0.3.0
+Summary: Python bindings for SparseDiffEngine algorithmic differentiation
+License-Expression: Apache-2.0
+Requires-Python: >=3.11
+Requires-Dist: numpy>=2.0.0
+Description-Content-Type: text/markdown
+
+# SparseDiffPy
+
+Python bindings for [SparseDiffEngine](https://github.com/SparseDifferentiation/SparseDiffEngine), a C library for computing sparse Jacobians and Hessians.
+
+## Installation
+
+```bash
+pip install sparsediffpy
+```
+
+## Usage
+
+```python
+from sparsediffpy import _sparsediffengine
+```
+
+## License
+
+Apache License 2.0

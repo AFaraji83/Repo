@@ -1,0 +1,2828 @@
+2026-07-22 07:43:42,909 INFO:__main__:Reading instance control2 ...
+2026-07-22 07:43:42,916 INFO:__main__:*** Solving with MOSEK ***
+2026-07-22 07:43:43,079 INFO:__main__:*** SDP solve with MOSEK complete ***
+2026-07-22 07:43:43,079 INFO:__main__:Time= 0.088703
+2026-07-22 07:43:43,081 INFO:__main__:Optimal Solution: [array([ 1.44889700e-04, -5.30398876e-05,  1.05671421e-04,  6.08350214e-06,
+        7.83035585e-05,  1.92910674e-04,  2.05396159e-04,  1.13764044e-04,
+        3.68401745e-05, -8.50716951e-05,  6.20142997e-03,  2.97501429e-03,
+        3.43793214e-03, -1.11424947e-03, -2.12798800e-03,  1.91640784e-03,
+        2.08533765e-03, -7.76588641e-04, -4.25924279e-03,  1.22450446e-03,
+       -5.30398876e-05,  2.16770672e-05, -3.70325173e-05, -1.12797866e-06,
+       -2.81067035e-05, -6.80794955e-05, -7.29122454e-05, -4.22193722e-05,
+       -1.42742499e-05,  3.05201630e-05, -2.21525853e-03, -1.24204345e-03,
+       -1.09217409e-03,  5.40300738e-04,  7.38432390e-04, -7.52163843e-04,
+       -1.28412514e-03,  1.69777047e-05,  1.65090894e-03, -3.73365004e-04,
+        1.05671421e-04, -3.70325173e-05,  7.83179463e-05,  5.23500899e-06,
+        5.74699313e-05,  1.42543832e-04,  1.51454673e-04,  8.25762129e-05,
+        2.63125300e-05, -6.25149714e-05,  4.56146373e-03,  2.05413165e-03,
+        2.63244226e-03, -7.13058614e-04, -1.57686242e-03,  1.35573713e-03,
+        1.13516260e-03, -7.68993783e-04, -3.03415527e-03,  9.49877528e-04,
+        6.08350214e-06, -1.12797866e-06,  5.23500899e-06,  9.84839659e-07,
+        3.46416650e-06,  9.13565412e-06,  9.94756644e-06,  3.87103626e-06,
+        1.24045432e-06, -4.21032031e-06,  2.57807769e-04, -6.87773075e-06,
+        2.36399802e-04,  5.58306552e-05, -1.00655965e-04,  4.67155963e-05,
+       -2.94448829e-04, -2.05672438e-04, -8.94931542e-05,  9.91732306e-05,
+        7.83035585e-05, -2.81067035e-05,  5.74699313e-05,  3.46416650e-06,
+        4.27762483e-05,  1.04767197e-04,  1.11583834e-04,  6.15630632e-05,
+        1.96282151e-05, -4.59808553e-05,  3.37379962e-03,  1.61003681e-03,
+        1.87390395e-03, -5.92860955e-04, -1.16944243e-03,  1.05330618e-03,
+        1.11066005e-03, -4.89739382e-04, -2.30882910e-03,  6.55804597e-04,
+        1.92910674e-04, -6.80794955e-05,  1.42543832e-04,  9.13565412e-06,
+        1.04767197e-04,  2.60133740e-04,  2.75671205e-04,  1.51550335e-04,
+        4.81089791e-05, -1.13576659e-04,  8.35625348e-03,  3.84259264e-03,
+        4.76796648e-03, -1.37431743e-03, -2.88904559e-03,  2.48440753e-03,
+        2.28177881e-03, -1.24981284e-03, -5.61459639e-03,  1.71893534e-03,
+        2.05396159e-04, -7.29122454e-05,  1.51454673e-04,  9.94756644e-06,
+        1.11583834e-04,  2.75671205e-04,  2.93812504e-04,  1.59915788e-04,
+        5.14987394e-05, -1.21620469e-04,  8.81052467e-03,  4.00284406e-03,
+        5.04388085e-03, -1.40344011e-03, -3.04726943e-03,  2.66837931e-03,
+        2.31674080e-03, -1.44659789e-03, -5.89480985e-03,  1.81443854e-03,
+        1.13764044e-04, -4.22193722e-05,  8.25762129e-05,  3.87103626e-06,
+        6.15630632e-05,  1.51550335e-04,  1.59915788e-04,  9.15589870e-05,
+        2.88918459e-05, -6.55415239e-05,  4.95109652e-03,  2.55690820e-03,
+        2.62795943e-03, -1.03171581e-03, -1.68773038e-03,  1.53783834e-03,
+        2.16508340e-03, -3.83667737e-04, -3.51219362e-03,  9.12177797e-04,
+        3.68401745e-05, -1.42742499e-05,  2.63125300e-05,  1.24045432e-06,
+        1.96282151e-05,  4.81089791e-05,  5.14987394e-05,  2.88918459e-05,
+        9.68684959e-06, -2.15560215e-05,  1.54581508e-03,  7.83726470e-04,
+        8.24404879e-04, -3.12308649e-04, -5.21263774e-04,  4.96306148e-04,
+        6.50884214e-04, -1.20782505e-04, -1.09398561e-03,  2.92835077e-04,
+       -8.50716951e-05,  3.05201630e-05, -6.25149714e-05, -4.21032031e-06,
+       -4.59808553e-05, -1.13576659e-04, -1.21620469e-04, -6.55415239e-05,
+       -2.15560215e-05,  5.07304064e-05, -3.60275666e-03, -1.60358208e-03,
+       -2.08310994e-03,  5.49242339e-04,  1.24335396e-03, -1.09630677e-03,
+       -8.59090077e-04,  6.14893827e-04,  2.39441400e-03, -7.57442264e-04,
+        6.20142997e-03, -2.21525853e-03,  4.56146373e-03,  2.57807769e-04,
+        3.37379962e-03,  8.35625348e-03,  8.81052467e-03,  4.95109652e-03,
+        1.54581508e-03, -3.60275666e-03,  2.71565291e-01,  1.32280662e-01,
+        1.49833243e-01, -5.03990146e-02, -9.35543304e-02,  8.17488190e-02,
+        9.51831020e-02, -3.18174107e-02, -1.87066406e-01,  5.29737614e-02,
+        2.97501429e-03, -1.24204345e-03,  2.05413165e-03, -6.87773075e-06,
+        1.61003681e-03,  3.84259264e-03,  4.00284406e-03,  2.55690820e-03,
+        7.83726470e-04, -1.60358208e-03,  1.32280662e-01,  8.91724293e-02,
+        5.51377974e-02, -4.36096396e-02, -4.40225715e-02,  4.66436103e-02,
+        1.18233628e-01,  1.49653273e-02, -1.07669583e-01,  1.59846544e-02,
+        3.43793214e-03, -1.09217409e-03,  2.63244226e-03,  2.36399802e-04,
+        1.87390395e-03,  4.76796648e-03,  5.04388085e-03,  2.62795943e-03,
+        8.24404879e-04, -2.08310994e-03,  1.49833243e-01,  5.51377974e-02,
+        9.59124148e-02, -1.41283322e-02, -5.25988503e-02,  3.93267190e-02,
+       -2.42389411e-05, -3.86390266e-02, -9.11552086e-02,  3.65774318e-02,
+       -1.11424947e-03,  5.40300738e-04, -7.13058614e-04,  5.58306552e-05,
+       -5.92860955e-04, -1.37431743e-03, -1.40344011e-03, -1.03171581e-03,
+       -3.12308649e-04,  5.49242339e-04, -5.03990146e-02, -4.36096396e-02,
+       -1.41283322e-02,  2.42160969e-02,  1.60893537e-02, -1.99769868e-02,
+       -7.27372160e-02, -1.89677557e-02,  4.75375193e-02, -2.55922489e-03,
+       -2.12798800e-03,  7.38432390e-04, -1.57686242e-03, -1.00655965e-04,
+       -1.16944243e-03, -2.88904559e-03, -3.04726943e-03, -1.68773038e-03,
+       -5.21263774e-04,  1.24335396e-03, -9.35543304e-02, -4.40225715e-02,
+       -5.25988503e-02,  1.60893537e-02,  3.29339566e-02, -2.81588960e-02,
+       -2.76051065e-02,  1.30750221e-02,  6.36011670e-02, -1.85914046e-02,
+        1.91640784e-03, -7.52163843e-04,  1.35573713e-03,  4.67155963e-05,
+        1.05330618e-03,  2.48440753e-03,  2.66837931e-03,  1.53783834e-03,
+        4.96306148e-04, -1.09630677e-03,  8.17488190e-02,  4.66436103e-02,
+        3.93267190e-02, -1.99769868e-02, -2.81588960e-02,  2.93869719e-02,
+        5.01919182e-02, -4.77128393e-03, -6.12535865e-02,  1.22169479e-02,
+        2.08533765e-03, -1.28412514e-03,  1.13516260e-03, -2.94448829e-04,
+        1.11066005e-03,  2.28177881e-03,  2.31674080e-03,  2.16508340e-03,
+        6.50884214e-04, -8.59090077e-04,  9.51831020e-02,  1.18233628e-01,
+       -2.42389411e-05, -7.27372160e-02, -2.76051065e-02,  5.01919182e-02,
+        2.45848556e-01,  7.27015104e-02, -1.13339195e-01, -1.06310920e-02,
+       -7.76588641e-04,  1.69777047e-05, -7.68993783e-04, -2.05672438e-04,
+       -4.89739382e-04, -1.24981284e-03, -1.44659789e-03, -3.83667737e-04,
+       -1.20782505e-04,  6.14893827e-04, -3.18174107e-02,  1.49653273e-02,
+       -3.86390266e-02, -1.89677557e-02,  1.30750221e-02, -4.77128393e-03,
+        7.27015104e-02,  5.48987816e-02,  5.61928822e-04, -1.57472336e-02,
+       -4.25924279e-03,  1.65090894e-03, -3.03415527e-03, -8.94931542e-05,
+       -2.30882910e-03, -5.61459639e-03, -5.89480985e-03, -3.51219362e-03,
+       -1.09398561e-03,  2.39441400e-03, -1.87066406e-01, -1.07669583e-01,
+       -9.11552086e-02,  4.75375193e-02,  6.36011670e-02, -6.12535865e-02,
+       -1.13339195e-01,  5.61928822e-04,  1.40245500e-01, -2.99567848e-02,
+        1.22450446e-03, -3.73365004e-04,  9.49877528e-04,  9.91732306e-05,
+        6.55804597e-04,  1.71893534e-03,  1.81443854e-03,  9.12177797e-04,
+        2.92835077e-04, -7.57442264e-04,  5.29737614e-02,  1.59846544e-02,
+        3.65774318e-02, -2.55922489e-03, -1.85914046e-02,  1.22169479e-02,
+       -1.06310920e-02, -1.57472336e-02, -2.99567848e-02,  1.48254332e-02]), array([ 1.42195055, -0.87969865,  0.82259356, -0.23555136,  0.84085379,
+        1.4255797 ,  1.65944342,  1.51086336,  0.43136069, -0.55891449,
+       -0.87969865,  0.54423119, -0.5089027 ,  0.14572539, -0.52019939,
+       -0.88194378, -1.02662501, -0.93470506, -0.26686407,  0.34577591,
+        0.82259356, -0.5089027 ,  0.47586788, -0.13626554,  0.48643117,
+        0.82469311,  0.9599827 ,  0.87402956,  0.24954072, -0.32333006,
+       -0.23555136,  0.14572539, -0.13626554,  0.03902009, -0.13929038,
+       -0.23615241, -0.27489266, -0.25027993, -0.07145653,  0.09258623,
+        0.84085379, -0.52019939,  0.48643117, -0.13929038,  0.49722928,
+        0.84300003,  0.98129277,  0.89343159,  0.25508   , -0.33050762,
+        1.4255797 , -0.88194378,  0.82469311, -0.23615241,  0.84300003,
+        1.4292183 ,  1.66367902,  1.51471962,  0.43246157, -0.56034105,
+        1.65944342, -1.02662501,  0.9599827 , -0.27489266,  0.98129277,
+        1.66367902,  1.93660279,  1.76320679,  0.50340607, -0.65226394,
+        1.51086336, -0.93470506,  0.87402956, -0.25027993,  0.89343159,
+        1.51471962,  1.76320679,  1.60533612,  0.45833307, -0.59386274,
+        0.43136069, -0.26686407,  0.24954072, -0.07145653,  0.25508   ,
+        0.43246157,  0.50340607,  0.45833307,  0.13085698, -0.16955137,
+       -0.55891449,  0.34577591, -0.32333006,  0.09258623, -0.33050762,
+       -0.56034105, -0.65226394, -0.59386274, -0.16955137,  0.21968807])]
+2026-07-22 07:43:43,094 INFO:__main__:=== Instance: control2, Solver: MOSEK, Valid Cut Type: soc, Add SOC Cuts: False, Collect Multiple Cuts: True, Optimizer: COBYLA, Optimizer Maxiter: 200, Ansatz Type: sparsity_aware, Ansatz Layers: 3, Execution Mode: noiseless ===
+2026-07-22 07:43:43,096 INFO:__main__:--- Run 1/1 ---
+2026-07-22 07:43:43,096 INFO:__main__:*** Starting cutting plane ***
+2026-07-22 07:43:43,458 INFO:__main__:Iteration 1
+2026-07-22 07:43:43,483 INFO:__main__:Time(master)= 0.024151
+2026-07-22 07:43:43,484 INFO:__main__:ObjVal 722.6607702554556
+2026-07-22 07:43:43,485 INFO:__main__:Peak RSS(MB)= 223.1
+2026-07-22 07:43:53,390 INFO:__main__:Time(sep)= 9.884090
+2026-07-22 07:43:53,391 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:43:53,391 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:43:57,578 INFO:__main__:Time(sep)= 4.162878
+2026-07-22 07:43:57,579 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:43:57,579 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:43:57,585 INFO:__main__:Iteration 2
+2026-07-22 07:43:57,621 INFO:__main__:Time(master)= 0.035775
+2026-07-22 07:43:57,622 INFO:__main__:ObjVal 693.0367029498962
+2026-07-22 07:43:57,622 INFO:__main__:Peak RSS(MB)= 230.4
+2026-07-22 07:44:08,576 INFO:__main__:Time(sep)= 10.932312
+2026-07-22 07:44:08,576 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:44:08,576 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:44:13,234 INFO:__main__:Time(sep)= 4.636859
+2026-07-22 07:44:13,234 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:44:13,234 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:44:13,239 INFO:__main__:Iteration 3
+2026-07-22 07:44:13,280 INFO:__main__:Time(master)= 0.041497
+2026-07-22 07:44:13,280 INFO:__main__:ObjVal 653.3462627977281
+2026-07-22 07:44:13,281 INFO:__main__:Peak RSS(MB)= 234.9
+2026-07-22 07:44:22,659 INFO:__main__:Time(sep)= 9.360708
+2026-07-22 07:44:22,660 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:44:22,660 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:44:26,695 INFO:__main__:Time(sep)= 4.012879
+2026-07-22 07:44:26,696 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:44:26,696 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:44:26,704 INFO:__main__:Iteration 4
+2026-07-22 07:44:26,780 INFO:__main__:Time(master)= 0.073482
+2026-07-22 07:44:26,780 INFO:__main__:ObjVal 620.8012889971153
+2026-07-22 07:44:26,781 INFO:__main__:Peak RSS(MB)= 237.1
+2026-07-22 07:44:36,697 INFO:__main__:Time(sep)= 9.892883
+2026-07-22 07:44:36,698 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:44:36,698 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:44:40,632 INFO:__main__:Time(sep)= 3.915150
+2026-07-22 07:44:40,632 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:44:40,632 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:44:40,638 INFO:__main__:Iteration 5
+2026-07-22 07:44:40,729 INFO:__main__:Time(master)= 0.091094
+2026-07-22 07:44:40,730 INFO:__main__:ObjVal 574.2637269750402
+2026-07-22 07:44:40,730 INFO:__main__:Peak RSS(MB)= 239.8
+2026-07-22 07:44:51,426 INFO:__main__:Time(sep)= 10.680503
+2026-07-22 07:44:51,427 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:44:51,427 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:44:55,983 INFO:__main__:Time(sep)= 4.531041
+2026-07-22 07:44:55,984 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:44:55,984 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:44:55,986 INFO:__main__:Iteration 6
+2026-07-22 07:44:56,076 INFO:__main__:Time(master)= 0.088244
+2026-07-22 07:44:56,077 INFO:__main__:ObjVal 543.290773146806
+2026-07-22 07:44:56,077 INFO:__main__:Peak RSS(MB)= 243.3
+2026-07-22 07:45:07,719 INFO:__main__:Time(sep)= 11.622613
+2026-07-22 07:45:07,719 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:45:07,720 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:45:12,155 INFO:__main__:Time(sep)= 4.408277
+2026-07-22 07:45:12,155 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:45:12,155 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:45:12,160 INFO:__main__:Iteration 7
+2026-07-22 07:45:12,254 INFO:__main__:Time(master)= 0.093964
+2026-07-22 07:45:12,254 INFO:__main__:ObjVal 531.6522235665091
+2026-07-22 07:45:12,254 INFO:__main__:Peak RSS(MB)= 246.9
+2026-07-22 07:45:22,490 INFO:__main__:Time(sep)= 10.222425
+2026-07-22 07:45:22,490 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:45:22,490 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:45:26,904 INFO:__main__:Time(sep)= 4.383963
+2026-07-22 07:45:26,905 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:45:26,905 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:45:26,911 INFO:__main__:Iteration 8
+2026-07-22 07:45:27,026 INFO:__main__:Time(master)= 0.114811
+2026-07-22 07:45:27,027 INFO:__main__:ObjVal 512.9421009787077
+2026-07-22 07:45:27,027 INFO:__main__:Peak RSS(MB)= 250.6
+2026-07-22 07:45:37,473 INFO:__main__:Time(sep)= 10.432768
+2026-07-22 07:45:37,473 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:45:37,473 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:45:41,516 INFO:__main__:Time(sep)= 4.022855
+2026-07-22 07:45:41,517 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:45:41,517 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:45:41,524 INFO:__main__:Iteration 9
+2026-07-22 07:45:41,636 INFO:__main__:Time(master)= 0.109894
+2026-07-22 07:45:41,636 INFO:__main__:ObjVal 502.72117129157164
+2026-07-22 07:45:41,636 INFO:__main__:Peak RSS(MB)= 253.9
+2026-07-22 07:45:52,425 INFO:__main__:Time(sep)= 10.769314
+2026-07-22 07:45:52,426 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:45:52,426 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:45:56,507 INFO:__main__:Time(sep)= 4.059797
+2026-07-22 07:45:56,508 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:45:56,508 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:45:56,515 INFO:__main__:Iteration 10
+2026-07-22 07:45:56,657 INFO:__main__:Time(master)= 0.142203
+2026-07-22 07:45:56,658 INFO:__main__:ObjVal 487.46098651975035
+2026-07-22 07:45:56,658 INFO:__main__:Peak RSS(MB)= 255.5
+2026-07-22 07:46:07,093 INFO:__main__:Time(sep)= 10.418901
+2026-07-22 07:46:07,093 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:46:07,093 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:46:11,486 INFO:__main__:Time(sep)= 4.357231
+2026-07-22 07:46:11,487 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:46:11,487 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:46:11,493 INFO:__main__:Iteration 11
+2026-07-22 07:46:11,638 INFO:__main__:Time(master)= 0.144752
+2026-07-22 07:46:11,638 INFO:__main__:ObjVal 473.9462569197024
+2026-07-22 07:46:11,638 INFO:__main__:Peak RSS(MB)= 256.1
+2026-07-22 07:46:21,840 INFO:__main__:Time(sep)= 10.182158
+2026-07-22 07:46:21,841 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:46:21,841 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:46:26,288 INFO:__main__:Time(sep)= 4.428823
+2026-07-22 07:46:26,289 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:46:26,289 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:46:26,298 INFO:__main__:Iteration 12
+2026-07-22 07:46:26,484 INFO:__main__:Time(master)= 0.185440
+2026-07-22 07:46:26,485 INFO:__main__:ObjVal 455.9293163520215
+2026-07-22 07:46:26,485 INFO:__main__:Peak RSS(MB)= 257.8
+2026-07-22 07:46:36,977 INFO:__main__:Time(sep)= 10.475052
+2026-07-22 07:46:36,977 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:46:36,977 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:46:41,221 INFO:__main__:Time(sep)= 4.219269
+2026-07-22 07:46:41,221 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:46:41,221 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:46:41,224 INFO:__main__:Iteration 13
+2026-07-22 07:46:41,365 INFO:__main__:Time(master)= 0.141267
+2026-07-22 07:46:41,365 INFO:__main__:ObjVal 448.6063197226512
+2026-07-22 07:46:41,365 INFO:__main__:Peak RSS(MB)= 259.2
+2026-07-22 07:46:51,325 INFO:__main__:Time(sep)= 9.943959
+2026-07-22 07:46:51,326 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:46:51,326 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:46:55,965 INFO:__main__:Time(sep)= 4.612530
+2026-07-22 07:46:55,966 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:46:55,966 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:46:55,973 INFO:__main__:Iteration 14
+2026-07-22 07:46:56,182 INFO:__main__:Time(master)= 0.208406
+2026-07-22 07:46:56,182 INFO:__main__:ObjVal 437.6958884066545
+2026-07-22 07:46:56,182 INFO:__main__:Peak RSS(MB)= 259.9
+2026-07-22 07:47:06,930 INFO:__main__:Time(sep)= 10.734575
+2026-07-22 07:47:06,930 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:47:06,930 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:47:11,317 INFO:__main__:Time(sep)= 4.362682
+2026-07-22 07:47:11,317 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:47:11,318 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:47:11,324 INFO:__main__:Iteration 15
+2026-07-22 07:47:11,639 INFO:__main__:Time(master)= 0.314772
+2026-07-22 07:47:11,640 INFO:__main__:ObjVal 420.4428665809861
+2026-07-22 07:47:11,640 INFO:__main__:Peak RSS(MB)= 261.8
+2026-07-22 07:47:21,486 INFO:__main__:Time(sep)= 9.822721
+2026-07-22 07:47:21,486 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:47:21,486 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:47:25,610 INFO:__main__:Time(sep)= 4.105053
+2026-07-22 07:47:25,610 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:47:25,610 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:47:25,615 INFO:__main__:Iteration 16
+2026-07-22 07:47:25,864 INFO:__main__:Time(master)= 0.248602
+2026-07-22 07:47:25,864 INFO:__main__:ObjVal 411.07190067992633
+2026-07-22 07:47:25,865 INFO:__main__:Peak RSS(MB)= 263.0
+2026-07-22 07:47:35,840 INFO:__main__:Time(sep)= 9.962885
+2026-07-22 07:47:35,840 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:47:35,840 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:47:40,169 INFO:__main__:Time(sep)= 4.309193
+2026-07-22 07:47:40,169 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:47:40,169 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:47:40,174 INFO:__main__:Iteration 17
+2026-07-22 07:47:40,380 INFO:__main__:Time(master)= 0.206071
+2026-07-22 07:47:40,381 INFO:__main__:ObjVal 402.8298015380883
+2026-07-22 07:47:40,381 INFO:__main__:Peak RSS(MB)= 264.1
+2026-07-22 07:47:51,037 INFO:__main__:Time(sep)= 10.636308
+2026-07-22 07:47:51,037 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:47:51,037 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:47:55,447 INFO:__main__:Time(sep)= 4.380867
+2026-07-22 07:47:55,448 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:47:55,448 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:47:55,453 INFO:__main__:Iteration 18
+2026-07-22 07:47:55,657 INFO:__main__:Time(master)= 0.202519
+2026-07-22 07:47:55,657 INFO:__main__:ObjVal 395.37486055397943
+2026-07-22 07:47:55,658 INFO:__main__:Peak RSS(MB)= 268.4
+2026-07-22 07:48:06,078 INFO:__main__:Time(sep)= 10.406579
+2026-07-22 07:48:06,078 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:48:06,078 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:48:10,671 INFO:__main__:Time(sep)= 4.573796
+2026-07-22 07:48:10,671 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:48:10,671 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:48:10,676 INFO:__main__:Iteration 19
+2026-07-22 07:48:10,907 INFO:__main__:Time(master)= 0.230488
+2026-07-22 07:48:10,907 INFO:__main__:ObjVal 387.1157486326366
+2026-07-22 07:48:10,907 INFO:__main__:Peak RSS(MB)= 270.6
+2026-07-22 07:48:20,904 INFO:__main__:Time(sep)= 9.978579
+2026-07-22 07:48:20,904 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:48:20,904 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:48:25,591 INFO:__main__:Time(sep)= 4.667580
+2026-07-22 07:48:25,591 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:48:25,591 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:48:25,595 INFO:__main__:Iteration 20
+2026-07-22 07:48:25,911 INFO:__main__:Time(master)= 0.316000
+2026-07-22 07:48:25,912 INFO:__main__:ObjVal 380.0984804974454
+2026-07-22 07:48:25,912 INFO:__main__:Peak RSS(MB)= 271.6
+2026-07-22 07:48:35,600 INFO:__main__:Time(sep)= 9.670993
+2026-07-22 07:48:35,601 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:48:35,601 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:48:39,497 INFO:__main__:Time(sep)= 3.881478
+2026-07-22 07:48:39,497 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:48:39,497 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:48:39,504 INFO:__main__:Iteration 21
+2026-07-22 07:48:39,721 INFO:__main__:Time(master)= 0.216004
+2026-07-22 07:48:39,721 INFO:__main__:ObjVal 373.35364363850687
+2026-07-22 07:48:39,721 INFO:__main__:Peak RSS(MB)= 275.0
+2026-07-22 07:48:48,974 INFO:__main__:Time(sep)= 9.240036
+2026-07-22 07:48:48,974 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:48:48,974 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:48:52,853 INFO:__main__:Time(sep)= 3.861047
+2026-07-22 07:48:52,853 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:48:52,853 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:48:52,859 INFO:__main__:Iteration 22
+2026-07-22 07:48:53,061 INFO:__main__:Time(master)= 0.202213
+2026-07-22 07:48:53,061 INFO:__main__:ObjVal 363.2688148730366
+2026-07-22 07:48:53,061 INFO:__main__:Peak RSS(MB)= 276.7
+2026-07-22 07:49:02,806 INFO:__main__:Time(sep)= 9.730788
+2026-07-22 07:49:02,806 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:49:02,806 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:49:07,359 INFO:__main__:Time(sep)= 4.520881
+2026-07-22 07:49:07,359 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:49:07,359 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:49:07,366 INFO:__main__:Iteration 23
+2026-07-22 07:49:07,605 INFO:__main__:Time(master)= 0.238117
+2026-07-22 07:49:07,606 INFO:__main__:ObjVal 356.15226554169726
+2026-07-22 07:49:07,606 INFO:__main__:Peak RSS(MB)= 277.0
+2026-07-22 07:49:17,816 INFO:__main__:Time(sep)= 10.195551
+2026-07-22 07:49:17,816 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:49:17,816 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:49:21,795 INFO:__main__:Time(sep)= 3.944757
+2026-07-22 07:49:21,795 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:49:21,795 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:49:21,799 INFO:__main__:Iteration 24
+2026-07-22 07:49:22,032 INFO:__main__:Time(master)= 0.230819
+2026-07-22 07:49:22,032 INFO:__main__:ObjVal 349.88802051708586
+2026-07-22 07:49:22,032 INFO:__main__:Peak RSS(MB)= 277.3
+2026-07-22 07:49:31,067 INFO:__main__:Time(sep)= 9.021581
+2026-07-22 07:49:31,067 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:49:31,067 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:49:35,355 INFO:__main__:Time(sep)= 4.262975
+2026-07-22 07:49:35,356 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:49:35,356 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:49:35,361 INFO:__main__:Iteration 25
+2026-07-22 07:49:35,709 INFO:__main__:Time(master)= 0.346529
+2026-07-22 07:49:35,709 INFO:__main__:ObjVal 344.0980559646814
+2026-07-22 07:49:35,710 INFO:__main__:Peak RSS(MB)= 279.7
+2026-07-22 07:49:44,862 INFO:__main__:Time(sep)= 9.137630
+2026-07-22 07:49:44,863 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:49:44,863 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:49:48,816 INFO:__main__:Time(sep)= 3.926391
+2026-07-22 07:49:48,817 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:49:48,817 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:49:48,821 INFO:__main__:Iteration 26
+2026-07-22 07:49:49,048 INFO:__main__:Time(master)= 0.226672
+2026-07-22 07:49:49,048 INFO:__main__:ObjVal 336.51271984437
+2026-07-22 07:49:49,049 INFO:__main__:Peak RSS(MB)= 281.0
+2026-07-22 07:49:58,454 INFO:__main__:Time(sep)= 9.395567
+2026-07-22 07:49:58,454 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:49:58,454 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:50:02,861 INFO:__main__:Time(sep)= 4.389612
+2026-07-22 07:50:02,861 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:50:02,861 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:50:02,866 INFO:__main__:Iteration 27
+2026-07-22 07:50:03,144 INFO:__main__:Time(master)= 0.275368
+2026-07-22 07:50:03,144 INFO:__main__:ObjVal 334.407019694352
+2026-07-22 07:50:03,144 INFO:__main__:Peak RSS(MB)= 281.4
+2026-07-22 07:50:12,623 INFO:__main__:Time(sep)= 9.463677
+2026-07-22 07:50:12,623 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:50:12,623 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:50:16,334 INFO:__main__:Time(sep)= 3.692464
+2026-07-22 07:50:16,335 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:50:16,335 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:50:16,340 INFO:__main__:Iteration 28
+2026-07-22 07:50:16,590 INFO:__main__:Time(master)= 0.249465
+2026-07-22 07:50:16,591 INFO:__main__:ObjVal 331.2106963935749
+2026-07-22 07:50:16,591 INFO:__main__:Peak RSS(MB)= 282.3
+2026-07-22 07:50:26,196 INFO:__main__:Time(sep)= 9.591817
+2026-07-22 07:50:26,197 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:50:26,197 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:50:30,550 INFO:__main__:Time(sep)= 4.330236
+2026-07-22 07:50:30,550 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:50:30,550 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:50:30,556 INFO:__main__:Iteration 29
+2026-07-22 07:50:30,867 INFO:__main__:Time(master)= 0.309640
+2026-07-22 07:50:30,867 INFO:__main__:ObjVal 330.09875028364365
+2026-07-22 07:50:30,867 INFO:__main__:Peak RSS(MB)= 282.6
+2026-07-22 07:50:41,691 INFO:__main__:Time(sep)= 10.805528
+2026-07-22 07:50:41,692 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:50:41,692 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:50:46,009 INFO:__main__:Time(sep)= 4.294414
+2026-07-22 07:50:46,010 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:50:46,010 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:50:46,015 INFO:__main__:Iteration 30
+2026-07-22 07:50:46,300 INFO:__main__:Time(master)= 0.284681
+2026-07-22 07:50:46,300 INFO:__main__:ObjVal 324.97865087408707
+2026-07-22 07:50:46,300 INFO:__main__:Peak RSS(MB)= 282.7
+2026-07-22 07:50:55,965 INFO:__main__:Time(sep)= 9.650791
+2026-07-22 07:50:55,966 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:50:55,966 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:50:59,947 INFO:__main__:Time(sep)= 3.952693
+2026-07-22 07:50:59,947 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:50:59,947 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:50:59,954 INFO:__main__:Iteration 31
+2026-07-22 07:51:00,256 INFO:__main__:Time(master)= 0.301425
+2026-07-22 07:51:00,257 INFO:__main__:ObjVal 317.5849087280115
+2026-07-22 07:51:00,258 INFO:__main__:Peak RSS(MB)= 283.3
+2026-07-22 07:51:10,663 INFO:__main__:Time(sep)= 10.391614
+2026-07-22 07:51:10,664 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:51:10,664 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:51:14,496 INFO:__main__:Time(sep)= 3.799514
+2026-07-22 07:51:14,497 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:51:14,497 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:51:14,500 INFO:__main__:Iteration 32
+2026-07-22 07:51:14,789 INFO:__main__:Time(master)= 0.289787
+2026-07-22 07:51:14,790 INFO:__main__:ObjVal 315.0498008708644
+2026-07-22 07:51:14,790 INFO:__main__:Peak RSS(MB)= 283.6
+2026-07-22 07:51:24,129 INFO:__main__:Time(sep)= 9.327884
+2026-07-22 07:51:24,130 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:51:24,130 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:51:27,914 INFO:__main__:Time(sep)= 3.758504
+2026-07-22 07:51:27,914 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:51:27,914 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:51:27,921 INFO:__main__:Iteration 33
+2026-07-22 07:51:28,181 INFO:__main__:Time(master)= 0.260714
+2026-07-22 07:51:28,182 INFO:__main__:ObjVal 309.42359589438786
+2026-07-22 07:51:28,182 INFO:__main__:Peak RSS(MB)= 284.1
+2026-07-22 07:51:38,319 INFO:__main__:Time(sep)= 10.123152
+2026-07-22 07:51:38,319 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:51:38,319 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:51:42,723 INFO:__main__:Time(sep)= 4.376976
+2026-07-22 07:51:42,723 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:51:42,723 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:51:42,729 INFO:__main__:Iteration 34
+2026-07-22 07:51:43,018 INFO:__main__:Time(master)= 0.289531
+2026-07-22 07:51:43,018 INFO:__main__:ObjVal 306.75778353053664
+2026-07-22 07:51:43,018 INFO:__main__:Peak RSS(MB)= 287.6
+2026-07-22 07:51:52,100 INFO:__main__:Time(sep)= 9.071429
+2026-07-22 07:51:52,100 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:51:52,101 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:51:56,559 INFO:__main__:Time(sep)= 4.437690
+2026-07-22 07:51:56,559 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:51:56,559 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:51:56,564 INFO:__main__:Iteration 35
+2026-07-22 07:51:56,829 INFO:__main__:Time(master)= 0.265321
+2026-07-22 07:51:56,829 INFO:__main__:ObjVal 304.8880359887409
+2026-07-22 07:51:56,830 INFO:__main__:Peak RSS(MB)= 287.6
+2026-07-22 07:52:07,038 INFO:__main__:Time(sep)= 10.198447
+2026-07-22 07:52:07,038 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:52:07,038 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:52:11,191 INFO:__main__:Time(sep)= 4.128257
+2026-07-22 07:52:11,191 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:52:11,191 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:52:11,195 INFO:__main__:Iteration 36
+2026-07-22 07:52:11,448 INFO:__main__:Time(master)= 0.253229
+2026-07-22 07:52:11,449 INFO:__main__:ObjVal 303.5758376204499
+2026-07-22 07:52:11,449 INFO:__main__:Peak RSS(MB)= 287.7
+2026-07-22 07:52:20,897 INFO:__main__:Time(sep)= 9.437047
+2026-07-22 07:52:20,897 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:52:20,898 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:52:25,033 INFO:__main__:Time(sep)= 4.114798
+2026-07-22 07:52:25,033 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:52:25,033 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:52:25,042 INFO:__main__:Iteration 37
+2026-07-22 07:52:25,377 INFO:__main__:Time(master)= 0.335236
+2026-07-22 07:52:25,377 INFO:__main__:ObjVal 300.86268094200585
+2026-07-22 07:52:25,377 INFO:__main__:Peak RSS(MB)= 287.8
+2026-07-22 07:52:35,089 INFO:__main__:Time(sep)= 9.694196
+2026-07-22 07:52:35,089 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:52:35,089 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:52:39,000 INFO:__main__:Time(sep)= 3.889427
+2026-07-22 07:52:39,000 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:52:39,000 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:52:39,003 INFO:__main__:Iteration 38
+2026-07-22 07:52:39,344 INFO:__main__:Time(master)= 0.339608
+2026-07-22 07:52:39,344 INFO:__main__:ObjVal 298.52038526973297
+2026-07-22 07:52:39,344 INFO:__main__:Peak RSS(MB)= 287.8
+2026-07-22 07:52:49,669 INFO:__main__:Time(sep)= 10.309983
+2026-07-22 07:52:49,669 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:52:49,669 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:52:54,227 INFO:__main__:Time(sep)= 4.536688
+2026-07-22 07:52:54,227 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:52:54,227 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:52:54,232 INFO:__main__:Iteration 39
+2026-07-22 07:52:54,531 INFO:__main__:Time(master)= 0.299192
+2026-07-22 07:52:54,531 INFO:__main__:ObjVal 296.783415852134
+2026-07-22 07:52:54,532 INFO:__main__:Peak RSS(MB)= 287.9
+2026-07-22 07:53:05,268 INFO:__main__:Time(sep)= 10.724302
+2026-07-22 07:53:05,268 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:53:05,269 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:53:09,722 INFO:__main__:Time(sep)= 4.429177
+2026-07-22 07:53:09,723 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:53:09,723 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:53:09,726 INFO:__main__:Iteration 40
+2026-07-22 07:53:10,026 INFO:__main__:Time(master)= 0.299278
+2026-07-22 07:53:10,026 INFO:__main__:ObjVal 295.0591478257463
+2026-07-22 07:53:10,026 INFO:__main__:Peak RSS(MB)= 287.9
+2026-07-22 07:53:19,856 INFO:__main__:Time(sep)= 9.806061
+2026-07-22 07:53:19,857 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:53:19,857 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:53:24,122 INFO:__main__:Time(sep)= 4.242540
+2026-07-22 07:53:24,123 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:53:24,123 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:53:24,129 INFO:__main__:Iteration 41
+2026-07-22 07:53:24,478 INFO:__main__:Time(master)= 0.348880
+2026-07-22 07:53:24,478 INFO:__main__:ObjVal 293.2007327872474
+2026-07-22 07:53:24,478 INFO:__main__:Peak RSS(MB)= 286.2
+2026-07-22 07:53:34,518 INFO:__main__:Time(sep)= 10.024723
+2026-07-22 07:53:34,519 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:53:34,519 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:53:38,860 INFO:__main__:Time(sep)= 4.311211
+2026-07-22 07:53:38,860 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:53:38,861 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:53:38,866 INFO:__main__:Iteration 42
+2026-07-22 07:53:39,206 INFO:__main__:Time(master)= 0.338937
+2026-07-22 07:53:39,207 INFO:__main__:ObjVal 291.64138067174235
+2026-07-22 07:53:39,207 INFO:__main__:Peak RSS(MB)= 288.7
+2026-07-22 07:53:48,954 INFO:__main__:Time(sep)= 9.727546
+2026-07-22 07:53:48,954 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:53:48,954 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:53:53,201 INFO:__main__:Time(sep)= 4.214386
+2026-07-22 07:53:53,201 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:53:53,201 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:53:53,209 INFO:__main__:Iteration 43
+2026-07-22 07:53:53,573 INFO:__main__:Time(master)= 0.364264
+2026-07-22 07:53:53,573 INFO:__main__:ObjVal 290.51873101062847
+2026-07-22 07:53:53,573 INFO:__main__:Peak RSS(MB)= 288.5
+2026-07-22 07:54:03,497 INFO:__main__:Time(sep)= 9.910408
+2026-07-22 07:54:03,497 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:54:03,497 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:54:07,911 INFO:__main__:Time(sep)= 4.388485
+2026-07-22 07:54:07,911 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:54:07,912 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:54:07,916 INFO:__main__:Iteration 44
+2026-07-22 07:54:08,339 INFO:__main__:Time(master)= 0.420951
+2026-07-22 07:54:08,339 INFO:__main__:ObjVal 286.1364339366331
+2026-07-22 07:54:08,340 INFO:__main__:Peak RSS(MB)= 291.1
+2026-07-22 07:54:18,375 INFO:__main__:Time(sep)= 10.015514
+2026-07-22 07:54:18,375 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:54:18,375 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:54:22,762 INFO:__main__:Time(sep)= 4.358797
+2026-07-22 07:54:22,763 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:54:22,763 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:54:22,768 INFO:__main__:Iteration 45
+2026-07-22 07:54:23,157 INFO:__main__:Time(master)= 0.389330
+2026-07-22 07:54:23,158 INFO:__main__:ObjVal 284.99297280144157
+2026-07-22 07:54:23,158 INFO:__main__:Peak RSS(MB)= 293.0
+2026-07-22 07:54:33,395 INFO:__main__:Time(sep)= 10.221233
+2026-07-22 07:54:33,395 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:54:33,395 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:54:37,534 INFO:__main__:Time(sep)= 4.117851
+2026-07-22 07:54:37,534 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:54:37,534 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:54:37,538 INFO:__main__:Iteration 46
+2026-07-22 07:54:37,891 INFO:__main__:Time(master)= 0.352916
+2026-07-22 07:54:37,891 INFO:__main__:ObjVal 280.95283036647515
+2026-07-22 07:54:37,892 INFO:__main__:Peak RSS(MB)= 294.8
+2026-07-22 07:54:48,215 INFO:__main__:Time(sep)= 10.312439
+2026-07-22 07:54:48,215 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:54:48,215 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:54:52,612 INFO:__main__:Time(sep)= 4.369993
+2026-07-22 07:54:52,613 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:54:52,613 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:54:52,616 INFO:__main__:Iteration 47
+2026-07-22 07:54:53,072 INFO:__main__:Time(master)= 0.455051
+2026-07-22 07:54:53,072 INFO:__main__:ObjVal 277.3126216100956
+2026-07-22 07:54:53,073 INFO:__main__:Peak RSS(MB)= 297.5
+2026-07-22 07:55:03,768 INFO:__main__:Time(sep)= 10.681269
+2026-07-22 07:55:03,769 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:55:03,769 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:55:08,253 INFO:__main__:Time(sep)= 4.450865
+2026-07-22 07:55:08,253 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:55:08,253 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:55:08,258 INFO:__main__:Iteration 48
+2026-07-22 07:55:08,715 INFO:__main__:Time(master)= 0.456931
+2026-07-22 07:55:08,716 INFO:__main__:ObjVal 274.86710813105947
+2026-07-22 07:55:08,717 INFO:__main__:Peak RSS(MB)= 297.8
+2026-07-22 07:55:18,423 INFO:__main__:Time(sep)= 9.689197
+2026-07-22 07:55:18,423 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:55:18,423 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:55:22,992 INFO:__main__:Time(sep)= 4.547527
+2026-07-22 07:55:22,992 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:55:22,992 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:55:22,999 INFO:__main__:Iteration 49
+2026-07-22 07:55:23,397 INFO:__main__:Time(master)= 0.397388
+2026-07-22 07:55:23,397 INFO:__main__:ObjVal 273.77389295153523
+2026-07-22 07:55:23,397 INFO:__main__:Peak RSS(MB)= 298.0
+2026-07-22 07:55:33,531 INFO:__main__:Time(sep)= 10.121960
+2026-07-22 07:55:33,531 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:55:33,531 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:55:37,658 INFO:__main__:Time(sep)= 4.099199
+2026-07-22 07:55:37,658 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:55:37,658 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:55:37,662 INFO:__main__:Iteration 50
+2026-07-22 07:55:38,080 INFO:__main__:Time(master)= 0.416779
+2026-07-22 07:55:38,080 INFO:__main__:ObjVal 271.940000032856
+2026-07-22 07:55:38,080 INFO:__main__:Peak RSS(MB)= 298.5
+2026-07-22 07:55:48,670 INFO:__main__:Time(sep)= 10.572659
+2026-07-22 07:55:48,671 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:55:48,671 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:55:53,701 INFO:__main__:Time(sep)= 5.008252
+2026-07-22 07:55:53,701 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:55:53,701 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:55:53,708 INFO:__main__:Iteration 51
+2026-07-22 07:55:54,129 INFO:__main__:Time(master)= 0.421702
+2026-07-22 07:55:54,129 INFO:__main__:ObjVal 269.77480796612224
+2026-07-22 07:55:54,130 INFO:__main__:Peak RSS(MB)= 298.5
+2026-07-22 07:56:05,359 INFO:__main__:Time(sep)= 11.212765
+2026-07-22 07:56:05,360 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:56:05,360 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:56:09,781 INFO:__main__:Time(sep)= 4.392981
+2026-07-22 07:56:09,781 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:56:09,781 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:56:09,787 INFO:__main__:Iteration 52
+2026-07-22 07:56:10,095 INFO:__main__:Time(master)= 0.307763
+2026-07-22 07:56:10,095 INFO:__main__:ObjVal 266.7651006984594
+2026-07-22 07:56:10,096 INFO:__main__:Peak RSS(MB)= 298.7
+2026-07-22 07:56:20,051 INFO:__main__:Time(sep)= 9.944986
+2026-07-22 07:56:20,052 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:56:20,052 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:56:24,439 INFO:__main__:Time(sep)= 4.365838
+2026-07-22 07:56:24,439 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:56:24,439 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:56:24,442 INFO:__main__:Iteration 53
+2026-07-22 07:56:24,746 INFO:__main__:Time(master)= 0.302298
+2026-07-22 07:56:24,746 INFO:__main__:ObjVal 265.08565785822816
+2026-07-22 07:56:24,747 INFO:__main__:Peak RSS(MB)= 302.1
+2026-07-22 07:56:35,604 INFO:__main__:Time(sep)= 10.845525
+2026-07-22 07:56:35,605 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:56:35,605 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:56:40,098 INFO:__main__:Time(sep)= 4.468608
+2026-07-22 07:56:40,098 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:56:40,098 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:56:40,101 INFO:__main__:Iteration 54
+2026-07-22 07:56:40,620 INFO:__main__:Time(master)= 0.518948
+2026-07-22 07:56:40,620 INFO:__main__:ObjVal 263.22498307340754
+2026-07-22 07:56:40,621 INFO:__main__:Peak RSS(MB)= 305.2
+2026-07-22 07:56:52,021 INFO:__main__:Time(sep)= 11.380878
+2026-07-22 07:56:52,021 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:56:52,021 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:56:56,879 INFO:__main__:Time(sep)= 4.837445
+2026-07-22 07:56:56,879 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:56:56,880 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:56:56,886 INFO:__main__:Iteration 55
+2026-07-22 07:56:57,319 INFO:__main__:Time(master)= 0.431098
+2026-07-22 07:56:57,319 INFO:__main__:ObjVal 261.28022335540845
+2026-07-22 07:56:57,319 INFO:__main__:Peak RSS(MB)= 305.3
+2026-07-22 07:57:09,364 INFO:__main__:Time(sep)= 12.033759
+2026-07-22 07:57:09,365 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:57:09,365 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:57:13,737 INFO:__main__:Time(sep)= 4.347916
+2026-07-22 07:57:13,737 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:57:13,737 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:57:13,744 INFO:__main__:Iteration 56
+2026-07-22 07:57:14,068 INFO:__main__:Time(master)= 0.323959
+2026-07-22 07:57:14,068 INFO:__main__:ObjVal 259.9823224414448
+2026-07-22 07:57:14,068 INFO:__main__:Peak RSS(MB)= 305.5
+2026-07-22 07:57:24,430 INFO:__main__:Time(sep)= 10.338541
+2026-07-22 07:57:24,430 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:57:24,430 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:57:29,166 INFO:__main__:Time(sep)= 4.710720
+2026-07-22 07:57:29,167 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:57:29,167 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:57:29,174 INFO:__main__:Iteration 57
+2026-07-22 07:57:29,662 INFO:__main__:Time(master)= 0.487016
+2026-07-22 07:57:29,662 INFO:__main__:ObjVal 259.24074689298817
+2026-07-22 07:57:29,662 INFO:__main__:Peak RSS(MB)= 305.7
+2026-07-22 07:57:39,703 INFO:__main__:Time(sep)= 10.028959
+2026-07-22 07:57:39,703 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:57:39,703 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:57:44,026 INFO:__main__:Time(sep)= 4.305722
+2026-07-22 07:57:44,026 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:57:44,026 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:57:44,035 INFO:__main__:Iteration 58
+2026-07-22 07:57:44,468 INFO:__main__:Time(master)= 0.433577
+2026-07-22 07:57:44,468 INFO:__main__:ObjVal 258.22838237475383
+2026-07-22 07:57:44,468 INFO:__main__:Peak RSS(MB)= 307.2
+2026-07-22 07:57:54,100 INFO:__main__:Time(sep)= 9.619598
+2026-07-22 07:57:54,101 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:57:54,101 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:57:58,936 INFO:__main__:Time(sep)= 4.809374
+2026-07-22 07:57:58,937 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:57:58,937 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:57:58,942 INFO:__main__:Iteration 59
+2026-07-22 07:57:59,350 INFO:__main__:Time(master)= 0.407370
+2026-07-22 07:57:59,350 INFO:__main__:ObjVal 257.21529841893835
+2026-07-22 07:57:59,350 INFO:__main__:Peak RSS(MB)= 308.5
+2026-07-22 07:58:10,454 INFO:__main__:Time(sep)= 11.086147
+2026-07-22 07:58:10,455 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:58:10,455 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:58:14,978 INFO:__main__:Time(sep)= 4.496390
+2026-07-22 07:58:14,978 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:58:14,978 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:58:14,984 INFO:__main__:Iteration 60
+2026-07-22 07:58:15,467 INFO:__main__:Time(master)= 0.481709
+2026-07-22 07:58:15,467 INFO:__main__:ObjVal 256.08141131368507
+2026-07-22 07:58:15,468 INFO:__main__:Peak RSS(MB)= 309.3
+2026-07-22 07:58:25,858 INFO:__main__:Time(sep)= 10.369824
+2026-07-22 07:58:25,858 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:58:25,858 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:58:30,103 INFO:__main__:Time(sep)= 4.228128
+2026-07-22 07:58:30,103 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:58:30,103 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:58:30,108 INFO:__main__:Iteration 61
+2026-07-22 07:58:30,482 INFO:__main__:Time(master)= 0.373849
+2026-07-22 07:58:30,482 INFO:__main__:ObjVal 254.67412159656064
+2026-07-22 07:58:30,483 INFO:__main__:Peak RSS(MB)= 309.5
+2026-07-22 07:58:40,964 INFO:__main__:Time(sep)= 10.470984
+2026-07-22 07:58:40,965 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:58:40,965 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:58:45,365 INFO:__main__:Time(sep)= 4.383643
+2026-07-22 07:58:45,366 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:58:45,366 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:58:45,373 INFO:__main__:Iteration 62
+2026-07-22 07:58:45,928 INFO:__main__:Time(master)= 0.552996
+2026-07-22 07:58:45,928 INFO:__main__:ObjVal 254.22191961474863
+2026-07-22 07:58:45,929 INFO:__main__:Peak RSS(MB)= 309.5
+2026-07-22 07:58:56,605 INFO:__main__:Time(sep)= 10.660127
+2026-07-22 07:58:56,605 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:58:56,605 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:59:01,223 INFO:__main__:Time(sep)= 4.595526
+2026-07-22 07:59:01,223 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:59:01,223 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:59:01,229 INFO:__main__:Iteration 63
+2026-07-22 07:59:01,808 INFO:__main__:Time(master)= 0.579286
+2026-07-22 07:59:01,809 INFO:__main__:ObjVal 253.5070301667249
+2026-07-22 07:59:01,810 INFO:__main__:Peak RSS(MB)= 309.7
+2026-07-22 07:59:12,537 INFO:__main__:Time(sep)= 10.703485
+2026-07-22 07:59:12,537 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:59:12,538 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:59:17,113 INFO:__main__:Time(sep)= 4.548292
+2026-07-22 07:59:17,114 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:59:17,114 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:59:17,119 INFO:__main__:Iteration 64
+2026-07-22 07:59:17,641 INFO:__main__:Time(master)= 0.522608
+2026-07-22 07:59:17,642 INFO:__main__:ObjVal 252.80658568983807
+2026-07-22 07:59:17,643 INFO:__main__:Peak RSS(MB)= 307.9
+2026-07-22 07:59:27,985 INFO:__main__:Time(sep)= 10.319124
+2026-07-22 07:59:27,985 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:59:27,985 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:59:32,612 INFO:__main__:Time(sep)= 4.598196
+2026-07-22 07:59:32,613 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:59:32,613 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:59:32,619 INFO:__main__:Iteration 65
+2026-07-22 07:59:33,196 INFO:__main__:Time(master)= 0.576948
+2026-07-22 07:59:33,197 INFO:__main__:ObjVal 251.99099267600894
+2026-07-22 07:59:33,197 INFO:__main__:Peak RSS(MB)= 310.8
+2026-07-22 07:59:43,321 INFO:__main__:Time(sep)= 10.106950
+2026-07-22 07:59:43,321 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:59:43,321 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 07:59:47,945 INFO:__main__:Time(sep)= 4.602991
+2026-07-22 07:59:47,946 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 07:59:47,946 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 07:59:47,951 INFO:__main__:Iteration 66
+2026-07-22 07:59:48,365 INFO:__main__:Time(master)= 0.413182
+2026-07-22 07:59:48,365 INFO:__main__:ObjVal 250.61262257356952
+2026-07-22 07:59:48,365 INFO:__main__:Peak RSS(MB)= 309.0
+2026-07-22 07:59:58,380 INFO:__main__:Time(sep)= 10.002706
+2026-07-22 07:59:58,380 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 07:59:58,380 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:00:02,977 INFO:__main__:Time(sep)= 4.571552
+2026-07-22 08:00:02,977 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:00:02,977 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:00:02,983 INFO:__main__:Iteration 67
+2026-07-22 08:00:03,558 INFO:__main__:Time(master)= 0.575639
+2026-07-22 08:00:03,558 INFO:__main__:ObjVal 249.57478013538187
+2026-07-22 08:00:03,559 INFO:__main__:Peak RSS(MB)= 311.3
+2026-07-22 08:00:14,068 INFO:__main__:Time(sep)= 10.489099
+2026-07-22 08:00:14,068 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:00:14,068 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:00:18,102 INFO:__main__:Time(sep)= 4.010404
+2026-07-22 08:00:18,102 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:00:18,103 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:00:18,105 INFO:__main__:Iteration 68
+2026-07-22 08:00:18,544 INFO:__main__:Time(master)= 0.438841
+2026-07-22 08:00:18,545 INFO:__main__:ObjVal 248.51434943655653
+2026-07-22 08:00:18,546 INFO:__main__:Peak RSS(MB)= 315.4
+2026-07-22 08:00:29,560 INFO:__main__:Time(sep)= 10.989128
+2026-07-22 08:00:29,560 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:00:29,560 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:00:33,919 INFO:__main__:Time(sep)= 4.337431
+2026-07-22 08:00:33,919 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:00:33,919 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:00:33,925 INFO:__main__:Iteration 69
+2026-07-22 08:00:34,655 INFO:__main__:Time(master)= 0.728635
+2026-07-22 08:00:34,656 INFO:__main__:ObjVal 247.46011912415455
+2026-07-22 08:00:34,656 INFO:__main__:Peak RSS(MB)= 315.7
+2026-07-22 08:00:45,701 INFO:__main__:Time(sep)= 11.034909
+2026-07-22 08:00:45,702 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:00:45,702 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:00:50,390 INFO:__main__:Time(sep)= 4.665587
+2026-07-22 08:00:50,391 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:00:50,391 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:00:50,394 INFO:__main__:Iteration 70
+2026-07-22 08:00:50,793 INFO:__main__:Time(master)= 0.399008
+2026-07-22 08:00:50,793 INFO:__main__:ObjVal 246.26610084856935
+2026-07-22 08:00:50,793 INFO:__main__:Peak RSS(MB)= 315.7
+2026-07-22 08:01:01,408 INFO:__main__:Time(sep)= 10.607883
+2026-07-22 08:01:01,409 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:01:01,409 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:01:06,166 INFO:__main__:Time(sep)= 4.729735
+2026-07-22 08:01:06,166 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:01:06,166 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:01:06,172 INFO:__main__:Iteration 71
+2026-07-22 08:01:06,683 INFO:__main__:Time(master)= 0.510107
+2026-07-22 08:01:06,683 INFO:__main__:ObjVal 245.21347823472487
+2026-07-22 08:01:06,684 INFO:__main__:Peak RSS(MB)= 315.9
+2026-07-22 08:01:16,906 INFO:__main__:Time(sep)= 10.211088
+2026-07-22 08:01:16,906 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:01:16,906 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:01:20,150 INFO:__main__:Time(sep)= 3.218728
+2026-07-22 08:01:20,150 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:01:20,150 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:01:20,153 INFO:__main__:Iteration 72
+2026-07-22 08:01:20,444 INFO:__main__:Time(master)= 0.290901
+2026-07-22 08:01:20,445 INFO:__main__:ObjVal 244.07560054613958
+2026-07-22 08:01:20,445 INFO:__main__:Peak RSS(MB)= 316.3
+2026-07-22 08:01:27,122 INFO:__main__:Time(sep)= 6.666469
+2026-07-22 08:01:27,122 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:01:27,122 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:01:29,896 INFO:__main__:Time(sep)= 2.758619
+2026-07-22 08:01:29,896 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:01:29,896 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:01:29,900 INFO:__main__:Iteration 73
+2026-07-22 08:01:30,206 INFO:__main__:Time(master)= 0.306819
+2026-07-22 08:01:30,206 INFO:__main__:ObjVal 243.35694077260132
+2026-07-22 08:01:30,207 INFO:__main__:Peak RSS(MB)= 319.9
+2026-07-22 08:01:37,175 INFO:__main__:Time(sep)= 6.955431
+2026-07-22 08:01:37,175 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:01:37,175 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:01:39,781 INFO:__main__:Time(sep)= 2.592841
+2026-07-22 08:01:39,781 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:01:39,781 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:01:39,784 INFO:__main__:Iteration 74
+2026-07-22 08:01:40,056 INFO:__main__:Time(master)= 0.272039
+2026-07-22 08:01:40,057 INFO:__main__:ObjVal 241.33139360062725
+2026-07-22 08:01:40,057 INFO:__main__:Peak RSS(MB)= 320.5
+2026-07-22 08:01:47,011 INFO:__main__:Time(sep)= 6.945095
+2026-07-22 08:01:47,012 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:01:47,012 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:01:49,638 INFO:__main__:Time(sep)= 2.613951
+2026-07-22 08:01:49,638 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:01:49,638 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:01:49,642 INFO:__main__:Iteration 75
+2026-07-22 08:01:49,926 INFO:__main__:Time(master)= 0.283436
+2026-07-22 08:01:49,926 INFO:__main__:ObjVal 239.99900833242154
+2026-07-22 08:01:49,926 INFO:__main__:Peak RSS(MB)= 322.2
+2026-07-22 08:01:56,534 INFO:__main__:Time(sep)= 6.597946
+2026-07-22 08:01:56,534 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:01:56,534 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:01:59,094 INFO:__main__:Time(sep)= 2.549917
+2026-07-22 08:01:59,094 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:01:59,094 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:01:59,097 INFO:__main__:Iteration 76
+2026-07-22 08:01:59,368 INFO:__main__:Time(master)= 0.270452
+2026-07-22 08:01:59,369 INFO:__main__:ObjVal 239.29207745556957
+2026-07-22 08:01:59,369 INFO:__main__:Peak RSS(MB)= 321.2
+2026-07-22 08:02:06,276 INFO:__main__:Time(sep)= 6.898328
+2026-07-22 08:02:06,277 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:02:06,277 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:02:09,189 INFO:__main__:Time(sep)= 2.896122
+2026-07-22 08:02:09,189 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:02:09,189 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:02:09,195 INFO:__main__:Iteration 77
+2026-07-22 08:02:09,461 INFO:__main__:Time(master)= 0.265506
+2026-07-22 08:02:09,461 INFO:__main__:ObjVal 238.66656828409856
+2026-07-22 08:02:09,461 INFO:__main__:Peak RSS(MB)= 323.6
+2026-07-22 08:02:15,779 INFO:__main__:Time(sep)= 6.310229
+2026-07-22 08:02:15,779 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:02:15,780 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:02:18,292 INFO:__main__:Time(sep)= 2.502857
+2026-07-22 08:02:18,292 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:02:18,292 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:02:18,295 INFO:__main__:Iteration 78
+2026-07-22 08:02:18,615 INFO:__main__:Time(master)= 0.320400
+2026-07-22 08:02:18,615 INFO:__main__:ObjVal 238.05605115202127
+2026-07-22 08:02:18,615 INFO:__main__:Peak RSS(MB)= 327.2
+2026-07-22 08:02:25,525 INFO:__main__:Time(sep)= 6.897851
+2026-07-22 08:02:25,525 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:02:25,525 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:02:28,472 INFO:__main__:Time(sep)= 2.927310
+2026-07-22 08:02:28,472 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:02:28,472 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:02:28,475 INFO:__main__:Iteration 79
+2026-07-22 08:02:28,697 INFO:__main__:Time(master)= 0.221808
+2026-07-22 08:02:28,697 INFO:__main__:ObjVal 236.89603907216127
+2026-07-22 08:02:28,698 INFO:__main__:Peak RSS(MB)= 327.6
+2026-07-22 08:02:35,459 INFO:__main__:Time(sep)= 6.752049
+2026-07-22 08:02:35,459 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:02:35,459 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:02:38,246 INFO:__main__:Time(sep)= 2.769634
+2026-07-22 08:02:38,246 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:02:38,246 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:02:38,250 INFO:__main__:Iteration 80
+2026-07-22 08:02:38,587 INFO:__main__:Time(master)= 0.336208
+2026-07-22 08:02:38,587 INFO:__main__:ObjVal 235.40886799968882
+2026-07-22 08:02:38,587 INFO:__main__:Peak RSS(MB)= 327.8
+2026-07-22 08:02:45,078 INFO:__main__:Time(sep)= 6.479220
+2026-07-22 08:02:45,078 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:02:45,078 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:02:47,647 INFO:__main__:Time(sep)= 2.553432
+2026-07-22 08:02:47,647 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:02:47,647 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:02:47,650 INFO:__main__:Iteration 81
+2026-07-22 08:02:47,893 INFO:__main__:Time(master)= 0.242859
+2026-07-22 08:02:47,893 INFO:__main__:ObjVal 235.26509800519568
+2026-07-22 08:02:47,893 INFO:__main__:Peak RSS(MB)= 327.9
+2026-07-22 08:02:54,230 INFO:__main__:Time(sep)= 6.329110
+2026-07-22 08:02:54,230 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:02:54,230 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:02:57,038 INFO:__main__:Time(sep)= 2.799225
+2026-07-22 08:02:57,038 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:02:57,038 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:02:57,042 INFO:__main__:Iteration 82
+2026-07-22 08:02:57,385 INFO:__main__:Time(master)= 0.342233
+2026-07-22 08:02:57,385 INFO:__main__:ObjVal 234.90437067300746
+2026-07-22 08:02:57,385 INFO:__main__:Peak RSS(MB)= 328.0
+2026-07-22 08:03:04,242 INFO:__main__:Time(sep)= 6.847578
+2026-07-22 08:03:04,243 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:03:04,243 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:03:07,064 INFO:__main__:Time(sep)= 2.809074
+2026-07-22 08:03:07,064 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:03:07,064 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:03:07,068 INFO:__main__:Iteration 83
+2026-07-22 08:03:07,369 INFO:__main__:Time(master)= 0.300723
+2026-07-22 08:03:07,369 INFO:__main__:ObjVal 233.73943098959268
+2026-07-22 08:03:07,369 INFO:__main__:Peak RSS(MB)= 328.0
+2026-07-22 08:03:14,038 INFO:__main__:Time(sep)= 6.660270
+2026-07-22 08:03:14,039 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:03:14,039 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:03:16,998 INFO:__main__:Time(sep)= 2.942348
+2026-07-22 08:03:16,998 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:03:16,998 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:03:17,002 INFO:__main__:Iteration 84
+2026-07-22 08:03:17,293 INFO:__main__:Time(master)= 0.290265
+2026-07-22 08:03:17,293 INFO:__main__:ObjVal 233.41535113561295
+2026-07-22 08:03:17,293 INFO:__main__:Peak RSS(MB)= 328.3
+2026-07-22 08:03:23,772 INFO:__main__:Time(sep)= 6.469935
+2026-07-22 08:03:23,772 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:03:23,772 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:03:26,520 INFO:__main__:Time(sep)= 2.735916
+2026-07-22 08:03:26,520 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:03:26,521 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:03:26,522 INFO:__main__:Iteration 85
+2026-07-22 08:03:26,782 INFO:__main__:Time(master)= 0.260588
+2026-07-22 08:03:26,782 INFO:__main__:ObjVal 232.473332477448
+2026-07-22 08:03:26,782 INFO:__main__:Peak RSS(MB)= 328.6
+2026-07-22 08:03:33,595 INFO:__main__:Time(sep)= 6.806279
+2026-07-22 08:03:33,597 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:03:33,597 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:03:36,458 INFO:__main__:Time(sep)= 2.850735
+2026-07-22 08:03:36,458 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:03:36,458 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:03:36,477 INFO:__main__:Iteration 86
+2026-07-22 08:03:36,831 INFO:__main__:Time(master)= 0.353472
+2026-07-22 08:03:36,831 INFO:__main__:ObjVal 231.9769833731068
+2026-07-22 08:03:36,831 INFO:__main__:Peak RSS(MB)= 328.7
+2026-07-22 08:03:43,642 INFO:__main__:Time(sep)= 6.795350
+2026-07-22 08:03:43,642 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:03:43,642 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:03:46,419 INFO:__main__:Time(sep)= 2.759951
+2026-07-22 08:03:46,419 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:03:46,419 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:03:46,420 INFO:__main__:Iteration 87
+2026-07-22 08:03:46,673 INFO:__main__:Time(master)= 0.253531
+2026-07-22 08:03:46,674 INFO:__main__:ObjVal 231.1508626250663
+2026-07-22 08:03:46,674 INFO:__main__:Peak RSS(MB)= 328.9
+2026-07-22 08:03:53,345 INFO:__main__:Time(sep)= 6.661255
+2026-07-22 08:03:53,345 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:03:53,345 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:03:55,832 INFO:__main__:Time(sep)= 2.473742
+2026-07-22 08:03:55,833 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:03:55,833 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:03:55,836 INFO:__main__:Iteration 88
+2026-07-22 08:03:56,170 INFO:__main__:Time(master)= 0.333494
+2026-07-22 08:03:56,170 INFO:__main__:ObjVal 230.46327399082358
+2026-07-22 08:03:56,170 INFO:__main__:Peak RSS(MB)= 334.3
+2026-07-22 08:04:03,172 INFO:__main__:Time(sep)= 6.992588
+2026-07-22 08:04:03,172 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:04:03,172 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:04:06,041 INFO:__main__:Time(sep)= 2.855141
+2026-07-22 08:04:06,041 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:04:06,041 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:04:06,044 INFO:__main__:Iteration 89
+2026-07-22 08:04:06,338 INFO:__main__:Time(master)= 0.293956
+2026-07-22 08:04:06,338 INFO:__main__:ObjVal 230.0976011941951
+2026-07-22 08:04:06,338 INFO:__main__:Peak RSS(MB)= 334.5
+2026-07-22 08:04:12,665 INFO:__main__:Time(sep)= 6.316444
+2026-07-22 08:04:12,665 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:04:12,665 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:04:15,354 INFO:__main__:Time(sep)= 2.675211
+2026-07-22 08:04:15,355 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:04:15,355 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:04:15,358 INFO:__main__:Iteration 90
+2026-07-22 08:04:15,684 INFO:__main__:Time(master)= 0.325364
+2026-07-22 08:04:15,684 INFO:__main__:ObjVal 229.7196712893952
+2026-07-22 08:04:15,685 INFO:__main__:Peak RSS(MB)= 334.5
+2026-07-22 08:04:22,191 INFO:__main__:Time(sep)= 6.495391
+2026-07-22 08:04:22,191 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:04:22,192 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:04:25,159 INFO:__main__:Time(sep)= 2.945837
+2026-07-22 08:04:25,160 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:04:25,160 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:04:25,165 INFO:__main__:Iteration 91
+2026-07-22 08:04:25,529 INFO:__main__:Time(master)= 0.362885
+2026-07-22 08:04:25,529 INFO:__main__:ObjVal 228.73669057729592
+2026-07-22 08:04:25,529 INFO:__main__:Peak RSS(MB)= 334.8
+2026-07-22 08:04:32,368 INFO:__main__:Time(sep)= 6.821420
+2026-07-22 08:04:32,368 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:04:32,368 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:04:35,164 INFO:__main__:Time(sep)= 2.781563
+2026-07-22 08:04:35,164 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:04:35,164 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:04:35,168 INFO:__main__:Iteration 92
+2026-07-22 08:04:35,505 INFO:__main__:Time(master)= 0.337151
+2026-07-22 08:04:35,505 INFO:__main__:ObjVal 228.46618571860597
+2026-07-22 08:04:35,505 INFO:__main__:Peak RSS(MB)= 335.0
+2026-07-22 08:04:42,168 INFO:__main__:Time(sep)= 6.649934
+2026-07-22 08:04:42,168 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:04:42,168 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:04:44,834 INFO:__main__:Time(sep)= 2.654639
+2026-07-22 08:04:44,834 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:04:44,834 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:04:44,837 INFO:__main__:Iteration 93
+2026-07-22 08:04:45,161 INFO:__main__:Time(master)= 0.323853
+2026-07-22 08:04:45,161 INFO:__main__:ObjVal 228.08013060341926
+2026-07-22 08:04:45,161 INFO:__main__:Peak RSS(MB)= 335.0
+2026-07-22 08:04:52,443 INFO:__main__:Time(sep)= 7.272566
+2026-07-22 08:04:52,443 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:04:52,443 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:04:55,457 INFO:__main__:Time(sep)= 2.996933
+2026-07-22 08:04:55,457 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:04:55,457 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:04:55,461 INFO:__main__:Iteration 94
+2026-07-22 08:04:55,773 INFO:__main__:Time(master)= 0.312625
+2026-07-22 08:04:55,773 INFO:__main__:ObjVal 227.4287913545585
+2026-07-22 08:04:55,773 INFO:__main__:Peak RSS(MB)= 335.2
+2026-07-22 08:05:02,209 INFO:__main__:Time(sep)= 6.426432
+2026-07-22 08:05:02,209 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:05:02,209 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:05:05,083 INFO:__main__:Time(sep)= 2.857886
+2026-07-22 08:05:05,083 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:05:05,083 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:05:05,086 INFO:__main__:Iteration 95
+2026-07-22 08:05:05,441 INFO:__main__:Time(master)= 0.355330
+2026-07-22 08:05:05,441 INFO:__main__:ObjVal 226.95198017943434
+2026-07-22 08:05:05,442 INFO:__main__:Peak RSS(MB)= 335.3
+2026-07-22 08:05:11,186 INFO:__main__:Time(sep)= 5.736443
+2026-07-22 08:05:11,186 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:05:11,186 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:05:13,368 INFO:__main__:Time(sep)= 2.170121
+2026-07-22 08:05:13,368 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:05:13,368 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:05:13,371 INFO:__main__:Iteration 96
+2026-07-22 08:05:13,639 INFO:__main__:Time(master)= 0.267237
+2026-07-22 08:05:13,639 INFO:__main__:ObjVal 226.62035088741436
+2026-07-22 08:05:13,639 INFO:__main__:Peak RSS(MB)= 335.4
+2026-07-22 08:05:18,892 INFO:__main__:Time(sep)= 5.244022
+2026-07-22 08:05:18,892 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:05:18,892 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:05:20,968 INFO:__main__:Time(sep)= 2.066473
+2026-07-22 08:05:20,968 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:05:20,968 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:05:20,970 INFO:__main__:Iteration 97
+2026-07-22 08:05:21,231 INFO:__main__:Time(master)= 0.261200
+2026-07-22 08:05:21,231 INFO:__main__:ObjVal 226.10075248270937
+2026-07-22 08:05:21,231 INFO:__main__:Peak RSS(MB)= 337.3
+2026-07-22 08:05:27,040 INFO:__main__:Time(sep)= 5.800651
+2026-07-22 08:05:27,040 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:05:27,040 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:05:29,272 INFO:__main__:Time(sep)= 2.218631
+2026-07-22 08:05:29,272 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:05:29,272 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:05:29,275 INFO:__main__:Iteration 98
+2026-07-22 08:05:29,579 INFO:__main__:Time(master)= 0.302959
+2026-07-22 08:05:29,579 INFO:__main__:ObjVal 224.54285353834803
+2026-07-22 08:05:29,579 INFO:__main__:Peak RSS(MB)= 341.2
+2026-07-22 08:05:35,510 INFO:__main__:Time(sep)= 5.919716
+2026-07-22 08:05:35,510 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:05:35,510 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:05:37,836 INFO:__main__:Time(sep)= 2.314059
+2026-07-22 08:05:37,836 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:05:37,836 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:05:37,838 INFO:__main__:Iteration 99
+2026-07-22 08:05:38,124 INFO:__main__:Time(master)= 0.285834
+2026-07-22 08:05:38,124 INFO:__main__:ObjVal 223.61202549439423
+2026-07-22 08:05:38,124 INFO:__main__:Peak RSS(MB)= 347.1
+2026-07-22 08:05:43,756 INFO:__main__:Time(sep)= 5.622780
+2026-07-22 08:05:43,756 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:05:43,756 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:05:46,042 INFO:__main__:Time(sep)= 2.274641
+2026-07-22 08:05:46,042 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:05:46,042 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:05:46,045 INFO:__main__:Iteration 100
+2026-07-22 08:05:46,324 INFO:__main__:Time(master)= 0.279096
+2026-07-22 08:05:46,324 INFO:__main__:ObjVal 222.5714253514578
+2026-07-22 08:05:46,325 INFO:__main__:Peak RSS(MB)= 347.1
+2026-07-22 08:05:51,980 INFO:__main__:Time(sep)= 5.645861
+2026-07-22 08:05:51,981 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:05:51,981 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:05:54,346 INFO:__main__:Time(sep)= 2.352810
+2026-07-22 08:05:54,346 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:05:54,347 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:05:54,350 INFO:__main__:Iteration 101
+2026-07-22 08:05:54,648 INFO:__main__:Time(master)= 0.298120
+2026-07-22 08:05:54,649 INFO:__main__:ObjVal 221.07245847305137
+2026-07-22 08:05:54,649 INFO:__main__:Peak RSS(MB)= 347.1
+2026-07-22 08:06:00,356 INFO:__main__:Time(sep)= 5.700519
+2026-07-22 08:06:00,356 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:06:00,356 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:06:02,742 INFO:__main__:Time(sep)= 2.371879
+2026-07-22 08:06:02,742 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:06:02,742 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:06:02,746 INFO:__main__:Iteration 102
+2026-07-22 08:06:03,040 INFO:__main__:Time(master)= 0.294004
+2026-07-22 08:06:03,040 INFO:__main__:ObjVal 220.19132964915684
+2026-07-22 08:06:03,040 INFO:__main__:Peak RSS(MB)= 348.0
+2026-07-22 08:06:08,803 INFO:__main__:Time(sep)= 5.751301
+2026-07-22 08:06:08,803 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:06:08,803 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:06:10,965 INFO:__main__:Time(sep)= 2.146965
+2026-07-22 08:06:10,965 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:06:10,965 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:06:10,969 INFO:__main__:Iteration 103
+2026-07-22 08:06:11,286 INFO:__main__:Time(master)= 0.317018
+2026-07-22 08:06:11,286 INFO:__main__:ObjVal 219.50310371106406
+2026-07-22 08:06:11,286 INFO:__main__:Peak RSS(MB)= 352.1
+2026-07-22 08:06:16,892 INFO:__main__:Time(sep)= 5.596586
+2026-07-22 08:06:16,892 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:06:16,892 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:06:19,095 INFO:__main__:Time(sep)= 2.186926
+2026-07-22 08:06:19,095 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:06:19,096 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:06:19,099 INFO:__main__:Iteration 104
+2026-07-22 08:06:19,382 INFO:__main__:Time(master)= 0.283288
+2026-07-22 08:06:19,382 INFO:__main__:ObjVal 218.50501488304104
+2026-07-22 08:06:19,382 INFO:__main__:Peak RSS(MB)= 350.2
+2026-07-22 08:06:24,994 INFO:__main__:Time(sep)= 5.602850
+2026-07-22 08:06:24,994 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:06:24,994 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:06:27,136 INFO:__main__:Time(sep)= 2.130001
+2026-07-22 08:06:27,137 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:06:27,137 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:06:27,141 INFO:__main__:Iteration 105
+2026-07-22 08:06:27,400 INFO:__main__:Time(master)= 0.259786
+2026-07-22 08:06:27,400 INFO:__main__:ObjVal 217.69733797072652
+2026-07-22 08:06:27,400 INFO:__main__:Peak RSS(MB)= 352.3
+2026-07-22 08:06:33,228 INFO:__main__:Time(sep)= 5.818366
+2026-07-22 08:06:33,228 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:06:33,228 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:06:35,632 INFO:__main__:Time(sep)= 2.387891
+2026-07-22 08:06:35,633 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:06:35,633 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:06:35,636 INFO:__main__:Iteration 106
+2026-07-22 08:06:36,013 INFO:__main__:Time(master)= 0.377381
+2026-07-22 08:06:36,013 INFO:__main__:ObjVal 217.29915431699834
+2026-07-22 08:06:36,014 INFO:__main__:Peak RSS(MB)= 350.3
+2026-07-22 08:06:41,640 INFO:__main__:Time(sep)= 5.617645
+2026-07-22 08:06:41,640 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:06:41,641 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:06:43,864 INFO:__main__:Time(sep)= 2.210709
+2026-07-22 08:06:43,864 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:06:43,864 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:06:43,868 INFO:__main__:Iteration 107
+2026-07-22 08:06:44,114 INFO:__main__:Time(master)= 0.246065
+2026-07-22 08:06:44,114 INFO:__main__:ObjVal 217.06883028736857
+2026-07-22 08:06:44,114 INFO:__main__:Peak RSS(MB)= 352.5
+2026-07-22 08:06:49,793 INFO:__main__:Time(sep)= 5.671360
+2026-07-22 08:06:49,793 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:06:49,793 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:06:52,017 INFO:__main__:Time(sep)= 2.210450
+2026-07-22 08:06:52,017 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:06:52,017 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:06:52,019 INFO:__main__:Iteration 108
+2026-07-22 08:06:52,326 INFO:__main__:Time(master)= 0.307204
+2026-07-22 08:06:52,326 INFO:__main__:ObjVal 216.7815677024096
+2026-07-22 08:06:52,326 INFO:__main__:Peak RSS(MB)= 350.4
+2026-07-22 08:06:58,187 INFO:__main__:Time(sep)= 5.850728
+2026-07-22 08:06:58,187 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:06:58,187 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:07:00,420 INFO:__main__:Time(sep)= 2.217842
+2026-07-22 08:07:00,420 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:07:00,420 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:07:00,424 INFO:__main__:Iteration 109
+2026-07-22 08:07:00,676 INFO:__main__:Time(master)= 0.252293
+2026-07-22 08:07:00,677 INFO:__main__:ObjVal 216.40763868791245
+2026-07-22 08:07:00,677 INFO:__main__:Peak RSS(MB)= 352.7
+2026-07-22 08:07:06,655 INFO:__main__:Time(sep)= 5.964332
+2026-07-22 08:07:06,655 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:07:06,655 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:07:08,857 INFO:__main__:Time(sep)= 2.191055
+2026-07-22 08:07:08,857 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:07:08,858 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:07:08,861 INFO:__main__:Iteration 110
+2026-07-22 08:07:09,154 INFO:__main__:Time(master)= 0.291604
+2026-07-22 08:07:09,154 INFO:__main__:ObjVal 215.98625809279253
+2026-07-22 08:07:09,154 INFO:__main__:Peak RSS(MB)= 350.6
+2026-07-22 08:07:14,983 INFO:__main__:Time(sep)= 5.817251
+2026-07-22 08:07:14,983 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:07:14,983 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:07:17,209 INFO:__main__:Time(sep)= 2.210943
+2026-07-22 08:07:17,209 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:07:17,209 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:07:17,212 INFO:__main__:Iteration 111
+2026-07-22 08:07:17,502 INFO:__main__:Time(master)= 0.289466
+2026-07-22 08:07:17,502 INFO:__main__:ObjVal 215.29733032453163
+2026-07-22 08:07:17,502 INFO:__main__:Peak RSS(MB)= 352.9
+2026-07-22 08:07:23,211 INFO:__main__:Time(sep)= 5.697589
+2026-07-22 08:07:23,211 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:07:23,211 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:07:25,424 INFO:__main__:Time(sep)= 2.201110
+2026-07-22 08:07:25,424 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:07:25,424 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:07:25,428 INFO:__main__:Iteration 112
+2026-07-22 08:07:25,748 INFO:__main__:Time(master)= 0.319600
+2026-07-22 08:07:25,748 INFO:__main__:ObjVal 215.06822364381998
+2026-07-22 08:07:25,749 INFO:__main__:Peak RSS(MB)= 350.9
+2026-07-22 08:07:31,576 INFO:__main__:Time(sep)= 5.819195
+2026-07-22 08:07:31,577 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:07:31,577 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:07:34,223 INFO:__main__:Time(sep)= 2.631070
+2026-07-22 08:07:34,224 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:07:34,224 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:07:34,225 INFO:__main__:Iteration 113
+2026-07-22 08:07:34,525 INFO:__main__:Time(master)= 0.299436
+2026-07-22 08:07:34,525 INFO:__main__:ObjVal 214.76187017154555
+2026-07-22 08:07:34,525 INFO:__main__:Peak RSS(MB)= 353.1
+2026-07-22 08:07:40,492 INFO:__main__:Time(sep)= 5.957041
+2026-07-22 08:07:40,492 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:07:40,492 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:07:42,726 INFO:__main__:Time(sep)= 2.222461
+2026-07-22 08:07:42,726 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:07:42,726 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:07:42,728 INFO:__main__:Iteration 114
+2026-07-22 08:07:42,977 INFO:__main__:Time(master)= 0.248586
+2026-07-22 08:07:42,977 INFO:__main__:ObjVal 214.59021080256235
+2026-07-22 08:07:42,977 INFO:__main__:Peak RSS(MB)= 351.1
+2026-07-22 08:07:48,761 INFO:__main__:Time(sep)= 5.775569
+2026-07-22 08:07:48,761 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:07:48,761 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:07:51,102 INFO:__main__:Time(sep)= 2.328819
+2026-07-22 08:07:51,102 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:07:51,102 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:07:51,106 INFO:__main__:Iteration 115
+2026-07-22 08:07:51,445 INFO:__main__:Time(master)= 0.339157
+2026-07-22 08:07:51,445 INFO:__main__:ObjVal 214.37390892087825
+2026-07-22 08:07:51,445 INFO:__main__:Peak RSS(MB)= 350.8
+2026-07-22 08:07:57,512 INFO:__main__:Time(sep)= 6.053863
+2026-07-22 08:07:57,512 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:07:57,512 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:08:00,094 INFO:__main__:Time(sep)= 2.564141
+2026-07-22 08:08:00,094 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:08:00,094 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:08:00,098 INFO:__main__:Iteration 116
+2026-07-22 08:08:00,416 INFO:__main__:Time(master)= 0.317343
+2026-07-22 08:08:00,416 INFO:__main__:ObjVal 214.22384281299526
+2026-07-22 08:08:00,417 INFO:__main__:Peak RSS(MB)= 350.8
+2026-07-22 08:08:06,551 INFO:__main__:Time(sep)= 6.125202
+2026-07-22 08:08:06,551 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:08:06,551 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:08:08,934 INFO:__main__:Time(sep)= 2.370753
+2026-07-22 08:08:08,934 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:08:08,934 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:08:08,938 INFO:__main__:Iteration 117
+2026-07-22 08:08:09,285 INFO:__main__:Time(master)= 0.347058
+2026-07-22 08:08:09,285 INFO:__main__:ObjVal 214.10410172298242
+2026-07-22 08:08:09,286 INFO:__main__:Peak RSS(MB)= 350.8
+2026-07-22 08:08:15,319 INFO:__main__:Time(sep)= 6.024330
+2026-07-22 08:08:15,320 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:08:15,320 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:08:17,728 INFO:__main__:Time(sep)= 2.392723
+2026-07-22 08:08:17,728 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:08:17,728 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:08:17,731 INFO:__main__:Iteration 118
+2026-07-22 08:08:18,007 INFO:__main__:Time(master)= 0.275500
+2026-07-22 08:08:18,007 INFO:__main__:ObjVal 214.01320331463202
+2026-07-22 08:08:18,007 INFO:__main__:Peak RSS(MB)= 350.8
+2026-07-22 08:08:24,075 INFO:__main__:Time(sep)= 6.059083
+2026-07-22 08:08:24,076 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:08:24,076 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:08:26,344 INFO:__main__:Time(sep)= 2.256038
+2026-07-22 08:08:26,344 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:08:26,345 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:08:26,348 INFO:__main__:Iteration 119
+2026-07-22 08:08:26,701 INFO:__main__:Time(master)= 0.353254
+2026-07-22 08:08:26,701 INFO:__main__:ObjVal 213.8410654117373
+2026-07-22 08:08:26,701 INFO:__main__:Peak RSS(MB)= 353.3
+2026-07-22 08:08:32,843 INFO:__main__:Time(sep)= 6.132354
+2026-07-22 08:08:32,843 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:08:32,843 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:08:35,319 INFO:__main__:Time(sep)= 2.463825
+2026-07-22 08:08:35,320 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:08:35,320 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:08:35,322 INFO:__main__:Iteration 120
+2026-07-22 08:08:35,598 INFO:__main__:Time(master)= 0.276494
+2026-07-22 08:08:35,598 INFO:__main__:ObjVal 213.648486993466
+2026-07-22 08:08:35,598 INFO:__main__:Peak RSS(MB)= 353.3
+2026-07-22 08:08:41,612 INFO:__main__:Time(sep)= 6.005868
+2026-07-22 08:08:41,612 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:08:41,612 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:08:44,127 INFO:__main__:Time(sep)= 2.500769
+2026-07-22 08:08:44,127 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:08:44,128 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:08:44,131 INFO:__main__:Iteration 121
+2026-07-22 08:08:44,431 INFO:__main__:Time(master)= 0.299705
+2026-07-22 08:08:44,431 INFO:__main__:ObjVal 213.47022486638087
+2026-07-22 08:08:44,431 INFO:__main__:Peak RSS(MB)= 353.3
+2026-07-22 08:08:50,896 INFO:__main__:Time(sep)= 6.450030
+2026-07-22 08:08:50,896 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:08:50,896 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:08:53,273 INFO:__main__:Time(sep)= 2.364567
+2026-07-22 08:08:53,273 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:08:53,273 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:08:53,277 INFO:__main__:Iteration 122
+2026-07-22 08:08:53,625 INFO:__main__:Time(master)= 0.347900
+2026-07-22 08:08:53,625 INFO:__main__:ObjVal 212.85090894399838
+2026-07-22 08:08:53,625 INFO:__main__:Peak RSS(MB)= 353.4
+2026-07-22 08:08:59,889 INFO:__main__:Time(sep)= 6.256356
+2026-07-22 08:08:59,889 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:08:59,889 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:09:02,659 INFO:__main__:Time(sep)= 2.755352
+2026-07-22 08:09:02,660 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:09:02,660 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:09:02,663 INFO:__main__:Iteration 123
+2026-07-22 08:09:02,984 INFO:__main__:Time(master)= 0.320181
+2026-07-22 08:09:02,984 INFO:__main__:ObjVal 212.43386675058412
+2026-07-22 08:09:02,985 INFO:__main__:Peak RSS(MB)= 353.4
+2026-07-22 08:09:09,324 INFO:__main__:Time(sep)= 6.330681
+2026-07-22 08:09:09,324 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:09:09,324 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:09:11,866 INFO:__main__:Time(sep)= 2.524930
+2026-07-22 08:09:11,866 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:09:11,866 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:09:11,869 INFO:__main__:Iteration 124
+2026-07-22 08:09:12,123 INFO:__main__:Time(master)= 0.253857
+2026-07-22 08:09:12,124 INFO:__main__:ObjVal 211.770017018761
+2026-07-22 08:09:12,124 INFO:__main__:Peak RSS(MB)= 353.4
+2026-07-22 08:09:17,954 INFO:__main__:Time(sep)= 5.821042
+2026-07-22 08:09:17,954 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:09:17,954 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:09:20,027 INFO:__main__:Time(sep)= 2.060251
+2026-07-22 08:09:20,027 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:09:20,027 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:09:20,029 INFO:__main__:Iteration 125
+2026-07-22 08:09:20,290 INFO:__main__:Time(master)= 0.259573
+2026-07-22 08:09:20,290 INFO:__main__:ObjVal 211.0991780825658
+2026-07-22 08:09:20,291 INFO:__main__:Peak RSS(MB)= 353.5
+2026-07-22 08:09:25,358 INFO:__main__:Time(sep)= 5.058018
+2026-07-22 08:09:25,358 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:09:25,358 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:09:27,387 INFO:__main__:Time(sep)= 2.016235
+2026-07-22 08:09:27,387 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:09:27,387 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:09:27,390 INFO:__main__:Iteration 126
+2026-07-22 08:09:27,674 INFO:__main__:Time(master)= 0.284083
+2026-07-22 08:09:27,674 INFO:__main__:ObjVal 210.34101847510868
+2026-07-22 08:09:27,674 INFO:__main__:Peak RSS(MB)= 353.5
+2026-07-22 08:09:33,288 INFO:__main__:Time(sep)= 5.605168
+2026-07-22 08:09:33,288 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:09:33,288 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:09:35,603 INFO:__main__:Time(sep)= 2.303384
+2026-07-22 08:09:35,603 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:09:35,603 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:09:35,606 INFO:__main__:Iteration 127
+2026-07-22 08:09:35,885 INFO:__main__:Time(master)= 0.279368
+2026-07-22 08:09:35,885 INFO:__main__:ObjVal 209.93972275543052
+2026-07-22 08:09:35,887 INFO:__main__:Peak RSS(MB)= 353.6
+2026-07-22 08:09:41,378 INFO:__main__:Time(sep)= 5.483129
+2026-07-22 08:09:41,378 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:09:41,378 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:09:43,537 INFO:__main__:Time(sep)= 2.145042
+2026-07-22 08:09:43,538 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:09:43,538 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:09:43,541 INFO:__main__:Iteration 128
+2026-07-22 08:09:43,828 INFO:__main__:Time(master)= 0.286425
+2026-07-22 08:09:43,828 INFO:__main__:ObjVal 209.4781499270575
+2026-07-22 08:09:43,828 INFO:__main__:Peak RSS(MB)= 353.6
+2026-07-22 08:09:49,408 INFO:__main__:Time(sep)= 5.572072
+2026-07-22 08:09:49,408 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:09:49,408 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:09:51,571 INFO:__main__:Time(sep)= 2.151760
+2026-07-22 08:09:51,571 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:09:51,572 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:09:51,574 INFO:__main__:Iteration 129
+2026-07-22 08:09:51,864 INFO:__main__:Time(master)= 0.289630
+2026-07-22 08:09:51,864 INFO:__main__:ObjVal 209.39270691751824
+2026-07-22 08:09:51,865 INFO:__main__:Peak RSS(MB)= 353.6
+2026-07-22 08:09:57,598 INFO:__main__:Time(sep)= 5.723134
+2026-07-22 08:09:57,598 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:09:57,598 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:09:59,734 INFO:__main__:Time(sep)= 2.122520
+2026-07-22 08:09:59,734 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:09:59,734 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:09:59,741 INFO:__main__:Iteration 130
+2026-07-22 08:10:00,041 INFO:__main__:Time(master)= 0.298423
+2026-07-22 08:10:00,042 INFO:__main__:ObjVal 209.31978917872553
+2026-07-22 08:10:00,042 INFO:__main__:Peak RSS(MB)= 353.6
+2026-07-22 08:10:05,813 INFO:__main__:Time(sep)= 5.762897
+2026-07-22 08:10:05,813 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:10:05,813 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:10:07,959 INFO:__main__:Time(sep)= 2.133930
+2026-07-22 08:10:07,959 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:10:07,959 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:10:07,962 INFO:__main__:Iteration 131
+2026-07-22 08:10:08,252 INFO:__main__:Time(master)= 0.290318
+2026-07-22 08:10:08,252 INFO:__main__:ObjVal 208.92392108743653
+2026-07-22 08:10:08,252 INFO:__main__:Peak RSS(MB)= 353.6
+2026-07-22 08:10:14,001 INFO:__main__:Time(sep)= 5.739851
+2026-07-22 08:10:14,002 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:10:14,002 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:10:16,121 INFO:__main__:Time(sep)= 2.107024
+2026-07-22 08:10:16,121 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:10:16,121 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:10:16,124 INFO:__main__:Iteration 132
+2026-07-22 08:10:16,433 INFO:__main__:Time(master)= 0.307612
+2026-07-22 08:10:16,433 INFO:__main__:ObjVal 208.13863971319194
+2026-07-22 08:10:16,434 INFO:__main__:Peak RSS(MB)= 353.6
+2026-07-22 08:10:22,048 INFO:__main__:Time(sep)= 5.605509
+2026-07-22 08:10:22,048 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:10:22,048 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:10:24,297 INFO:__main__:Time(sep)= 2.236193
+2026-07-22 08:10:24,298 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:10:24,298 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:10:24,301 INFO:__main__:Iteration 133
+2026-07-22 08:10:24,604 INFO:__main__:Time(master)= 0.302599
+2026-07-22 08:10:24,604 INFO:__main__:ObjVal 208.0807197651314
+2026-07-22 08:10:24,604 INFO:__main__:Peak RSS(MB)= 353.7
+2026-07-22 08:10:30,143 INFO:__main__:Time(sep)= 5.530259
+2026-07-22 08:10:30,143 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:10:30,143 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:10:32,467 INFO:__main__:Time(sep)= 2.310775
+2026-07-22 08:10:32,467 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:10:32,467 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:10:32,471 INFO:__main__:Iteration 134
+2026-07-22 08:10:32,804 INFO:__main__:Time(master)= 0.332643
+2026-07-22 08:10:32,805 INFO:__main__:ObjVal 207.88664395897123
+2026-07-22 08:10:32,805 INFO:__main__:Peak RSS(MB)= 353.7
+2026-07-22 08:10:38,390 INFO:__main__:Time(sep)= 5.576584
+2026-07-22 08:10:38,390 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:10:38,390 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:10:40,614 INFO:__main__:Time(sep)= 2.212925
+2026-07-22 08:10:40,615 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:10:40,615 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:10:40,618 INFO:__main__:Iteration 135
+2026-07-22 08:10:40,893 INFO:__main__:Time(master)= 0.274549
+2026-07-22 08:10:40,893 INFO:__main__:ObjVal 207.64931209212773
+2026-07-22 08:10:40,894 INFO:__main__:Peak RSS(MB)= 353.7
+2026-07-22 08:10:46,581 INFO:__main__:Time(sep)= 5.678259
+2026-07-22 08:10:46,582 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:10:46,582 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:10:48,701 INFO:__main__:Time(sep)= 2.110554
+2026-07-22 08:10:48,701 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:10:48,701 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:10:48,704 INFO:__main__:Iteration 136
+2026-07-22 08:10:49,020 INFO:__main__:Time(master)= 0.315139
+2026-07-22 08:10:49,020 INFO:__main__:ObjVal 207.3971476693949
+2026-07-22 08:10:49,020 INFO:__main__:Peak RSS(MB)= 353.9
+2026-07-22 08:10:54,712 INFO:__main__:Time(sep)= 5.684489
+2026-07-22 08:10:54,712 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:10:54,712 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:10:56,972 INFO:__main__:Time(sep)= 2.247041
+2026-07-22 08:10:56,972 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:10:56,972 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:10:56,975 INFO:__main__:Iteration 137
+2026-07-22 08:10:57,228 INFO:__main__:Time(master)= 0.253325
+2026-07-22 08:10:57,228 INFO:__main__:ObjVal 207.2560416475879
+2026-07-22 08:10:57,228 INFO:__main__:Peak RSS(MB)= 356.3
+2026-07-22 08:11:03,117 INFO:__main__:Time(sep)= 5.877826
+2026-07-22 08:11:03,117 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:11:03,117 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:11:05,264 INFO:__main__:Time(sep)= 2.129885
+2026-07-22 08:11:05,265 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:11:05,265 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:11:05,268 INFO:__main__:Iteration 138
+2026-07-22 08:11:05,602 INFO:__main__:Time(master)= 0.334110
+2026-07-22 08:11:05,602 INFO:__main__:ObjVal 206.42062120799045
+2026-07-22 08:11:05,602 INFO:__main__:Peak RSS(MB)= 357.5
+2026-07-22 08:11:11,184 INFO:__main__:Time(sep)= 5.571480
+2026-07-22 08:11:11,184 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:11:11,184 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:11:13,512 INFO:__main__:Time(sep)= 2.314629
+2026-07-22 08:11:13,512 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:11:13,512 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:11:13,514 INFO:__main__:Iteration 139
+2026-07-22 08:11:13,790 INFO:__main__:Time(master)= 0.275302
+2026-07-22 08:11:13,790 INFO:__main__:ObjVal 206.02312194589808
+2026-07-22 08:11:13,790 INFO:__main__:Peak RSS(MB)= 357.8
+2026-07-22 08:11:19,557 INFO:__main__:Time(sep)= 5.759079
+2026-07-22 08:11:19,557 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:11:19,557 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:11:21,474 INFO:__main__:Time(sep)= 1.906477
+2026-07-22 08:11:21,474 INFO:__main__:Block 1 is PSD?: True
+2026-07-22 08:11:21,474 INFO:__main__:No cutting planes added for block 1
+2026-07-22 08:11:21,476 INFO:__main__:Iteration 140
+2026-07-22 08:11:21,804 INFO:__main__:Time(master)= 0.328011
+2026-07-22 08:11:21,804 INFO:__main__:ObjVal 205.74452647630716
+2026-07-22 08:11:21,804 INFO:__main__:Peak RSS(MB)= 358.0
+2026-07-22 08:11:27,571 INFO:__main__:Time(sep)= 5.754840
+2026-07-22 08:11:27,571 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:11:27,571 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:11:29,878 INFO:__main__:Time(sep)= 2.288056
+2026-07-22 08:11:29,878 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:11:29,878 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:11:29,882 INFO:__main__:Iteration 141
+2026-07-22 08:11:30,178 INFO:__main__:Time(master)= 0.296492
+2026-07-22 08:11:30,178 INFO:__main__:ObjVal 204.97260759125777
+2026-07-22 08:11:30,178 INFO:__main__:Peak RSS(MB)= 361.2
+2026-07-22 08:11:36,140 INFO:__main__:Time(sep)= 5.951129
+2026-07-22 08:11:36,140 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:11:36,140 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:11:38,416 INFO:__main__:Time(sep)= 2.264637
+2026-07-22 08:11:38,417 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:11:38,417 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:11:38,420 INFO:__main__:Iteration 142
+2026-07-22 08:11:38,752 INFO:__main__:Time(master)= 0.332196
+2026-07-22 08:11:38,752 INFO:__main__:ObjVal 204.658213909243
+2026-07-22 08:11:38,752 INFO:__main__:Peak RSS(MB)= 361.1
+2026-07-22 08:11:44,491 INFO:__main__:Time(sep)= 5.730413
+2026-07-22 08:11:44,492 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:11:44,492 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:11:46,852 INFO:__main__:Time(sep)= 2.350088
+2026-07-22 08:11:46,853 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:11:46,853 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:11:46,855 INFO:__main__:Iteration 143
+2026-07-22 08:11:47,139 INFO:__main__:Time(master)= 0.284403
+2026-07-22 08:11:47,139 INFO:__main__:ObjVal 204.35457496191367
+2026-07-22 08:11:47,139 INFO:__main__:Peak RSS(MB)= 361.0
+2026-07-22 08:11:52,910 INFO:__main__:Time(sep)= 5.763106
+2026-07-22 08:11:52,910 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:11:52,910 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:11:55,171 INFO:__main__:Time(sep)= 2.241617
+2026-07-22 08:11:55,171 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:11:55,171 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:11:55,172 INFO:__main__:Iteration 144
+2026-07-22 08:11:55,479 INFO:__main__:Time(master)= 0.306177
+2026-07-22 08:11:55,479 INFO:__main__:ObjVal 204.1467053302504
+2026-07-22 08:11:55,479 INFO:__main__:Peak RSS(MB)= 361.0
+2026-07-22 08:12:01,325 INFO:__main__:Time(sep)= 5.835952
+2026-07-22 08:12:01,325 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:12:01,325 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:12:03,729 INFO:__main__:Time(sep)= 2.392757
+2026-07-22 08:12:03,729 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:12:03,729 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:12:03,732 INFO:__main__:Iteration 145
+2026-07-22 08:12:04,028 INFO:__main__:Time(master)= 0.294951
+2026-07-22 08:12:04,028 INFO:__main__:ObjVal 203.3981945003864
+2026-07-22 08:12:04,028 INFO:__main__:Peak RSS(MB)= 361.0
+2026-07-22 08:12:09,939 INFO:__main__:Time(sep)= 5.901275
+2026-07-22 08:12:09,939 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:12:09,939 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:12:12,420 INFO:__main__:Time(sep)= 2.468377
+2026-07-22 08:12:12,420 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:12:12,420 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:12:12,423 INFO:__main__:Iteration 146
+2026-07-22 08:12:12,691 INFO:__main__:Time(master)= 0.267776
+2026-07-22 08:12:12,691 INFO:__main__:ObjVal 203.07954555323207
+2026-07-22 08:12:12,691 INFO:__main__:Peak RSS(MB)= 361.1
+2026-07-22 08:12:18,731 INFO:__main__:Time(sep)= 6.027294
+2026-07-22 08:12:18,731 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:12:18,731 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:12:21,008 INFO:__main__:Time(sep)= 2.260185
+2026-07-22 08:12:21,008 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:12:21,008 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:12:21,011 INFO:__main__:Iteration 147
+2026-07-22 08:12:21,424 INFO:__main__:Time(master)= 0.413207
+2026-07-22 08:12:21,424 INFO:__main__:ObjVal 202.6756780802869
+2026-07-22 08:12:21,425 INFO:__main__:Peak RSS(MB)= 363.3
+2026-07-22 08:12:27,402 INFO:__main__:Time(sep)= 5.966469
+2026-07-22 08:12:27,402 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:12:27,402 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:12:29,855 INFO:__main__:Time(sep)= 2.441053
+2026-07-22 08:12:29,855 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:12:29,855 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:12:29,857 INFO:__main__:Iteration 148
+2026-07-22 08:12:30,120 INFO:__main__:Time(master)= 0.263381
+2026-07-22 08:12:30,120 INFO:__main__:ObjVal 202.351289603851
+2026-07-22 08:12:30,120 INFO:__main__:Peak RSS(MB)= 363.4
+2026-07-22 08:12:36,334 INFO:__main__:Time(sep)= 6.206321
+2026-07-22 08:12:36,334 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:12:36,334 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:12:38,806 INFO:__main__:Time(sep)= 2.462284
+2026-07-22 08:12:38,806 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:12:38,806 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:12:38,809 INFO:__main__:Iteration 149
+2026-07-22 08:12:39,072 INFO:__main__:Time(master)= 0.263428
+2026-07-22 08:12:39,073 INFO:__main__:ObjVal 201.8573245338606
+2026-07-22 08:12:39,073 INFO:__main__:Peak RSS(MB)= 363.4
+2026-07-22 08:12:45,206 INFO:__main__:Time(sep)= 6.126219
+2026-07-22 08:12:45,206 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:12:45,206 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:12:47,656 INFO:__main__:Time(sep)= 2.435237
+2026-07-22 08:12:47,656 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:12:47,656 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:12:47,659 INFO:__main__:Iteration 150
+2026-07-22 08:12:48,030 INFO:__main__:Time(master)= 0.370555
+2026-07-22 08:12:48,030 INFO:__main__:ObjVal 201.82141564774122
+2026-07-22 08:12:48,030 INFO:__main__:Peak RSS(MB)= 363.5
+2026-07-22 08:12:54,599 INFO:__main__:Time(sep)= 6.556612
+2026-07-22 08:12:54,599 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:12:54,599 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:12:57,002 INFO:__main__:Time(sep)= 2.389627
+2026-07-22 08:12:57,003 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:12:57,003 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:12:57,005 INFO:__main__:Iteration 151
+2026-07-22 08:12:57,298 INFO:__main__:Time(master)= 0.292624
+2026-07-22 08:12:57,298 INFO:__main__:ObjVal 201.57465686472864
+2026-07-22 08:12:57,298 INFO:__main__:Peak RSS(MB)= 363.5
+2026-07-22 08:13:03,766 INFO:__main__:Time(sep)= 6.457643
+2026-07-22 08:13:03,766 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:13:03,766 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:13:06,120 INFO:__main__:Time(sep)= 2.339327
+2026-07-22 08:13:06,120 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:13:06,120 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:13:06,123 INFO:__main__:Iteration 152
+2026-07-22 08:13:06,500 INFO:__main__:Time(master)= 0.377102
+2026-07-22 08:13:06,500 INFO:__main__:ObjVal 201.31497813584502
+2026-07-22 08:13:06,500 INFO:__main__:Peak RSS(MB)= 363.5
+2026-07-22 08:13:12,705 INFO:__main__:Time(sep)= 6.195172
+2026-07-22 08:13:12,705 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:13:12,705 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:13:15,217 INFO:__main__:Time(sep)= 2.496397
+2026-07-22 08:13:15,217 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:13:15,217 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:13:15,220 INFO:__main__:Iteration 153
+2026-07-22 08:13:15,548 INFO:__main__:Time(master)= 0.328748
+2026-07-22 08:13:15,548 INFO:__main__:ObjVal 200.7916202486129
+2026-07-22 08:13:15,548 INFO:__main__:Peak RSS(MB)= 363.6
+2026-07-22 08:13:21,524 INFO:__main__:Time(sep)= 5.966900
+2026-07-22 08:13:21,524 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:13:21,524 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:13:23,962 INFO:__main__:Time(sep)= 2.425403
+2026-07-22 08:13:23,962 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:13:23,962 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:13:23,966 INFO:__main__:Iteration 154
+2026-07-22 08:13:24,237 INFO:__main__:Time(master)= 0.270577
+2026-07-22 08:13:24,237 INFO:__main__:ObjVal 200.5222488893865
+2026-07-22 08:13:24,237 INFO:__main__:Peak RSS(MB)= 363.6
+2026-07-22 08:13:30,491 INFO:__main__:Time(sep)= 6.244590
+2026-07-22 08:13:30,491 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:13:30,491 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:13:32,941 INFO:__main__:Time(sep)= 2.434186
+2026-07-22 08:13:32,942 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:13:32,942 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:13:32,945 INFO:__main__:Iteration 155
+2026-07-22 08:13:33,343 INFO:__main__:Time(master)= 0.397928
+2026-07-22 08:13:33,343 INFO:__main__:ObjVal 200.36115548784235
+2026-07-22 08:13:33,343 INFO:__main__:Peak RSS(MB)= 363.6
+2026-07-22 08:13:39,520 INFO:__main__:Time(sep)= 6.169749
+2026-07-22 08:13:39,520 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:13:39,520 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:13:42,019 INFO:__main__:Time(sep)= 2.484018
+2026-07-22 08:13:42,019 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:13:42,019 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:13:42,022 INFO:__main__:Iteration 156
+2026-07-22 08:13:42,311 INFO:__main__:Time(master)= 0.288580
+2026-07-22 08:13:42,311 INFO:__main__:ObjVal 200.1559326708028
+2026-07-22 08:13:42,312 INFO:__main__:Peak RSS(MB)= 363.6
+2026-07-22 08:13:48,662 INFO:__main__:Time(sep)= 6.341878
+2026-07-22 08:13:48,662 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:13:48,662 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:13:51,158 INFO:__main__:Time(sep)= 2.480628
+2026-07-22 08:13:51,158 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:13:51,158 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:13:51,161 INFO:__main__:Iteration 157
+2026-07-22 08:13:51,584 INFO:__main__:Time(master)= 0.422226
+2026-07-22 08:13:51,584 INFO:__main__:ObjVal 199.93902397987785
+2026-07-22 08:13:51,584 INFO:__main__:Peak RSS(MB)= 363.7
+2026-07-22 08:13:57,855 INFO:__main__:Time(sep)= 6.257835
+2026-07-22 08:13:57,855 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:13:57,855 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:14:00,441 INFO:__main__:Time(sep)= 2.569932
+2026-07-22 08:14:00,441 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:14:00,441 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:14:00,443 INFO:__main__:Iteration 158
+2026-07-22 08:14:00,739 INFO:__main__:Time(master)= 0.294373
+2026-07-22 08:14:00,739 INFO:__main__:ObjVal 199.90281949123104
+2026-07-22 08:14:00,739 INFO:__main__:Peak RSS(MB)= 363.7
+2026-07-22 08:14:07,322 INFO:__main__:Time(sep)= 6.572465
+2026-07-22 08:14:07,322 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:14:07,322 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:14:09,630 INFO:__main__:Time(sep)= 2.292412
+2026-07-22 08:14:09,632 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:14:09,632 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:14:09,635 INFO:__main__:Iteration 159
+2026-07-22 08:14:09,933 INFO:__main__:Time(master)= 0.296837
+2026-07-22 08:14:09,933 INFO:__main__:ObjVal 199.6807443874468
+2026-07-22 08:14:09,933 INFO:__main__:Peak RSS(MB)= 363.7
+2026-07-22 08:14:16,285 INFO:__main__:Time(sep)= 6.342506
+2026-07-22 08:14:16,286 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:14:16,286 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:14:18,735 INFO:__main__:Time(sep)= 2.431802
+2026-07-22 08:14:18,735 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:14:18,735 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:14:18,738 INFO:__main__:Iteration 160
+2026-07-22 08:14:19,025 INFO:__main__:Time(master)= 0.287334
+2026-07-22 08:14:19,025 INFO:__main__:ObjVal 199.59236568998915
+2026-07-22 08:14:19,026 INFO:__main__:Peak RSS(MB)= 363.8
+2026-07-22 08:14:25,392 INFO:__main__:Time(sep)= 6.357411
+2026-07-22 08:14:25,393 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:14:25,393 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:14:27,954 INFO:__main__:Time(sep)= 2.543086
+2026-07-22 08:14:27,954 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:14:27,954 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:14:27,959 INFO:__main__:Iteration 161
+2026-07-22 08:14:28,244 INFO:__main__:Time(master)= 0.285809
+2026-07-22 08:14:28,244 INFO:__main__:ObjVal 199.3939212202581
+2026-07-22 08:14:28,244 INFO:__main__:Peak RSS(MB)= 363.8
+2026-07-22 08:14:34,633 INFO:__main__:Time(sep)= 6.380072
+2026-07-22 08:14:34,633 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:14:34,633 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:14:37,339 INFO:__main__:Time(sep)= 2.688680
+2026-07-22 08:14:37,339 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:14:37,339 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:14:37,342 INFO:__main__:Iteration 162
+2026-07-22 08:14:37,652 INFO:__main__:Time(master)= 0.309079
+2026-07-22 08:14:37,652 INFO:__main__:ObjVal 199.35237842087597
+2026-07-22 08:14:37,652 INFO:__main__:Peak RSS(MB)= 363.9
+2026-07-22 08:14:43,889 INFO:__main__:Time(sep)= 6.228997
+2026-07-22 08:14:43,889 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:14:43,889 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:14:46,546 INFO:__main__:Time(sep)= 2.642630
+2026-07-22 08:14:46,546 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:14:46,546 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:14:46,550 INFO:__main__:Iteration 163
+2026-07-22 08:14:46,974 INFO:__main__:Time(master)= 0.424257
+2026-07-22 08:14:46,974 INFO:__main__:ObjVal 199.19737402195506
+2026-07-22 08:14:46,974 INFO:__main__:Peak RSS(MB)= 364.0
+2026-07-22 08:14:53,347 INFO:__main__:Time(sep)= 6.361328
+2026-07-22 08:14:53,347 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:14:53,347 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:14:55,723 INFO:__main__:Time(sep)= 2.362092
+2026-07-22 08:14:55,723 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:14:55,723 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:14:55,726 INFO:__main__:Iteration 164
+2026-07-22 08:14:56,018 INFO:__main__:Time(master)= 0.291940
+2026-07-22 08:14:56,018 INFO:__main__:ObjVal 199.06760428293944
+2026-07-22 08:14:56,018 INFO:__main__:Peak RSS(MB)= 364.0
+2026-07-22 08:15:02,777 INFO:__main__:Time(sep)= 6.751241
+2026-07-22 08:15:02,778 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:15:02,778 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:15:05,408 INFO:__main__:Time(sep)= 2.608197
+2026-07-22 08:15:05,408 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:15:05,408 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:15:05,412 INFO:__main__:Iteration 165
+2026-07-22 08:15:05,718 INFO:__main__:Time(master)= 0.306297
+2026-07-22 08:15:05,718 INFO:__main__:ObjVal 199.0206982218579
+2026-07-22 08:15:05,718 INFO:__main__:Peak RSS(MB)= 364.0
+2026-07-22 08:15:12,006 INFO:__main__:Time(sep)= 6.281427
+2026-07-22 08:15:12,006 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:15:12,006 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:15:14,688 INFO:__main__:Time(sep)= 2.670099
+2026-07-22 08:15:14,688 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:15:14,689 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:15:14,693 INFO:__main__:Iteration 166
+2026-07-22 08:15:15,101 INFO:__main__:Time(master)= 0.408032
+2026-07-22 08:15:15,101 INFO:__main__:ObjVal 198.911351322307
+2026-07-22 08:15:15,102 INFO:__main__:Peak RSS(MB)= 364.0
+2026-07-22 08:15:21,614 INFO:__main__:Time(sep)= 6.503741
+2026-07-22 08:15:21,614 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:15:21,614 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:15:24,426 INFO:__main__:Time(sep)= 2.793031
+2026-07-22 08:15:24,426 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:15:24,426 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:15:24,429 INFO:__main__:Iteration 167
+2026-07-22 08:15:24,772 INFO:__main__:Time(master)= 0.342071
+2026-07-22 08:15:24,772 INFO:__main__:ObjVal 198.65758004082844
+2026-07-22 08:15:24,772 INFO:__main__:Peak RSS(MB)= 364.1
+2026-07-22 08:15:30,888 INFO:__main__:Time(sep)= 6.106973
+2026-07-22 08:15:30,888 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:15:30,888 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:15:33,632 INFO:__main__:Time(sep)= 2.732405
+2026-07-22 08:15:33,632 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:15:33,632 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:15:33,636 INFO:__main__:Iteration 168
+2026-07-22 08:15:34,044 INFO:__main__:Time(master)= 0.408575
+2026-07-22 08:15:34,044 INFO:__main__:ObjVal 198.6482313633308
+2026-07-22 08:15:34,044 INFO:__main__:Peak RSS(MB)= 364.1
+2026-07-22 08:15:40,474 INFO:__main__:Time(sep)= 6.416407
+2026-07-22 08:15:40,475 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:15:40,475 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:15:43,056 INFO:__main__:Time(sep)= 2.565965
+2026-07-22 08:15:43,056 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:15:43,056 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:15:43,057 INFO:__main__:Iteration 169
+2026-07-22 08:15:43,403 INFO:__main__:Time(master)= 0.346773
+2026-07-22 08:15:43,403 INFO:__main__:ObjVal 198.36048201463785
+2026-07-22 08:15:43,403 INFO:__main__:Peak RSS(MB)= 364.1
+2026-07-22 08:15:49,947 INFO:__main__:Time(sep)= 6.532010
+2026-07-22 08:15:49,947 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:15:49,947 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:15:52,451 INFO:__main__:Time(sep)= 2.492599
+2026-07-22 08:15:52,451 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:15:52,451 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:15:52,455 INFO:__main__:Iteration 170
+2026-07-22 08:15:52,737 INFO:__main__:Time(master)= 0.282663
+2026-07-22 08:15:52,737 INFO:__main__:ObjVal 197.5832031409206
+2026-07-22 08:15:52,738 INFO:__main__:Peak RSS(MB)= 364.2
+2026-07-22 08:15:59,267 INFO:__main__:Time(sep)= 6.520993
+2026-07-22 08:15:59,267 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:15:59,267 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:16:01,919 INFO:__main__:Time(sep)= 2.638825
+2026-07-22 08:16:01,919 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:16:01,920 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:16:01,923 INFO:__main__:Iteration 171
+2026-07-22 08:16:02,313 INFO:__main__:Time(master)= 0.389652
+2026-07-22 08:16:02,313 INFO:__main__:ObjVal 197.43749052807118
+2026-07-22 08:16:02,313 INFO:__main__:Peak RSS(MB)= 364.2
+2026-07-22 08:16:08,733 INFO:__main__:Time(sep)= 6.409806
+2026-07-22 08:16:08,733 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:16:08,733 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:16:11,409 INFO:__main__:Time(sep)= 2.654303
+2026-07-22 08:16:11,409 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:16:11,409 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:16:11,412 INFO:__main__:Iteration 172
+2026-07-22 08:16:11,819 INFO:__main__:Time(master)= 0.405297
+2026-07-22 08:16:11,819 INFO:__main__:ObjVal 196.94320392460992
+2026-07-22 08:16:11,819 INFO:__main__:Peak RSS(MB)= 364.2
+2026-07-22 08:16:18,122 INFO:__main__:Time(sep)= 6.294903
+2026-07-22 08:16:18,122 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:16:18,122 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:16:20,824 INFO:__main__:Time(sep)= 2.684081
+2026-07-22 08:16:20,824 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:16:20,824 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:16:20,830 INFO:__main__:Iteration 173
+2026-07-22 08:16:21,203 INFO:__main__:Time(master)= 0.372916
+2026-07-22 08:16:21,203 INFO:__main__:ObjVal 196.31310190940422
+2026-07-22 08:16:21,204 INFO:__main__:Peak RSS(MB)= 364.2
+2026-07-22 08:16:27,555 INFO:__main__:Time(sep)= 6.342985
+2026-07-22 08:16:27,555 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:16:27,555 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:16:30,147 INFO:__main__:Time(sep)= 2.574877
+2026-07-22 08:16:30,147 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:16:30,147 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:16:30,151 INFO:__main__:Iteration 174
+2026-07-22 08:16:30,576 INFO:__main__:Time(master)= 0.424970
+2026-07-22 08:16:30,576 INFO:__main__:ObjVal 196.006875522141
+2026-07-22 08:16:30,577 INFO:__main__:Peak RSS(MB)= 364.2
+2026-07-22 08:16:37,162 INFO:__main__:Time(sep)= 6.577802
+2026-07-22 08:16:37,162 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:16:37,162 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:16:39,732 INFO:__main__:Time(sep)= 2.555357
+2026-07-22 08:16:39,732 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:16:39,732 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:16:39,734 INFO:__main__:Iteration 175
+2026-07-22 08:16:40,036 INFO:__main__:Time(master)= 0.301917
+2026-07-22 08:16:40,036 INFO:__main__:ObjVal 195.93760661010043
+2026-07-22 08:16:40,037 INFO:__main__:Peak RSS(MB)= 364.2
+2026-07-22 08:16:46,733 INFO:__main__:Time(sep)= 6.688199
+2026-07-22 08:16:46,733 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:16:46,733 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:16:49,415 INFO:__main__:Time(sep)= 2.667455
+2026-07-22 08:16:49,415 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:16:49,415 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:16:49,419 INFO:__main__:Iteration 176
+2026-07-22 08:16:49,853 INFO:__main__:Time(master)= 0.433738
+2026-07-22 08:16:49,853 INFO:__main__:ObjVal 195.80259884481848
+2026-07-22 08:16:49,853 INFO:__main__:Peak RSS(MB)= 364.4
+2026-07-22 08:16:56,468 INFO:__main__:Time(sep)= 6.603267
+2026-07-22 08:16:56,468 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:16:56,468 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:16:59,207 INFO:__main__:Time(sep)= 2.721840
+2026-07-22 08:16:59,207 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:16:59,207 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:16:59,212 INFO:__main__:Iteration 177
+2026-07-22 08:16:59,611 INFO:__main__:Time(master)= 0.399327
+2026-07-22 08:16:59,611 INFO:__main__:ObjVal 195.67177623714738
+2026-07-22 08:16:59,611 INFO:__main__:Peak RSS(MB)= 364.4
+2026-07-22 08:17:06,420 INFO:__main__:Time(sep)= 6.796032
+2026-07-22 08:17:06,420 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:17:06,420 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:17:09,244 INFO:__main__:Time(sep)= 2.804724
+2026-07-22 08:17:09,244 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:17:09,244 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:17:09,246 INFO:__main__:Iteration 178
+2026-07-22 08:17:09,629 INFO:__main__:Time(master)= 0.383155
+2026-07-22 08:17:09,629 INFO:__main__:ObjVal 195.30270411030403
+2026-07-22 08:17:09,630 INFO:__main__:Peak RSS(MB)= 364.4
+2026-07-22 08:17:16,673 INFO:__main__:Time(sep)= 7.028568
+2026-07-22 08:17:16,673 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:17:16,673 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:17:19,374 INFO:__main__:Time(sep)= 2.681648
+2026-07-22 08:17:19,374 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:17:19,374 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:17:19,379 INFO:__main__:Iteration 179
+2026-07-22 08:17:19,806 INFO:__main__:Time(master)= 0.426458
+2026-07-22 08:17:19,806 INFO:__main__:ObjVal 195.22209654606303
+2026-07-22 08:17:19,806 INFO:__main__:Peak RSS(MB)= 364.4
+2026-07-22 08:17:26,462 INFO:__main__:Time(sep)= 6.647502
+2026-07-22 08:17:26,462 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:17:26,462 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:17:29,081 INFO:__main__:Time(sep)= 2.607657
+2026-07-22 08:17:29,081 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:17:29,081 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:17:29,084 INFO:__main__:Iteration 180
+2026-07-22 08:17:29,473 INFO:__main__:Time(master)= 0.389483
+2026-07-22 08:17:29,473 INFO:__main__:ObjVal 194.96009502747324
+2026-07-22 08:17:29,473 INFO:__main__:Peak RSS(MB)= 364.5
+2026-07-22 08:17:36,372 INFO:__main__:Time(sep)= 6.885607
+2026-07-22 08:17:36,372 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:17:36,372 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:17:39,117 INFO:__main__:Time(sep)= 2.732671
+2026-07-22 08:17:39,117 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:17:39,117 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:17:39,119 INFO:__main__:Iteration 181
+2026-07-22 08:17:39,413 INFO:__main__:Time(master)= 0.292243
+2026-07-22 08:17:39,413 INFO:__main__:ObjVal 194.78783767863996
+2026-07-22 08:17:39,413 INFO:__main__:Peak RSS(MB)= 364.5
+2026-07-22 08:17:46,029 INFO:__main__:Time(sep)= 6.608502
+2026-07-22 08:17:46,029 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:17:46,029 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:17:48,727 INFO:__main__:Time(sep)= 2.682679
+2026-07-22 08:17:48,727 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:17:48,727 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:17:48,731 INFO:__main__:Iteration 182
+2026-07-22 08:17:49,059 INFO:__main__:Time(master)= 0.327183
+2026-07-22 08:17:49,059 INFO:__main__:ObjVal 194.6362568070727
+2026-07-22 08:17:49,059 INFO:__main__:Peak RSS(MB)= 364.5
+2026-07-22 08:17:55,380 INFO:__main__:Time(sep)= 6.309679
+2026-07-22 08:17:55,381 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:17:55,381 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:17:58,076 INFO:__main__:Time(sep)= 2.679704
+2026-07-22 08:17:58,076 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:17:58,076 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:17:58,080 INFO:__main__:Iteration 183
+2026-07-22 08:17:58,501 INFO:__main__:Time(master)= 0.420956
+2026-07-22 08:17:58,501 INFO:__main__:ObjVal 194.60232377546558
+2026-07-22 08:17:58,501 INFO:__main__:Peak RSS(MB)= 364.5
+2026-07-22 08:18:05,534 INFO:__main__:Time(sep)= 7.022707
+2026-07-22 08:18:05,534 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:18:05,534 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:18:07,960 INFO:__main__:Time(sep)= 2.412858
+2026-07-22 08:18:07,960 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:18:07,960 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:18:07,963 INFO:__main__:Iteration 184
+2026-07-22 08:18:08,299 INFO:__main__:Time(master)= 0.336333
+2026-07-22 08:18:08,299 INFO:__main__:ObjVal 194.1995578958754
+2026-07-22 08:18:08,299 INFO:__main__:Peak RSS(MB)= 364.6
+2026-07-22 08:18:14,618 INFO:__main__:Time(sep)= 6.309586
+2026-07-22 08:18:14,618 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:18:14,618 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:18:16,463 INFO:__main__:Time(sep)= 1.830695
+2026-07-22 08:18:16,464 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:18:16,464 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:18:16,468 INFO:__main__:Iteration 185
+2026-07-22 08:18:16,768 INFO:__main__:Time(master)= 0.300636
+2026-07-22 08:18:16,769 INFO:__main__:ObjVal 194.05462442378155
+2026-07-22 08:18:16,769 INFO:__main__:Peak RSS(MB)= 364.6
+2026-07-22 08:18:22,162 INFO:__main__:Time(sep)= 5.385807
+2026-07-22 08:18:22,162 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:18:22,162 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:18:24,491 INFO:__main__:Time(sep)= 2.317960
+2026-07-22 08:18:24,491 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:18:24,491 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:18:24,495 INFO:__main__:Iteration 186
+2026-07-22 08:18:24,807 INFO:__main__:Time(master)= 0.311734
+2026-07-22 08:18:24,807 INFO:__main__:ObjVal 193.9934702818752
+2026-07-22 08:18:24,807 INFO:__main__:Peak RSS(MB)= 364.6
+2026-07-22 08:18:30,491 INFO:__main__:Time(sep)= 5.676179
+2026-07-22 08:18:30,491 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:18:30,491 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:18:32,942 INFO:__main__:Time(sep)= 2.438146
+2026-07-22 08:18:32,943 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:18:32,943 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:18:32,946 INFO:__main__:Iteration 187
+2026-07-22 08:18:33,308 INFO:__main__:Time(master)= 0.361917
+2026-07-22 08:18:33,308 INFO:__main__:ObjVal 193.7709837482374
+2026-07-22 08:18:33,308 INFO:__main__:Peak RSS(MB)= 364.6
+2026-07-22 08:18:39,176 INFO:__main__:Time(sep)= 5.855868
+2026-07-22 08:18:39,176 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:18:39,176 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:18:41,428 INFO:__main__:Time(sep)= 2.235838
+2026-07-22 08:18:41,428 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:18:41,428 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:18:41,432 INFO:__main__:Iteration 188
+2026-07-22 08:18:41,878 INFO:__main__:Time(master)= 0.446867
+2026-07-22 08:18:41,878 INFO:__main__:ObjVal 193.68987403417503
+2026-07-22 08:18:41,878 INFO:__main__:Peak RSS(MB)= 364.6
+2026-07-22 08:18:48,300 INFO:__main__:Time(sep)= 6.412744
+2026-07-22 08:18:48,300 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:18:48,300 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:18:50,429 INFO:__main__:Time(sep)= 2.113625
+2026-07-22 08:18:50,429 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:18:50,429 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:18:50,432 INFO:__main__:Iteration 189
+2026-07-22 08:18:50,762 INFO:__main__:Time(master)= 0.329643
+2026-07-22 08:18:50,762 INFO:__main__:ObjVal 193.5667525115767
+2026-07-22 08:18:50,762 INFO:__main__:Peak RSS(MB)= 364.7
+2026-07-22 08:18:56,811 INFO:__main__:Time(sep)= 6.037672
+2026-07-22 08:18:56,811 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:18:56,811 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:18:59,658 INFO:__main__:Time(sep)= 2.830238
+2026-07-22 08:18:59,658 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:18:59,658 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:18:59,662 INFO:__main__:Iteration 190
+2026-07-22 08:19:00,095 INFO:__main__:Time(master)= 0.433784
+2026-07-22 08:19:00,095 INFO:__main__:ObjVal 193.33880443901975
+2026-07-22 08:19:00,095 INFO:__main__:Peak RSS(MB)= 364.7
+2026-07-22 08:19:06,438 INFO:__main__:Time(sep)= 6.330613
+2026-07-22 08:19:06,438 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:19:06,438 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:19:08,333 INFO:__main__:Time(sep)= 1.879041
+2026-07-22 08:19:08,333 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:19:08,333 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:19:08,336 INFO:__main__:Iteration 191
+2026-07-22 08:19:08,657 INFO:__main__:Time(master)= 0.321023
+2026-07-22 08:19:08,657 INFO:__main__:ObjVal 192.05515489604608
+2026-07-22 08:19:08,657 INFO:__main__:Peak RSS(MB)= 364.7
+2026-07-22 08:19:14,716 INFO:__main__:Time(sep)= 6.050834
+2026-07-22 08:19:14,716 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:19:14,716 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:19:16,886 INFO:__main__:Time(sep)= 2.154110
+2026-07-22 08:19:16,886 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:19:16,886 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:19:16,890 INFO:__main__:Iteration 192
+2026-07-22 08:19:17,326 INFO:__main__:Time(master)= 0.435477
+2026-07-22 08:19:17,327 INFO:__main__:ObjVal 191.8175970706656
+2026-07-22 08:19:17,327 INFO:__main__:Peak RSS(MB)= 364.8
+2026-07-22 08:19:23,340 INFO:__main__:Time(sep)= 6.001737
+2026-07-22 08:19:23,340 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:19:23,340 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:19:26,257 INFO:__main__:Time(sep)= 2.897625
+2026-07-22 08:19:26,257 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:19:26,257 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:19:26,260 INFO:__main__:Iteration 193
+2026-07-22 08:19:26,762 INFO:__main__:Time(master)= 0.501564
+2026-07-22 08:19:26,762 INFO:__main__:ObjVal 191.34658038933372
+2026-07-22 08:19:26,762 INFO:__main__:Peak RSS(MB)= 364.8
+2026-07-22 08:19:33,098 INFO:__main__:Time(sep)= 6.325755
+2026-07-22 08:19:33,098 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:19:33,098 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:19:35,928 INFO:__main__:Time(sep)= 2.816290
+2026-07-22 08:19:35,928 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:19:35,928 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:19:35,932 INFO:__main__:Iteration 194
+2026-07-22 08:19:36,254 INFO:__main__:Time(master)= 0.321585
+2026-07-22 08:19:36,255 INFO:__main__:ObjVal 190.96014025902008
+2026-07-22 08:19:36,255 INFO:__main__:Peak RSS(MB)= 365.0
+2026-07-22 08:19:42,691 INFO:__main__:Time(sep)= 6.429140
+2026-07-22 08:19:42,691 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:19:42,692 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:19:45,097 INFO:__main__:Time(sep)= 2.391977
+2026-07-22 08:19:45,098 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:19:45,098 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:19:45,101 INFO:__main__:Iteration 195
+2026-07-22 08:19:45,419 INFO:__main__:Time(master)= 0.318388
+2026-07-22 08:19:45,419 INFO:__main__:ObjVal 190.56830221462175
+2026-07-22 08:19:45,420 INFO:__main__:Peak RSS(MB)= 365.0
+2026-07-22 08:19:51,769 INFO:__main__:Time(sep)= 6.339799
+2026-07-22 08:19:51,769 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:19:51,769 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:19:54,240 INFO:__main__:Time(sep)= 2.456155
+2026-07-22 08:19:54,240 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:19:54,240 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:19:54,243 INFO:__main__:Iteration 196
+2026-07-22 08:19:54,585 INFO:__main__:Time(master)= 0.341741
+2026-07-22 08:19:54,585 INFO:__main__:ObjVal 190.3550090929226
+2026-07-22 08:19:54,586 INFO:__main__:Peak RSS(MB)= 365.0
+2026-07-22 08:20:00,889 INFO:__main__:Time(sep)= 6.295034
+2026-07-22 08:20:00,889 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:20:00,889 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:20:03,606 INFO:__main__:Time(sep)= 2.701693
+2026-07-22 08:20:03,606 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:20:03,606 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:20:03,610 INFO:__main__:Iteration 197
+2026-07-22 08:20:03,918 INFO:__main__:Time(master)= 0.308160
+2026-07-22 08:20:03,918 INFO:__main__:ObjVal 190.10136285000078
+2026-07-22 08:20:03,919 INFO:__main__:Peak RSS(MB)= 365.1
+2026-07-22 08:20:10,343 INFO:__main__:Time(sep)= 6.413023
+2026-07-22 08:20:10,343 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:20:10,343 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:20:12,460 INFO:__main__:Time(sep)= 2.098480
+2026-07-22 08:20:12,460 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:20:12,460 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:20:12,464 INFO:__main__:Iteration 198
+2026-07-22 08:20:12,785 INFO:__main__:Time(master)= 0.321057
+2026-07-22 08:20:12,785 INFO:__main__:ObjVal 189.68344498946198
+2026-07-22 08:20:12,785 INFO:__main__:Peak RSS(MB)= 365.1
+2026-07-22 08:20:19,501 INFO:__main__:Time(sep)= 6.705425
+2026-07-22 08:20:19,501 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:20:19,501 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:20:21,847 INFO:__main__:Time(sep)= 2.332464
+2026-07-22 08:20:21,847 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:20:21,847 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:20:21,850 INFO:__main__:Iteration 199
+2026-07-22 08:20:22,158 INFO:__main__:Time(master)= 0.307675
+2026-07-22 08:20:22,158 INFO:__main__:ObjVal 189.52242845506487
+2026-07-22 08:20:22,158 INFO:__main__:Peak RSS(MB)= 365.1
+2026-07-22 08:20:27,997 INFO:__main__:Time(sep)= 5.826367
+2026-07-22 08:20:27,998 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:20:27,998 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:20:31,102 INFO:__main__:Time(sep)= 3.081710
+2026-07-22 08:20:31,102 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:20:31,102 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:20:31,106 INFO:__main__:Iteration 200
+2026-07-22 08:20:31,520 INFO:__main__:Time(master)= 0.413909
+2026-07-22 08:20:31,521 INFO:__main__:ObjVal 189.44777818745473
+2026-07-22 08:20:31,521 INFO:__main__:Peak RSS(MB)= 365.1
+2026-07-22 08:20:37,144 INFO:__main__:Time(sep)= 5.610610
+2026-07-22 08:20:37,144 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:20:37,145 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:20:40,221 INFO:__main__:Time(sep)= 3.058068
+2026-07-22 08:20:40,221 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:20:40,221 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:20:40,224 INFO:__main__:Iteration 201
+2026-07-22 08:20:40,668 INFO:__main__:Time(master)= 0.444779
+2026-07-22 08:20:40,668 INFO:__main__:ObjVal 189.29390309957668
+2026-07-22 08:20:40,668 INFO:__main__:Peak RSS(MB)= 365.0
+2026-07-22 08:20:46,498 INFO:__main__:Time(sep)= 5.819740
+2026-07-22 08:20:46,498 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:20:46,498 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:20:48,914 INFO:__main__:Time(sep)= 2.402684
+2026-07-22 08:20:48,914 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:20:48,914 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:20:48,917 INFO:__main__:Iteration 202
+2026-07-22 08:20:49,419 INFO:__main__:Time(master)= 0.500958
+2026-07-22 08:20:49,419 INFO:__main__:ObjVal 189.1963230533491
+2026-07-22 08:20:49,419 INFO:__main__:Peak RSS(MB)= 365.0
+2026-07-22 08:20:56,785 INFO:__main__:Time(sep)= 7.354770
+2026-07-22 08:20:56,785 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:20:56,785 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:20:58,690 INFO:__main__:Time(sep)= 1.891201
+2026-07-22 08:20:58,690 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:20:58,690 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:20:58,693 INFO:__main__:Iteration 203
+2026-07-22 08:20:58,977 INFO:__main__:Time(master)= 0.284678
+2026-07-22 08:20:58,978 INFO:__main__:ObjVal 188.88723478068783
+2026-07-22 08:20:58,978 INFO:__main__:Peak RSS(MB)= 365.1
+2026-07-22 08:21:07,106 INFO:__main__:Time(sep)= 8.120330
+2026-07-22 08:21:07,106 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:21:07,106 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:21:09,009 INFO:__main__:Time(sep)= 1.891051
+2026-07-22 08:21:09,009 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:21:09,009 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:21:09,012 INFO:__main__:Iteration 204
+2026-07-22 08:21:09,318 INFO:__main__:Time(master)= 0.305905
+2026-07-22 08:21:09,318 INFO:__main__:ObjVal 188.52460476466013
+2026-07-22 08:21:09,318 INFO:__main__:Peak RSS(MB)= 365.3
+2026-07-22 08:21:16,445 INFO:__main__:Time(sep)= 7.116085
+2026-07-22 08:21:16,445 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:21:16,445 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:21:18,882 INFO:__main__:Time(sep)= 2.425703
+2026-07-22 08:21:18,882 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:21:18,883 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:21:18,884 INFO:__main__:Iteration 205
+2026-07-22 08:21:19,182 INFO:__main__:Time(master)= 0.297411
+2026-07-22 08:21:19,182 INFO:__main__:ObjVal 188.4674253821497
+2026-07-22 08:21:19,182 INFO:__main__:Peak RSS(MB)= 365.1
+2026-07-22 08:21:24,379 INFO:__main__:Time(sep)= 5.187534
+2026-07-22 08:21:24,379 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:21:24,379 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:21:27,591 INFO:__main__:Time(sep)= 3.197158
+2026-07-22 08:21:27,593 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:21:27,593 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:21:27,598 INFO:__main__:Iteration 206
+2026-07-22 08:21:28,124 INFO:__main__:Time(master)= 0.525102
+2026-07-22 08:21:28,124 INFO:__main__:ObjVal 188.43873801194738
+2026-07-22 08:21:28,124 INFO:__main__:Peak RSS(MB)= 365.1
+2026-07-22 08:21:34,825 INFO:__main__:Time(sep)= 6.679249
+2026-07-22 08:21:34,825 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:21:34,825 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:21:36,740 INFO:__main__:Time(sep)= 1.900745
+2026-07-22 08:21:36,741 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:21:36,741 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:21:36,745 INFO:__main__:Iteration 207
+2026-07-22 08:21:37,214 INFO:__main__:Time(master)= 0.469231
+2026-07-22 08:21:37,214 INFO:__main__:ObjVal 188.33593211986084
+2026-07-22 08:21:37,214 INFO:__main__:Peak RSS(MB)= 365.1
+2026-07-22 08:21:44,856 INFO:__main__:Time(sep)= 7.633661
+2026-07-22 08:21:44,856 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:21:44,856 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:21:46,746 INFO:__main__:Time(sep)= 1.878038
+2026-07-22 08:21:46,746 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:21:46,746 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:21:46,749 INFO:__main__:Iteration 208
+2026-07-22 08:21:47,110 INFO:__main__:Time(master)= 0.361121
+2026-07-22 08:21:47,110 INFO:__main__:ObjVal 188.30890231281282
+2026-07-22 08:21:47,110 INFO:__main__:Peak RSS(MB)= 365.1
+2026-07-22 08:21:54,143 INFO:__main__:Time(sep)= 7.024698
+2026-07-22 08:21:54,143 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:21:54,143 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:21:57,064 INFO:__main__:Time(sep)= 2.907573
+2026-07-22 08:21:57,064 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:21:57,064 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:21:57,068 INFO:__main__:Iteration 209
+2026-07-22 08:21:57,398 INFO:__main__:Time(master)= 0.330199
+2026-07-22 08:21:57,398 INFO:__main__:ObjVal 188.17446366348565
+2026-07-22 08:21:57,398 INFO:__main__:Peak RSS(MB)= 365.1
+2026-07-22 08:22:02,582 INFO:__main__:Time(sep)= 5.175113
+2026-07-22 08:22:02,582 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:22:02,582 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:22:05,808 INFO:__main__:Time(sep)= 3.207335
+2026-07-22 08:22:05,808 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:22:05,808 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:22:05,813 INFO:__main__:Iteration 210
+2026-07-22 08:22:06,279 INFO:__main__:Time(master)= 0.465928
+2026-07-22 08:22:06,279 INFO:__main__:ObjVal 188.00769073279548
+2026-07-22 08:22:06,279 INFO:__main__:Peak RSS(MB)= 365.1
+2026-07-22 08:22:12,564 INFO:__main__:Time(sep)= 6.276086
+2026-07-22 08:22:12,565 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:22:12,565 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:22:14,486 INFO:__main__:Time(sep)= 1.907852
+2026-07-22 08:22:14,486 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:22:14,486 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:22:14,489 INFO:__main__:Iteration 211
+2026-07-22 08:22:14,790 INFO:__main__:Time(master)= 0.301642
+2026-07-22 08:22:14,790 INFO:__main__:ObjVal 187.98969931635517
+2026-07-22 08:22:14,790 INFO:__main__:Peak RSS(MB)= 365.1
+2026-07-22 08:22:21,408 INFO:__main__:Time(sep)= 6.607757
+2026-07-22 08:22:21,408 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:22:21,408 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:22:24,658 INFO:__main__:Time(sep)= 3.229118
+2026-07-22 08:22:24,658 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:22:24,658 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:22:24,662 INFO:__main__:Iteration 212
+2026-07-22 08:22:25,144 INFO:__main__:Time(master)= 0.482485
+2026-07-22 08:22:25,145 INFO:__main__:ObjVal 187.8376309416696
+2026-07-22 08:22:25,145 INFO:__main__:Peak RSS(MB)= 365.0
+2026-07-22 08:22:30,365 INFO:__main__:Time(sep)= 5.204534
+2026-07-22 08:22:30,365 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:22:30,365 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:22:33,468 INFO:__main__:Time(sep)= 3.091169
+2026-07-22 08:22:33,468 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:22:33,468 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:22:33,473 INFO:__main__:Iteration 213
+2026-07-22 08:22:33,978 INFO:__main__:Time(master)= 0.504883
+2026-07-22 08:22:33,979 INFO:__main__:ObjVal 187.6821188493914
+2026-07-22 08:22:33,979 INFO:__main__:Peak RSS(MB)= 365.1
+2026-07-22 08:22:41,019 INFO:__main__:Time(sep)= 7.030311
+2026-07-22 08:22:41,020 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:22:41,020 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:22:42,943 INFO:__main__:Time(sep)= 1.910405
+2026-07-22 08:22:42,943 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:22:42,943 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:22:42,945 INFO:__main__:Iteration 214
+2026-07-22 08:22:43,273 INFO:__main__:Time(master)= 0.327529
+2026-07-22 08:22:43,273 INFO:__main__:ObjVal 187.4701131694913
+2026-07-22 08:22:43,274 INFO:__main__:Peak RSS(MB)= 364.9
+2026-07-22 08:22:50,286 INFO:__main__:Time(sep)= 7.003154
+2026-07-22 08:22:50,286 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:22:50,286 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:22:53,480 INFO:__main__:Time(sep)= 3.172769
+2026-07-22 08:22:53,480 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:22:53,481 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:22:53,485 INFO:__main__:Iteration 215
+2026-07-22 08:22:54,033 INFO:__main__:Time(master)= 0.548770
+2026-07-22 08:22:54,033 INFO:__main__:ObjVal 187.1727325408943
+2026-07-22 08:22:54,033 INFO:__main__:Peak RSS(MB)= 364.9
+2026-07-22 08:22:58,989 INFO:__main__:Time(sep)= 4.941480
+2026-07-22 08:22:58,989 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:22:58,989 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:23:01,845 INFO:__main__:Time(sep)= 2.840161
+2026-07-22 08:23:01,846 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:23:01,846 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:23:01,848 INFO:__main__:Iteration 216
+2026-07-22 08:23:02,378 INFO:__main__:Time(master)= 0.530426
+2026-07-22 08:23:02,378 INFO:__main__:ObjVal 187.1263436641492
+2026-07-22 08:23:02,378 INFO:__main__:Peak RSS(MB)= 365.1
+2026-07-22 08:23:09,406 INFO:__main__:Time(sep)= 7.013448
+2026-07-22 08:23:09,406 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:23:09,407 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:23:11,432 INFO:__main__:Time(sep)= 2.013338
+2026-07-22 08:23:11,432 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:23:11,433 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:23:11,435 INFO:__main__:Iteration 217
+2026-07-22 08:23:11,822 INFO:__main__:Time(master)= 0.386990
+2026-07-22 08:23:11,822 INFO:__main__:ObjVal 186.93565198094217
+2026-07-22 08:23:11,822 INFO:__main__:Peak RSS(MB)= 365.1
+2026-07-22 08:23:18,432 INFO:__main__:Time(sep)= 6.598377
+2026-07-22 08:23:18,432 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:23:18,432 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:23:21,611 INFO:__main__:Time(sep)= 3.162591
+2026-07-22 08:23:21,611 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:23:21,611 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:23:21,615 INFO:__main__:Iteration 218
+2026-07-22 08:23:22,015 INFO:__main__:Time(master)= 0.399263
+2026-07-22 08:23:22,016 INFO:__main__:ObjVal 186.83485297388228
+2026-07-22 08:23:22,016 INFO:__main__:Peak RSS(MB)= 365.1
+2026-07-22 08:23:26,830 INFO:__main__:Time(sep)= 4.807804
+2026-07-22 08:23:26,830 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:23:26,830 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:23:29,149 INFO:__main__:Time(sep)= 2.304971
+2026-07-22 08:23:29,150 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:23:29,150 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:23:29,155 INFO:__main__:Iteration 219
+2026-07-22 08:23:29,650 INFO:__main__:Time(master)= 0.494165
+2026-07-22 08:23:29,650 INFO:__main__:ObjVal 186.5541542270308
+2026-07-22 08:23:29,650 INFO:__main__:Peak RSS(MB)= 365.1
+2026-07-22 08:23:37,676 INFO:__main__:Time(sep)= 8.010623
+2026-07-22 08:23:37,676 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:23:37,676 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:23:39,808 INFO:__main__:Time(sep)= 2.111738
+2026-07-22 08:23:39,808 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:23:39,809 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:23:39,811 INFO:__main__:Iteration 220
+2026-07-22 08:23:40,140 INFO:__main__:Time(master)= 0.329642
+2026-07-22 08:23:40,140 INFO:__main__:ObjVal 186.48120650748353
+2026-07-22 08:23:40,140 INFO:__main__:Peak RSS(MB)= 365.1
+2026-07-22 08:23:45,099 INFO:__main__:Time(sep)= 4.947296
+2026-07-22 08:23:45,099 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:23:45,099 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:23:48,395 INFO:__main__:Time(sep)= 3.278176
+2026-07-22 08:23:48,395 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:23:48,395 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:23:48,400 INFO:__main__:Iteration 221
+2026-07-22 08:23:48,908 INFO:__main__:Time(master)= 0.507886
+2026-07-22 08:23:48,908 INFO:__main__:ObjVal 186.35344416682585
+2026-07-22 08:23:48,908 INFO:__main__:Peak RSS(MB)= 365.2
+2026-07-22 08:23:55,662 INFO:__main__:Time(sep)= 6.746088
+2026-07-22 08:23:55,663 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:23:55,663 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:23:57,517 INFO:__main__:Time(sep)= 1.842518
+2026-07-22 08:23:57,517 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:23:57,517 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:23:57,520 INFO:__main__:Iteration 222
+2026-07-22 08:23:57,845 INFO:__main__:Time(master)= 0.325219
+2026-07-22 08:23:57,846 INFO:__main__:ObjVal 186.31871647108477
+2026-07-22 08:23:57,846 INFO:__main__:Peak RSS(MB)= 365.2
+2026-07-22 08:24:04,426 INFO:__main__:Time(sep)= 6.571603
+2026-07-22 08:24:04,426 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:24:04,426 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:24:07,795 INFO:__main__:Time(sep)= 3.355436
+2026-07-22 08:24:07,795 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:24:07,795 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:24:07,799 INFO:__main__:Iteration 223
+2026-07-22 08:24:08,306 INFO:__main__:Time(master)= 0.506374
+2026-07-22 08:24:08,306 INFO:__main__:ObjVal 186.1603004967502
+2026-07-22 08:24:08,306 INFO:__main__:Peak RSS(MB)= 365.2
+2026-07-22 08:24:14,204 INFO:__main__:Time(sep)= 5.889171
+2026-07-22 08:24:14,204 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:24:14,204 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:24:16,172 INFO:__main__:Time(sep)= 1.954887
+2026-07-22 08:24:16,172 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:24:16,172 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:24:16,174 INFO:__main__:Iteration 224
+2026-07-22 08:24:16,492 INFO:__main__:Time(master)= 0.317485
+2026-07-22 08:24:16,492 INFO:__main__:ObjVal 185.99316033414186
+2026-07-22 08:24:16,492 INFO:__main__:Peak RSS(MB)= 365.2
+2026-07-22 08:24:23,687 INFO:__main__:Time(sep)= 7.186155
+2026-07-22 08:24:23,687 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:24:23,687 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:24:26,698 INFO:__main__:Time(sep)= 2.994038
+2026-07-22 08:24:26,698 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:24:26,698 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:24:26,702 INFO:__main__:Iteration 225
+2026-07-22 08:24:27,076 INFO:__main__:Time(master)= 0.373898
+2026-07-22 08:24:27,076 INFO:__main__:ObjVal 185.96952684614996
+2026-07-22 08:24:27,076 INFO:__main__:Peak RSS(MB)= 365.2
+2026-07-22 08:24:32,132 INFO:__main__:Time(sep)= 5.048881
+2026-07-22 08:24:32,132 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:24:32,132 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:24:34,749 INFO:__main__:Time(sep)= 2.598320
+2026-07-22 08:24:34,749 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:24:34,749 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:24:34,753 INFO:__main__:Iteration 226
+2026-07-22 08:24:35,237 INFO:__main__:Time(master)= 0.483913
+2026-07-22 08:24:35,237 INFO:__main__:ObjVal 185.28107242562595
+2026-07-22 08:24:35,238 INFO:__main__:Peak RSS(MB)= 365.2
+2026-07-22 08:24:42,728 INFO:__main__:Time(sep)= 7.482462
+2026-07-22 08:24:42,728 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:24:42,728 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:24:44,771 INFO:__main__:Time(sep)= 2.030904
+2026-07-22 08:24:44,771 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:24:44,771 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:24:44,774 INFO:__main__:Iteration 227
+2026-07-22 08:24:45,084 INFO:__main__:Time(master)= 0.309412
+2026-07-22 08:24:45,084 INFO:__main__:ObjVal 184.6749674012938
+2026-07-22 08:24:45,084 INFO:__main__:Peak RSS(MB)= 365.3
+2026-07-22 08:24:50,053 INFO:__main__:Time(sep)= 4.957946
+2026-07-22 08:24:50,053 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:24:50,053 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:24:53,705 INFO:__main__:Time(sep)= 3.634305
+2026-07-22 08:24:53,705 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:24:53,705 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:24:53,709 INFO:__main__:Iteration 228
+2026-07-22 08:24:54,238 INFO:__main__:Time(master)= 0.528133
+2026-07-22 08:24:54,238 INFO:__main__:ObjVal 184.09015135751747
+2026-07-22 08:24:54,238 INFO:__main__:Peak RSS(MB)= 365.4
+2026-07-22 08:25:00,840 INFO:__main__:Time(sep)= 6.592433
+2026-07-22 08:25:00,840 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:25:00,840 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:25:03,017 INFO:__main__:Time(sep)= 2.166934
+2026-07-22 08:25:03,017 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:25:03,017 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:25:03,020 INFO:__main__:Iteration 229
+2026-07-22 08:25:03,438 INFO:__main__:Time(master)= 0.416499
+2026-07-22 08:25:03,438 INFO:__main__:ObjVal 183.98728256955008
+2026-07-22 08:25:03,438 INFO:__main__:Peak RSS(MB)= 365.4
+2026-07-22 08:25:08,604 INFO:__main__:Time(sep)= 5.157265
+2026-07-22 08:25:08,604 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:25:08,604 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:25:12,189 INFO:__main__:Time(sep)= 3.565936
+2026-07-22 08:25:12,189 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:25:12,189 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:25:12,194 INFO:__main__:Iteration 230
+2026-07-22 08:25:12,727 INFO:__main__:Time(master)= 0.532495
+2026-07-22 08:25:12,727 INFO:__main__:ObjVal 183.88183458101707
+2026-07-22 08:25:12,727 INFO:__main__:Peak RSS(MB)= 365.4
+2026-07-22 08:25:19,236 INFO:__main__:Time(sep)= 6.498667
+2026-07-22 08:25:19,236 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:25:19,236 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:25:21,116 INFO:__main__:Time(sep)= 1.867823
+2026-07-22 08:25:21,116 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:25:21,116 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:25:21,119 INFO:__main__:Iteration 231
+2026-07-22 08:25:21,480 INFO:__main__:Time(master)= 0.361002
+2026-07-22 08:25:21,480 INFO:__main__:ObjVal 183.7233461355362
+2026-07-22 08:25:21,480 INFO:__main__:Peak RSS(MB)= 365.4
+2026-07-22 08:25:27,022 INFO:__main__:Time(sep)= 5.532368
+2026-07-22 08:25:27,022 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:25:27,023 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:25:30,249 INFO:__main__:Time(sep)= 3.208584
+2026-07-22 08:25:30,249 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:25:30,249 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:25:30,254 INFO:__main__:Iteration 232
+2026-07-22 08:25:30,784 INFO:__main__:Time(master)= 0.530092
+2026-07-22 08:25:30,785 INFO:__main__:ObjVal 183.60926218970033
+2026-07-22 08:25:30,785 INFO:__main__:Peak RSS(MB)= 365.4
+2026-07-22 08:25:37,496 INFO:__main__:Time(sep)= 6.699188
+2026-07-22 08:25:37,496 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:25:37,496 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:25:39,370 INFO:__main__:Time(sep)= 1.860042
+2026-07-22 08:25:39,370 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:25:39,370 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:25:39,373 INFO:__main__:Iteration 233
+2026-07-22 08:25:39,739 INFO:__main__:Time(master)= 0.365626
+2026-07-22 08:25:39,739 INFO:__main__:ObjVal 183.5130625689368
+2026-07-22 08:25:39,739 INFO:__main__:Peak RSS(MB)= 365.4
+2026-07-22 08:25:45,101 INFO:__main__:Time(sep)= 5.352082
+2026-07-22 08:25:45,101 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:25:45,101 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:25:48,532 INFO:__main__:Time(sep)= 3.412337
+2026-07-22 08:25:48,532 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:25:48,532 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:25:48,537 INFO:__main__:Iteration 234
+2026-07-22 08:25:49,086 INFO:__main__:Time(master)= 0.549344
+2026-07-22 08:25:49,086 INFO:__main__:ObjVal 183.25117218466494
+2026-07-22 08:25:49,086 INFO:__main__:Peak RSS(MB)= 365.4
+2026-07-22 08:25:55,456 INFO:__main__:Time(sep)= 6.360870
+2026-07-22 08:25:55,457 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:25:55,457 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:25:57,448 INFO:__main__:Time(sep)= 1.976197
+2026-07-22 08:25:57,448 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:25:57,448 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:25:57,451 INFO:__main__:Iteration 235
+2026-07-22 08:25:57,804 INFO:__main__:Time(master)= 0.353561
+2026-07-22 08:25:57,804 INFO:__main__:ObjVal 183.15977693471143
+2026-07-22 08:25:57,804 INFO:__main__:Peak RSS(MB)= 365.8
+2026-07-22 08:26:02,870 INFO:__main__:Time(sep)= 5.058509
+2026-07-22 08:26:02,870 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:26:02,870 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:26:05,988 INFO:__main__:Time(sep)= 3.104078
+2026-07-22 08:26:05,988 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:26:05,988 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:26:05,993 INFO:__main__:Iteration 236
+2026-07-22 08:26:06,555 INFO:__main__:Time(master)= 0.561335
+2026-07-22 08:26:06,555 INFO:__main__:ObjVal 182.9947843695478
+2026-07-22 08:26:06,555 INFO:__main__:Peak RSS(MB)= 365.8
+2026-07-22 08:26:14,203 INFO:__main__:Time(sep)= 7.631872
+2026-07-22 08:26:14,203 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:26:14,203 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:26:16,078 INFO:__main__:Time(sep)= 1.861257
+2026-07-22 08:26:16,079 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:26:16,079 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:26:16,082 INFO:__main__:Iteration 237
+2026-07-22 08:26:16,383 INFO:__main__:Time(master)= 0.301059
+2026-07-22 08:26:16,383 INFO:__main__:ObjVal 182.79178804198264
+2026-07-22 08:26:16,384 INFO:__main__:Peak RSS(MB)= 365.9
+2026-07-22 08:26:21,396 INFO:__main__:Time(sep)= 5.004854
+2026-07-22 08:26:21,396 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:26:21,396 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:26:23,662 INFO:__main__:Time(sep)= 2.253109
+2026-07-22 08:26:23,662 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:26:23,662 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:26:23,666 INFO:__main__:Iteration 238
+2026-07-22 08:26:24,187 INFO:__main__:Time(master)= 0.520800
+2026-07-22 08:26:24,187 INFO:__main__:ObjVal 182.3556679700021
+2026-07-22 08:26:24,187 INFO:__main__:Peak RSS(MB)= 365.9
+2026-07-22 08:26:32,315 INFO:__main__:Time(sep)= 8.119026
+2026-07-22 08:26:32,315 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:26:32,316 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:26:34,511 INFO:__main__:Time(sep)= 2.177925
+2026-07-22 08:26:34,512 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:26:34,512 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:26:34,514 INFO:__main__:Iteration 239
+2026-07-22 08:26:34,833 INFO:__main__:Time(master)= 0.318257
+2026-07-22 08:26:34,833 INFO:__main__:ObjVal 182.0598270626848
+2026-07-22 08:26:34,833 INFO:__main__:Peak RSS(MB)= 365.9
+2026-07-22 08:26:39,696 INFO:__main__:Time(sep)= 4.855376
+2026-07-22 08:26:39,696 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:26:39,696 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:26:41,552 INFO:__main__:Time(sep)= 1.844124
+2026-07-22 08:26:41,552 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:26:41,552 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:26:41,555 INFO:__main__:Iteration 240
+2026-07-22 08:26:41,906 INFO:__main__:Time(master)= 0.350185
+2026-07-22 08:26:41,906 INFO:__main__:ObjVal 181.40280929679642
+2026-07-22 08:26:41,907 INFO:__main__:Peak RSS(MB)= 365.9
+2026-07-22 08:26:49,284 INFO:__main__:Time(sep)= 7.368463
+2026-07-22 08:26:49,284 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:26:49,284 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:26:52,626 INFO:__main__:Time(sep)= 3.322932
+2026-07-22 08:26:52,626 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:26:52,626 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:26:52,630 INFO:__main__:Iteration 241
+2026-07-22 08:26:53,136 INFO:__main__:Time(master)= 0.506482
+2026-07-22 08:26:53,138 INFO:__main__:ObjVal 181.05740527798372
+2026-07-22 08:26:53,138 INFO:__main__:Peak RSS(MB)= 365.9
+2026-07-22 08:26:58,106 INFO:__main__:Time(sep)= 4.960475
+2026-07-22 08:26:58,106 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:26:58,106 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:27:00,128 INFO:__main__:Time(sep)= 2.009478
+2026-07-22 08:27:00,128 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:27:00,128 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:27:00,131 INFO:__main__:Iteration 242
+2026-07-22 08:27:00,467 INFO:__main__:Time(master)= 0.335813
+2026-07-22 08:27:00,467 INFO:__main__:ObjVal 180.89326036335146
+2026-07-22 08:27:00,467 INFO:__main__:Peak RSS(MB)= 365.9
+2026-07-22 08:27:05,576 INFO:__main__:Time(sep)= 5.099545
+2026-07-22 08:27:05,576 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:27:05,576 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:27:08,789 INFO:__main__:Time(sep)= 3.201462
+2026-07-22 08:27:08,789 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:27:08,789 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:27:08,793 INFO:__main__:Iteration 243
+2026-07-22 08:27:09,323 INFO:__main__:Time(master)= 0.529309
+2026-07-22 08:27:09,323 INFO:__main__:ObjVal 180.66235343367043
+2026-07-22 08:27:09,323 INFO:__main__:Peak RSS(MB)= 365.9
+2026-07-22 08:27:17,541 INFO:__main__:Time(sep)= 8.207012
+2026-07-22 08:27:17,541 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:27:17,541 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:27:19,873 INFO:__main__:Time(sep)= 2.313880
+2026-07-22 08:27:19,874 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:27:19,874 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:27:19,875 INFO:__main__:Iteration 244
+2026-07-22 08:27:20,209 INFO:__main__:Time(master)= 0.333450
+2026-07-22 08:27:20,209 INFO:__main__:ObjVal 180.6131597992378
+2026-07-22 08:27:20,210 INFO:__main__:Peak RSS(MB)= 365.9
+2026-07-22 08:27:25,018 INFO:__main__:Time(sep)= 4.802003
+2026-07-22 08:27:25,018 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:27:25,018 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:27:26,869 INFO:__main__:Time(sep)= 1.835845
+2026-07-22 08:27:26,869 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:27:26,869 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:27:26,872 INFO:__main__:Iteration 245
+2026-07-22 08:27:27,205 INFO:__main__:Time(master)= 0.333643
+2026-07-22 08:27:27,205 INFO:__main__:ObjVal 180.41032682294644
+2026-07-22 08:27:27,205 INFO:__main__:Peak RSS(MB)= 365.9
+2026-07-22 08:27:34,519 INFO:__main__:Time(sep)= 7.304565
+2026-07-22 08:27:34,519 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:27:34,519 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:27:37,863 INFO:__main__:Time(sep)= 3.324443
+2026-07-22 08:27:37,863 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:27:37,863 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:27:37,867 INFO:__main__:Iteration 246
+2026-07-22 08:27:38,415 INFO:__main__:Time(master)= 0.548036
+2026-07-22 08:27:38,416 INFO:__main__:ObjVal 180.3555873423406
+2026-07-22 08:27:38,416 INFO:__main__:Peak RSS(MB)= 365.8
+2026-07-22 08:27:44,076 INFO:__main__:Time(sep)= 5.651855
+2026-07-22 08:27:44,076 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:27:44,077 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:27:45,925 INFO:__main__:Time(sep)= 1.835027
+2026-07-22 08:27:45,925 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:27:45,925 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:27:45,928 INFO:__main__:Iteration 247
+2026-07-22 08:27:46,281 INFO:__main__:Time(master)= 0.352562
+2026-07-22 08:27:46,282 INFO:__main__:ObjVal 180.14339691952875
+2026-07-22 08:27:46,282 INFO:__main__:Peak RSS(MB)= 366.0
+2026-07-22 08:27:51,133 INFO:__main__:Time(sep)= 4.842895
+2026-07-22 08:27:51,134 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:27:51,134 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:27:53,501 INFO:__main__:Time(sep)= 2.352866
+2026-07-22 08:27:53,501 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:27:53,501 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:27:53,505 INFO:__main__:Iteration 248
+2026-07-22 08:27:54,092 INFO:__main__:Time(master)= 0.587319
+2026-07-22 08:27:54,092 INFO:__main__:ObjVal 180.10764974547962
+2026-07-22 08:27:54,092 INFO:__main__:Peak RSS(MB)= 365.9
+2026-07-22 08:28:02,623 INFO:__main__:Time(sep)= 8.516441
+2026-07-22 08:28:02,624 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:28:02,624 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:28:04,701 INFO:__main__:Time(sep)= 2.048461
+2026-07-22 08:28:04,701 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:28:04,701 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:28:04,704 INFO:__main__:Iteration 249
+2026-07-22 08:28:05,034 INFO:__main__:Time(master)= 0.329275
+2026-07-22 08:28:05,034 INFO:__main__:ObjVal 179.28677132065576
+2026-07-22 08:28:05,034 INFO:__main__:Peak RSS(MB)= 366.0
+2026-07-22 08:28:09,799 INFO:__main__:Time(sep)= 4.758240
+2026-07-22 08:28:09,799 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:28:09,799 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:28:11,723 INFO:__main__:Time(sep)= 1.911916
+2026-07-22 08:28:11,723 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:28:11,723 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:28:11,726 INFO:__main__:Iteration 250
+2026-07-22 08:28:12,096 INFO:__main__:Time(master)= 0.369560
+2026-07-22 08:28:12,096 INFO:__main__:ObjVal 178.99172555869976
+2026-07-22 08:28:12,096 INFO:__main__:Peak RSS(MB)= 366.0
+2026-07-22 08:28:17,970 INFO:__main__:Time(sep)= 5.865370
+2026-07-22 08:28:17,970 INFO:__main__:Block 0 is PSD?: False
+2026-07-22 08:28:17,970 INFO:__main__:Adding cutting planes for block 0
+2026-07-22 08:28:21,375 INFO:__main__:Time(sep)= 3.384604
+2026-07-22 08:28:21,376 INFO:__main__:Block 1 is PSD?: False
+2026-07-22 08:28:21,376 INFO:__main__:Adding cutting planes for block 1
+2026-07-22 08:28:21,381 INFO:__main__:*** Cutting plane terminated ***
+2026-07-22 08:28:21,381 INFO:__main__:Terminating because iteration limit was reached.
+2026-07-22 08:28:21,381 INFO:__main__:Total Time(master)= 84.694173
+2026-07-22 08:28:21,381 INFO:__main__:Total Time(sep)   = 2584.744328
+2026-07-22 08:28:21,381 INFO:__main__:Total iterations = 250
+2026-07-22 08:28:21,381 INFO:__main__:Total linear cuts added = 2030
+2026-07-22 08:28:21,381 INFO:__main__:Total linear cuts purged= 0
+2026-07-22 08:28:21,381 INFO:__main__:Total SOC cuts added    = 0
+2026-07-22 08:28:21,381 INFO:__main__:Final objective value 178.99172555869976
+2026-07-22 08:28:21,385 INFO:__main__:Result: termination_reason=Terminating because iteration limit was reached., iterations=250, linear_cuts=2030, linear_cuts_purged=0, soc_cuts=0, master_time=84.6941728591919, sep_time=2584.744327545166, objVal=178.99172555869976
+2026-07-22 08:28:26,677 INFO:__main__:Reading instance control6 ...
+2026-07-22 08:28:26,812 INFO:__main__:*** Solving with MOSEK ***
+2026-07-22 08:28:28,449 INFO:__main__:*** SDP solve with MOSEK complete ***
+2026-07-22 08:28:28,449 INFO:__main__:Time= 1.128689
+2026-07-22 08:28:28,449 INFO:__main__:Optimal Solution: [array([ 4.07874514e-04, -7.44788966e-04, -4.86230804e-05, ...,
+       -1.32293919e-03,  7.69261853e-03,  8.39152991e-03], shape=(3600,)), array([ 0.89221748, -1.6081273 , -0.47232497,  1.63827653, -0.46697651,
+        0.7936926 ,  0.43461326,  0.41649666,  0.88362312,  0.09896007,
+        0.65171674, -0.38268548,  1.37709788, -0.83875367,  0.41804037,
+       -0.78222293,  0.92982982,  1.81100902, -0.10288652, -0.68209648,
+       -2.41777541,  0.25876246, -0.10577974,  1.32640731, -1.07984939,
+        1.45844444, -1.573624  , -0.26796266, -1.2759134 , -1.12398205,
+       -1.6081273 ,  2.89847881,  0.85131561, -2.95281958,  0.84167559,
+       -1.4305467 , -0.78334426, -0.75069101, -1.59263689, -0.17836501,
+       -1.17465024,  0.68974995, -2.48207281,  1.51176445, -0.75347339,
+        1.40987382, -1.67591959, -3.26415155,  0.18544204,  1.2294065 ,
+        4.35778357, -0.4663919 ,  0.19065673, -2.39070844,  1.94631392,
+       -2.62869129,  2.83629026,  0.48297424,  2.2996985 ,  2.02585835,
+       -0.47232497,  0.85131561,  0.25004094, -0.86727612,  0.24720954,
+       -0.42016754, -0.23007698, -0.22048636, -0.46777526, -0.05238782,
+       -0.34500792,  0.20258728, -0.7290125 ,  0.44402214, -0.22130357,
+        0.41409571, -0.4922363 , -0.95871781,  0.0544664 ,  0.36109045,
+        1.27992977, -0.13698449,  0.05599803, -0.70217777,  0.57165417,
+       -0.77207604,  0.83305016,  0.14185494,  0.67544715,  0.59501725,
+        1.63827653, -2.95281958, -0.86727612,  3.00817917, -0.85745536,
+        1.45736664,  0.79803044,  0.764765  ,  1.62249571,  0.18170901,
+        1.19667263, -0.70268142,  2.52860679, -1.54010708,  0.76759954,
+       -1.43630619,  1.70733978,  3.32534799, -0.18891872, -1.25245547,
+       -4.43948347,  0.47513582, -0.19423118,  2.43552952, -1.98280349,
+        2.6779741 , -2.88946514, -0.49202907, -2.34281334, -2.06383923,
+       -0.46697651,  0.84167559,  0.24720954, -0.85745536,  0.24441023,
+       -0.4154097 , -0.22747167, -0.21798963, -0.46247832, -0.05179459,
+       -0.34110115,  0.20029325, -0.7207574 ,  0.43899417, -0.2187976 ,
+        0.40940662, -0.48666239, -0.94786159,  0.05384964,  0.35700158,
+        1.26543626, -0.13543333,  0.05536392, -0.69422654,  0.56518094,
+       -0.76333329,  0.82361697,  0.14024862,  0.66779861,  0.58827947,
+        0.7936926 , -1.4305467 , -0.42016754,  1.45736664, -0.4154097 ,
+        0.70604757,  0.38662022,  0.37050418,  0.7860473 ,  0.0880322 ,
+        0.57974963, -0.34042667,  1.22502918, -0.74613263,  0.37187742,
+       -0.69584443,  0.82715155,  1.61102479, -0.09152508, -0.60677462,
+       -2.1507878 ,  0.23018813, -0.09409878,  1.17993621, -0.9606049 ,
+        1.29739283, -1.39985349, -0.23837235, -1.13501816, -0.99986412,
+        0.43461326, -0.78334426, -0.23007698,  0.79803044, -0.22747167,
+        0.38662022,  0.21170702,  0.20288212,  0.43042681,  0.04820502,
+        0.31746155, -0.18641216,  0.67080617, -0.4085702 ,  0.20363409,
+       -0.38103318,  0.45293483,  0.88217117, -0.05011765, -0.33226   ,
+       -1.1777367 ,  0.12604728, -0.05152699,  0.646114  , -0.52601174,
+        0.71043139, -0.76653718, -0.13052886, -0.62151763, -0.54750946,
+        0.41649666, -0.75069101, -0.22048636,  0.764765  , -0.21798963,
+        0.37050418,  0.20288212,  0.19442511,  0.41248472,  0.04619562,
+        0.30422834, -0.17864168,  0.64284401, -0.39153918,  0.19514572,
+       -0.36515003,  0.43405449,  0.84539836, -0.04802853, -0.31840993,
+       -1.12864341,  0.12079308, -0.04937912,  0.61918111, -0.50408524,
+        0.68081746, -0.73458451, -0.12508784, -0.59561001, -0.52468684,
+        0.88362312, -1.59263689, -0.46777526,  1.62249571, -0.46247832,
+        0.7860473 ,  0.43042681,  0.41248472,  0.87511156,  0.09800683,
+        0.64543903, -0.37899923,  1.36383289, -0.83067431,  0.41401357,
+       -0.77468811,  0.92087317,  1.79356434, -0.10189546, -0.67552613,
+       -2.39448601,  0.25626992, -0.1047608 ,  1.31363059, -1.06944766,
+        1.44439585, -1.55846596, -0.26538149, -1.26362307, -1.11315521,
+        0.09896007, -0.17836501, -0.05238782,  0.18170901, -0.05179459,
+        0.0880322 ,  0.04820502,  0.04619562,  0.09800683,  0.01097616,
+        0.072285  , -0.04244546,  0.15274043, -0.09303016,  0.04636685,
+       -0.08676006,  0.10313182,  0.2008676 , -0.01141162, -0.07565457,
+       -0.26816694,  0.02870055, -0.01173254,  0.1471181 , -0.11977122,
+        0.161763  , -0.1745381 , -0.02972101, -0.1415176 , -0.12466618,
+        0.65171674, -1.17465024, -0.34500792,  1.19667263, -0.34110115,
+        0.57974963,  0.31746155,  0.30422834,  0.64543903,  0.072285  ,
+        0.47604393, -0.2795311 ,  1.00589572, -0.61266432,  0.30535595,
+       -0.57137166,  0.67919053,  1.3228444 , -0.07515305, -0.49823469,
+       -1.76605453,  0.18901201, -0.0772664 ,  0.96886898, -0.78877174,
+        1.06531499, -1.14944746, -0.19573227, -0.93198592, -0.82100826,
+       -0.38268548,  0.68974995,  0.20258728, -0.70268142,  0.20029325,
+       -0.34042667, -0.18641216, -0.17864168, -0.37899923, -0.04244546,
+       -0.2795311 ,  0.16413956, -0.59065796,  0.35975405, -0.1793038 ,
+        0.33550717, -0.39881797, -0.77676897,  0.04412958,  0.29256143,
+        1.0370202 , -0.1109871 ,  0.04537052, -0.56891601,  0.46316363,
+       -0.62554873,  0.67495097,  0.11493321,  0.54725843,  0.48209279,
+        1.37709788, -2.48207281, -0.7290125 ,  2.52860679, -0.7207574 ,
+        1.22502918,  0.67080617,  0.64284401,  1.36383289,  0.15274043,
+        1.00589572, -0.59065796,  2.12548924, -1.29457887,  0.64522665,
+       -1.20732621,  1.4351509 ,  2.79521167, -0.15880076, -1.05278548,
+       -3.73172853,  0.39938836, -0.16326628,  2.04725058, -1.66669938,
+        2.25104393, -2.4288185 , -0.41358841, -1.96931546, -1.73481617,
+       -0.83875367,  1.51176445,  0.44402214, -1.54010708,  0.43899417,
+       -0.74613263, -0.4085702 , -0.39153918, -0.83067431, -0.09303016,
+       -0.61266432,  0.35975405, -1.29457887,  0.78849356, -0.3929904 ,
+        0.73535027, -0.87411219, -1.70248903,  0.09672131,  0.64122364,
+        2.27289654, -0.24325679,  0.09944117, -1.2469258 ,  1.01514224,
+       -1.37105096,  1.47932869,  0.2519057 ,  1.19945762,  1.05663036,
+        0.41804037, -0.75347339, -0.22130357,  0.76759954, -0.2187976 ,
+        0.37187742,  0.20363409,  0.19514572,  0.41401357,  0.04636685,
+        0.30535595, -0.1793038 ,  0.64522665, -0.3929904 ,  0.19586903,
+       -0.36650344,  0.43566329,  0.84853178, -0.04820654, -0.3195901 ,
+       -1.13282666,  0.12124078, -0.04956214,  0.62147605, -0.5059536 ,
+        0.68334086, -0.73730719, -0.12555147, -0.5978176 , -0.52663156,
+       -0.78222293,  1.40987382,  0.41409571, -1.43630619,  0.40940662,
+       -0.69584443, -0.38103318, -0.36515003, -0.77468811, -0.08676006,
+       -0.57137166,  0.33550717, -1.20732621,  0.73535027, -0.36650344,
+        0.68578877, -0.81519835, -1.58774384,  0.09020244,  0.59800613,
+        2.11970674, -0.22686165,  0.09273898, -1.16288489,  0.94672318,
+       -1.27864419,  1.37962417,  0.23492763,  1.11861599,  0.98541507,
+        0.92982982, -1.67591959, -0.4922363 ,  1.70733978, -0.48666239,
+        0.82715155,  0.45293483,  0.43405449,  0.92087317,  0.10313182,
+        0.67919053, -0.39881797,  1.4351509 , -0.87411219,  0.43566329,
+       -0.81519835,  0.96902779,  1.88735399, -0.10722381, -0.71085096,
+       -2.51969925,  0.26967088, -0.11023898,  1.38232341, -1.12537157,
+        1.51992666, -1.63996177, -0.2792589 , -1.32970087, -1.17136468,
+        1.81100902, -3.26415155, -0.95871781,  3.32534799, -0.94786159,
+        1.61102479,  0.88217117,  0.84539836,  1.79356434,  0.2008676 ,
+        1.3228444 , -0.77676897,  2.79521167, -1.70248903,  0.84853178,
+       -1.58774384,  1.88735399,  3.6759577 , -0.20883744, -1.38450873,
+       -4.90756259,  0.52523198, -0.21471005,  2.69232075, -2.19186136,
+        2.96032762, -3.19411731, -0.54390639, -2.58982901, -2.28144113,
+       -0.10288652,  0.18544204,  0.0544664 , -0.18891872,  0.05384964,
+       -0.09152508, -0.05011765, -0.04802853, -0.10189546, -0.01141162,
+       -0.07515305,  0.04412958, -0.15880076,  0.09672131, -0.04820654,
+        0.09020244, -0.10722381, -0.20883744,  0.01186442,  0.07865631,
+        0.27880703, -0.02983933,  0.01219804, -0.15295536,  0.12452339,
+       -0.16818128,  0.18146327,  0.03090025,  0.14713262,  0.12961258,
+       -0.68209648,  1.2294065 ,  0.36109045, -1.25245547,  0.35700158,
+       -0.60677462, -0.33226   , -0.31840993, -0.67552613, -0.07565457,
+       -0.49823469,  0.29256143, -1.05278548,  0.64122364, -0.3195901 ,
+        0.59800613, -0.71085096, -1.38450873,  0.07865631,  0.52145989,
+        1.84837908, -0.19782279,  0.08086817, -1.01403276,  0.82554029,
+       -1.1149746 ,  1.20302889,  0.20485632,  0.97543039,  0.85927953,
+       -2.41777541,  4.35778357,  1.27992977, -4.43948347,  1.26543626,
+       -2.1507878 , -1.1777367 , -1.12864341, -2.39448601, -0.26816694,
+       -1.76605453,  1.0370202 , -3.73172853,  2.27289654, -1.13282666,
+        2.11970674, -2.51969925, -4.90756259,  0.27880703,  1.84837908,
+        6.55180846, -0.70120742,  0.28664721, -3.59436469,  2.92622977,
+       -3.95216549,  4.26428484,  0.72613859,  3.45753381,  3.04582264,
+        0.25876246, -0.4663919 , -0.13698449,  0.47513582, -0.13543333,
+        0.23018813,  0.12604728,  0.12079308,  0.25626992,  0.02870055,
+        0.18901201, -0.1109871 ,  0.39938836, -0.24325679,  0.12124078,
+       -0.22686165,  0.26967088,  0.52523198, -0.02983933, -0.19782279,
+       -0.70120742,  0.07504677, -0.03067841,  0.38468698, -0.3131798 ,
+        0.42298058, -0.45638518, -0.07771499, -0.37004263, -0.32597923,
+       -0.10577974,  0.19065673,  0.05599803, -0.19423118,  0.05536392,
+       -0.09409878, -0.05152699, -0.04937912, -0.1047608 , -0.01173254,
+       -0.0772664 ,  0.04537052, -0.16326628,  0.09944117, -0.04956214,
+        0.09273898, -0.11023898, -0.21471005,  0.01219804,  0.08086817,
+        0.28664721, -0.03067841,  0.01254108, -0.1572565 ,  0.12802505,
+       -0.17291061,  0.18656609,  0.03176919,  0.15127005,  0.13325734,
+        1.32640731, -2.39070844, -0.70217777,  2.43552952, -0.69422654,
+        1.17993621,  0.646114  ,  0.61918111,  1.31363059,  0.1471181 ,
+        0.96886898, -0.56891601,  2.04725058, -1.2469258 ,  0.62147605,
+       -1.16288489,  1.38232341,  2.69232075, -0.15295536, -1.01403276,
+       -3.59436469,  0.38468698, -0.1572565 ,  1.9718919 , -1.60534867,
+        2.16818367, -2.3394144 , -0.39836434, -1.89682553, -1.6709581 ,
+       -1.07984939,  1.94631392,  0.57165417, -1.98280349,  0.56518094,
+       -0.9606049 , -0.52601174, -0.50408524, -1.06944766, -0.11977122,
+       -0.78877174,  0.46316363, -1.66669938,  1.01514224, -0.5059536 ,
+        0.94672318, -1.12537157, -2.19186136,  0.12452339,  0.82554029,
+        2.92622977, -0.3131798 ,  0.12802505, -1.60534867,  1.30694002,
+       -1.76515299,  1.90455465,  0.32431478,  1.54423598,  1.3603537 ,
+        1.45844444, -2.62869129, -0.77207604,  2.6779741 , -0.76333329,
+        1.29739283,  0.71043139,  0.68081746,  1.44439585,  0.161763  ,
+        1.06531499, -0.62554873,  2.25104393, -1.37105096,  0.68334086,
+       -1.27864419,  1.51992666,  2.96032762, -0.16818128, -1.1149746 ,
+       -3.95216549,  0.42298058, -0.17291061,  2.16818367, -1.76515299,
+        2.38401538, -2.57229122, -0.4380195 , -2.08564488, -1.8372935 ,
+       -1.573624  ,  2.83629026,  0.83305016, -2.88946514,  0.82361697,
+       -1.39985349, -0.76653718, -0.73458451, -1.55846596, -0.1745381 ,
+       -1.14944746,  0.67495097, -2.4288185 ,  1.47932869, -0.73730719,
+        1.37962417, -1.63996177, -3.19411731,  0.18146327,  1.20302889,
+        4.26428484, -0.45638518,  0.18656609, -2.3394144 ,  1.90455465,
+       -2.57229122,  2.77543604,  0.47261176,  2.25035715,  1.9823924 ,
+       -0.26796266,  0.48297424,  0.14185494, -0.49202907,  0.14024862,
+       -0.23837235, -0.13052886, -0.12508784, -0.26538149, -0.02972101,
+       -0.19573227,  0.11493321, -0.41358841,  0.2519057 , -0.12555147,
+        0.23492763, -0.2792589 , -0.54390639,  0.03090025,  0.20485632,
+        0.72613859, -0.07771499,  0.03176919, -0.39836434,  0.32431478,
+       -0.4380195 ,  0.47261176,  0.08047813,  0.38319934,  0.33756929,
+       -1.2759134 ,  2.2996985 ,  0.67544715, -2.34281334,  0.66779861,
+       -1.13501816, -0.62151763, -0.59561001, -1.26362307, -0.1415176 ,
+       -0.93198592,  0.54725843, -1.96931546,  1.19945762, -0.5978176 ,
+        1.11861599, -1.32970087, -2.58982901,  0.14713262,  0.97543039,
+        3.45753381, -0.37004263,  0.15127005, -1.89682553,  1.54423598,
+       -2.08564488,  2.25035715,  0.38319934,  1.82461685,  1.60734778,
+       -1.12398205,  2.02585835,  0.59501725, -2.06383923,  0.58827947,
+       -0.99986412, -0.54750946, -0.52468684, -1.11315521, -0.12466618,
+       -0.82100826,  0.48209279, -1.73481617,  1.05663036, -0.52663156,
+        0.98541507, -1.17136468, -2.28144113,  0.12961258,  0.85927953,
+        3.04582264, -0.32597923,  0.13325734, -1.6709581 ,  1.3603537 ,
+       -1.8372935 ,  1.9823924 ,  0.33756929,  1.60734778,  1.41595038])]
+2026-07-22 08:28:28,455 INFO:__main__:=== Instance: control6, Solver: MOSEK, Valid Cut Type: soc, Add SOC Cuts: False, Collect Multiple Cuts: True, Optimizer: COBYLA, Optimizer Maxiter: 200, Ansatz Type: sparsity_aware, Ansatz Layers: 3, Execution Mode: noiseless ===
+2026-07-22 08:28:28,457 INFO:__main__:--- Run 1/1 ---
+2026-07-22 08:28:28,457 INFO:__main__:*** Starting cutting plane ***
+2026-07-22 08:28:30,444 INFO:__main__:Iteration 1
+2026-07-22 08:28:31,187 INFO:__main__:Time(master)= 0.743396
+2026-07-22 08:28:31,187 INFO:__main__:ObjVal 2685.230570829646
+2026-07-22 08:28:31,187 INFO:__main__:Peak RSS(MB)= 584.4

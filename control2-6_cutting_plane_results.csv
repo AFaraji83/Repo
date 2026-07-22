@@ -1,0 +1,13 @@
+timestamp,vm_id,config_hash,random_seed,instance,solver,valid,add_soc_cuts,termination_reason,iterations,linear_cuts_added,linear_cuts_purged,soc_cuts_added,master_total_time,sep_total_time,objVal
+1784693285.6127162,LAPTOP-2JL7V62G,d8ca587df9,42,control2,Gurobi,linear,False,"No Gurobi license found (user alireza, host LAPTOP-2JL7V62G, hostid 320330a2, cores 14)",,,,,,,
+1784693285.622495,LAPTOP-2JL7V62G,6d60bee0df,42,control2,Gurobi,linear,True,"No Gurobi license found (user alireza, host LAPTOP-2JL7V62G, hostid 320330a2, cores 14)",,,,,,,
+1784693285.6368444,LAPTOP-2JL7V62G,0f5cfe3099,42,control2,Gurobi,soc,False,"No Gurobi license found (user alireza, host LAPTOP-2JL7V62G, hostid 320330a2, cores 14)",,,,,,,
+1784693285.646843,LAPTOP-2JL7V62G,ca80150a9d,42,control2,Gurobi,soc,True,"No Gurobi license found (user alireza, host LAPTOP-2JL7V62G, hostid 320330a2, cores 14)",,,,,,,
+1784693904.6264095,LAPTOP-2JL7V62G,af30b4e650,42,control2,MOSEK,linear,False,Terminating because iteration limit was reached.,500,5852,0,0,600.5735487937927,0.5738186836242676,103.71314492528276
+1784694906.1173031,LAPTOP-2JL7V62G,c49a2172f6,42,control2,MOSEK,linear,True,Terminating because iteration limit was reached.,500,5701,0,1000,981.7382476329803,0.43676185607910156,73.98599610510757
+1784695153.850931,LAPTOP-2JL7V62G,77f3845005,42,control2,MOSEK,soc,False,Terminating because iteration limit was reached.,500,5781,0,0,239.3322994709015,0.22911834716796875,99.07495491695975
+1784695692.6528177,LAPTOP-2JL7V62G,fd70d20b4d,42,control2,MOSEK,soc,True,Terminating because iteration limit was reached.,500,5694,0,1000,526.6367521286011,0.2595365047454834,78.06784943246139
+1784695693.728679,LAPTOP-2JL7V62G,d75d74e31e,42,control6,Gurobi,linear,False,"No Gurobi license found (user alireza, host LAPTOP-2JL7V62G, hostid 320330a2, cores 14)",,,,,,,
+1784695693.7337866,LAPTOP-2JL7V62G,b04d67e7e0,42,control6,Gurobi,linear,True,"No Gurobi license found (user alireza, host LAPTOP-2JL7V62G, hostid 320330a2, cores 14)",,,,,,,
+1784695693.7377439,LAPTOP-2JL7V62G,0be8a218c3,42,control6,Gurobi,soc,False,"No Gurobi license found (user alireza, host LAPTOP-2JL7V62G, hostid 320330a2, cores 14)",,,,,,,
+1784695693.7418199,LAPTOP-2JL7V62G,16251ebd6d,42,control6,Gurobi,soc,True,"No Gurobi license found (user alireza, host LAPTOP-2JL7V62G, hostid 320330a2, cores 14)",,,,,,,

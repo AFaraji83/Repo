@@ -1,0 +1,27 @@
+[tool.ruff]
+line-length = 88
+target-version = "py311"  # Adjust if you're not using Python 3.11
+fix = true                # Enable autofixes on the command line
+unsafe-fixes = false      # Avoid aggressive fixes that change semantics
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle (PEP 8)
+    "F",    # pyflakes (basic errors)
+    "I",    # isort (import sorting)
+    "B",    # flake8-bugbear (common bugs & best practices)
+    "UP",   # pyupgrade (modern syntax suggestions)
+    "C90"   # mccabe (complexity warnings)
+]
+ignore = [
+    "E501"  # Ignore long line violations (Black handles line length)
+]
+
+[tool.ruff.format]
+quote-style = "preserve"       # Choose: "single", "double", or "preserve"
+docstring-code-format = true   # Format code blocks inside docstrings
+indent-style = "space"         # Default; could be "tab"
+line-ending = "auto"           # Use OS default (LF on macOS/Linux)
+
+[tool.ruff.lint.isort]
+known-first-party = ["src"]    # Add your module path here if needed

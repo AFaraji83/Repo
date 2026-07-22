@@ -1,0 +1,13 @@
+ruff==0.11.12
+qiskit==2.2.3
+qiskit-aer
+qiskit-algorithms
+qiskit-ibm-runtime
+cvxpy
+gurobipy
+mosek
+pandas
+openpyxl
+matplotlib
+psutil
+resource
