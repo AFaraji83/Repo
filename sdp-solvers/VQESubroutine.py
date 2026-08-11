@@ -412,7 +412,12 @@ class VQESubroutine:
             if current_target != ideal_target:
                 cudaq.set_target(ideal_target)
             state = cudaq.get_state(kernel, list(params))
-            return np.array(state, copy=True).real
+            # cudaq's GPU ('nvidia') target uses single-precision complex64 statevectors by
+            # default, unlike CPU targets (complex128) -- downstream consumers (MOSEK's Fusion
+            # Expr.mul in configurable_VQE_based_CP.add_linear_cut/add_soc_cut, in particular)
+            # only accept float64 arrays, so this must be cast explicitly here rather than left
+            # to flow through as whatever precision the target happens to produce.
+            return np.array(state, copy=True).real.astype(np.float64)
         finally:
             if current_target != ideal_target:
                 cudaq.set_target(current_target)

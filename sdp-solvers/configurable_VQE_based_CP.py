@@ -669,7 +669,12 @@ def add_linear_cut(model, X_block, u_vector: np.ndarray, block_size: int, solver
         con = model.addConstr(quicksum(X_block[i,j]*u_vector[i]*u_vector[j] for i in range(block_size) for j in range(block_size)) >= 0)
 
     if solver == "MOSEK":
-        trimmed_u_vector = u_vector[:block_size]  # Ensure the vector is of the correct length
+        # MOSEK's Fusion Expr.mul only has an array(double,ndim=1) overload -- no float32/complex
+        # variant exists, and it raises a ValueError rather than silently upcasting. u_vector can
+        # arrive as float32 (cudaq's GPU target uses single-precision statevectors by default;
+        # see VQESubroutine._bind_circuit_and_extract_state) or, in principle, from any other
+        # future separation-oracle source, so this cast happens here too, not just at the source.
+        trimmed_u_vector = u_vector[:block_size].astype(np.float64)  # Ensure the vector is of the correct length and dtype
         con = model.constraint(msk.Expr.dot(trimmed_u_vector, msk.Expr.mul(X_block, trimmed_u_vector)), msk.Domain.greaterThan(0.0))
     return con
 
@@ -686,8 +691,10 @@ def add_soc_cut(model, X_block, u_vectors: list, block_size: int, solver: str):
     """
     
     # Build n x 2 matrix with the two vectors as columns, trimming any VQE padding
-    # (u_vectors may be padded to the next power of two) down to block_size.
-    U = np.column_stack([np.asarray(u).ravel()[:block_size] for u in u_vectors[:2]])  # shape (block_size, 2)
+    # (u_vectors may be padded to the next power of two) down to block_size. Cast to float64
+    # regardless of the input vectors' dtype -- see add_linear_cut for why (MOSEK's Fusion
+    # Expr.mul below has no float32 overload).
+    U = np.column_stack([np.asarray(u).ravel()[:block_size].astype(np.float64) for u in u_vectors[:2]])  # shape (block_size, 2)
     
     if solver == "Gurobi":
         # Create Y variables (2x2)
