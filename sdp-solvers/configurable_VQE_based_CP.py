@@ -10,25 +10,19 @@ import csv
 import hashlib
 import logging
 import os
+import resource
 import socket
 import time
 from collections import defaultdict
+from concurrent.futures import ThreadPoolExecutor
 
 import mosek.fusion as msk
-
-try:
-    import resource
-except ImportError:  # Windows / non-Unix platforms
-    resource = None
-
-try:
-    import psutil
-except ImportError:  # Optional fallback
-    psutil = None
 import numpy as np
 from gurobipy import GRB, Model, quicksum
 from matplotlib import pyplot as plt
-from qiskit_algorithms.optimizers import COBYLA, SPSA
+# Change #1 (Optimizer Benchmarking): all six interchangeable optimizers are available here;
+# solve_SDP_by_cutting_plane's `optimizer=` argument accepts an instance of any of them.
+from vqe_optimizers import COBYLA, Powell, SPSA, QNSPSA, LBFGSB, SLSQP, OPTIMIZER_REGISTRY
 from VQESubroutine import VQESubroutine
 
 # Numerical tolerance for PSD checks
@@ -54,28 +48,30 @@ ITERATION_LOG_FIELDNAMES = [
     "collect_multiple_cuts", "ansatz_type", "ansatz_layers", "execution_mode", "optimizer_name",
     "optimizer_maxiter", "random_seed", "repeat", "iteration", "block_id", "n_original", "n_padded", "padding_overhead",
     "true_min_eigenvalue", "vqe_min_eigenvalue_estimate", "leaked_amplitude", "optimizer_nfev",
-    "master_objective", "master_solve_time", "separation_time", "num_cuts_added_this_iter", "is_psd",
+    "num_pauli_terms", "master_objective", "master_solve_time", "separation_time", "num_cuts_added_this_iter", "is_psd",
+    "rss_before_sep", "rss_after_sep", "rss_before_master", "rss_after_master",
 ]
 
 def peak_rss_mb() -> float:
     """
     Peak resident-set size (high-water mark, not current usage) of this process in MiB,
-    for diagnosing memory growth across cutting-plane iterations.
-    Falls back to psutil on platforms where the Unix-only resource module is unavailable.
+    for diagnosing memory growth across cutting-plane iterations. ru_maxrss is reported
+    in KiB on Linux.
     """
-    if resource is not None:
-        try:
-            return resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024
-        except Exception:
-            pass
+    return resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024
 
-    if psutil is not None:
-        try:
-            return psutil.Process().memory_info().rss / (1024 * 1024)
-        except Exception:
-            pass
-
-    return 0.0
+def current_rss_mb() -> float:
+    """
+    Current (not peak) resident-set size of this process in MiB, read directly from
+    /proc/self/status (VmRSS). Used to sample memory at specific points within a single
+    cutting-plane iteration (before/after separation, before/after the master solve) so
+    memory growth can be attributed to a specific step rather than just the run as a whole.
+    Linux-only (procfs).
+    """
+    with open('/proc/self/status') as f:
+        for line in f:
+            if line.startswith('VmRSS:'):
+                return int(line.split()[1]) / 1024
 
 def log_row(filepath, row: dict, fieldnames: list):
     """
@@ -185,13 +181,18 @@ def read_instance(instance: str):
                 # print(line.strip())
         return block_list, A_list, b_list
 
-def psd_check(A: np.ndarray, block_id, vqe_instance, optimizer, initial_point, collect_multiple_cuts=False):
+def psd_check(A: np.ndarray, block_id, vqe_instance, optimizer, initial_point, collect_multiple_cuts=False,
+              opt_state=None):
     """
     Check whether the matrix A is positive semidefinite (PSD) using a VQE-based method. The function first performs 
     input validation to ensure that A is square and of positive dimension. It then handles trivial cases: if A is 1x1, 
     it checks the single entry; if A is effectively zero, it treats it as PSD. For non-trivial cases, it scrubs small 
     entries below a certain tolerance to reduce noise and keep the Pauli string count low for the VQE check. Finally, 
     it calls the psd_check_vqe function to perform the actual VQE-based PSD check and returns the results.
+
+    opt_state: optimizer-internal state (e.g. QNSPSA's running metric-tensor estimate) carried in from
+        this same block's previous cutting-plane iteration, and returned again for the caller to pass
+        into the *next* iteration -- Change #4's optimizer-state reuse.
     """
     # INPUT VALIDATION
     # Check that the matrix is square and its dimension is greater than 0
@@ -203,17 +204,18 @@ def psd_check(A: np.ndarray, block_id, vqe_instance, optimizer, initial_point, c
     if A.shape[0] == 1: # 1x1 (scalar) blocks
         print("Trivial 1x1 block detected in PSD check.")
         if A[0, 0] < -TOL: # Exact classical check for a scalar: eigenvalue is the single entry.
-            return False, [np.array([1.0])], 0.0, initial_point, 0.0, None # Violating vector is simply [1.0]
+            return False, [np.array([1.0])], 0.0, initial_point, 0.0, None, None, opt_state # Violating vector is simply [1.0]; no SparsePauliOp is built for a trivial block, so num_pauli_terms is None
         else:
-            return True, [], 0.0, initial_point, 0.0, None
+            return True, [], 0.0, initial_point, 0.0, None, None, opt_state
     elif np.max(np.abs(A)) < TOL: # effectively zero matrix
         print("Matrix is effectively zero. Smallest eigenvalue is 0.0")
-        return True, [], 0.0, initial_point, 0.0, None
+        return True, [], 0.0, initial_point, 0.0, None, None, opt_state
     else: # Scrub the noise out to keep the Pauli string count low
         noiseless_matrix = np.where(np.abs(A) < TOL, 0, A)
         original_dim = A.shape[0] # dimension before zero-padding to the next power of two, needed for leaked-amplitude tracking
         matrix_for_vqe_psd_check = matrix_prep_for_vqe_psd_check(noiseless_matrix)
-        return psd_check_vqe(matrix_for_vqe_psd_check, block_id, vqe_instance, optimizer, initial_point, collect_multiple_cuts, original_dim)
+        return psd_check_vqe(matrix_for_vqe_psd_check, block_id, vqe_instance, optimizer, initial_point,
+                              collect_multiple_cuts, original_dim, opt_state)
 
 def matrix_prep_for_vqe_psd_check(A: np.ndarray):
     """
@@ -241,16 +243,18 @@ def matrix_prep_for_vqe_psd_check(A: np.ndarray):
 
     return matrix
 
-def psd_check_vqe(A: np.ndarray, block_id, vqe_instance, optimizer, initial_point, collect_multiple_cuts=False, original_dim=None):
+def psd_check_vqe(A: np.ndarray, block_id, vqe_instance, optimizer, initial_point, collect_multiple_cuts=False,
+                   original_dim=None, opt_state=None):
     """
     Perform a PSD check using VQE to estimate the minimum eigenvalue of the matrix A. If the estimated minimum eigenvalue
     is negative (up to a given tolerance), the function collects the corresponding eigenvector as a violating vector for
     use in generating a cut for the master problem. The function also computes the exact minimum eigenvalue using a classical
     solver for reference and analysis purposes, but this is not used in the separation step itself. The VQE optimization
     is warm-started with the provided initial parameters to speed up convergence. The function returns whether A is PSD,
-    the list of collected violating vectors (if any), the time taken to run the VQE, the optimal parameters found by
-    VQE, the leaked amplitude (fraction of probability mass in the zero-padded junk subspace, given original_dim),
-    and the number of cost-function evaluations (nfev) the optimizer used.
+    the list of collected violating vectors (already ranked most-violated-first by VQESubroutine.solve -- Change #5),
+    the time taken to run the VQE, the optimal parameters found by VQE, the leaked amplitude (fraction of probability
+    mass in the zero-padded junk subspace, given original_dim), the number of cost-function evaluations (nfev) the
+    optimizer used, and the optimizer's internal state to reuse next iteration (Change #4).
     """
         
     # Compute minimum eigenvalue using exact classical solver for reference and store it for analysis
@@ -267,11 +271,13 @@ def psd_check_vqe(A: np.ndarray, block_id, vqe_instance, optimizer, initial_poin
 
     try:
         # Run VQE to estimate the minimum eigenvalue and optimal parameters
-        trajectory, optimal_parameters, collected_state_vectors, vqe_solve_time, leaked_amplitude = vqe_instance.solve(A, optimizer, initial_point, energy_threshold=-TOL, overlap_threshold=0.9, global_pool=violating_vectors[block_id], collect_multiple_vectors=collect_multiple_cuts, original_dim=original_dim)
+        trajectory, optimal_parameters, collected_state_vectors, vqe_solve_time, leaked_amplitude, num_pauli_terms = vqe_instance.solve(A, optimizer, initial_point, energy_threshold=-TOL, overlap_threshold=0.9, global_pool=violating_vectors[block_id], collect_multiple_vectors=collect_multiple_cuts, original_dim=original_dim, opt_state=opt_state)
         print(f"VQE optimization completed in {vqe_solve_time:.4f} seconds, with {len(collected_state_vectors)} violating vectors.")
         print(f"Minimum eigenvalue estimate from VQE: {trajectory['energy'][-1]:.8f}")
         print(f"Leaked amplitude (padding subspace): {leaked_amplitude:.8f}")
+        print(f"Number of Pauli terms: {num_pauli_terms}")
         nfev = trajectory.get("nfev")
+        new_opt_state = trajectory.get("opt_state")
 
         # Record the VQE estimate, the leaked amplitude, and update the PSD flag if any violating vectors were collected
         vqe_min_eigenvalue_estimates[block_id].append(trajectory['energy'][-1])
@@ -279,7 +285,7 @@ def psd_check_vqe(A: np.ndarray, block_id, vqe_instance, optimizer, initial_poin
         if collected_state_vectors: # If any violating vectors were collected, mark the matrix as not PSD
             is_psd = False
 
-        return is_psd, collected_state_vectors, vqe_solve_time, optimal_parameters, leaked_amplitude, nfev
+        return is_psd, collected_state_vectors, vqe_solve_time, optimal_parameters, leaked_amplitude, nfev, num_pauli_terms, new_opt_state
     except Exception as e:
         raise RuntimeError(f"VQE failed during PSD check: {e}") from e
 
@@ -767,7 +773,7 @@ def purge_inactive_linear_cuts(cut_registry: list, solver: str, patience: int, d
         logger.info("Iteration %d: purged %d inactive linear cuts", itr, num_removed)
     return num_removed
 
-def solve_SDP_by_cutting_plane(block_list: list, A_list: list, b_list: list, solver: str, valid = "linear", add_soc_cuts=False, optimizer=None, collect_multiple_cuts=False, itr_limit = 10, ansatz_type='hardware_efficient', execution_mode='noiseless', backend_name=None, reps=2, log_filepath=None, log_context=None, cut_purge_patience=5, cut_dual_tol=1e-8):
+def solve_SDP_by_cutting_plane(block_list: list, A_list: list, b_list: list, solver: str, valid = "linear", add_soc_cuts=False, optimizer=None, collect_multiple_cuts=False, itr_limit = 10, ansatz_type='hardware_efficient', execution_mode='noiseless', backend_name=None, reps=2, log_filepath=None, log_context=None, cut_purge_patience=5, cut_dual_tol=1e-8, ansatz_mode='fixed', max_reps=6, adapt_grad_tol=1e-3, adapt_pool_size=30, enable_pruning=False, pruning_threshold=0.05, parallel_separation=True, adaptive_stop=True, max_cuts_per_block=None):
     """
     Solve a block-structured semidefinite program (SDP) using a cutting-plane master/separation approach.
     This routine constructs an initial (relaxed) master problem for a block-diagonal SDP, then iteratively:
@@ -816,7 +822,9 @@ def solve_SDP_by_cutting_plane(block_list: list, A_list: list, b_list: list, sol
     execution_mode : str, optional (default='noiseless')
             The execution mode for the VQE subroutine (e.g., 'noiseless', 'noisy', 'simulator'). Passed to the VQESubroutine constructor.
     backend_name : str, optional (default=None)
-            The backend name for the VQE subroutine (e.g., 'qasm_simulator', 'statevector_simulator', or a real quantum backend). Passed to the VQESubroutine constructor.
+            The CUDA-Q hardware target name for the VQE subroutine (e.g., 'quantinuum', 'ionq', 'iqm'), only
+            used when execution_mode='hardware' (CUDA-Q selects the simulator target automatically for
+            'noiseless'/'noisy'). Passed to the VQESubroutine constructor.
     reps : int, optional (default=2)
             The number of repetitions (layers) in the ansatz for the VQE subroutine.
     log_filepath : str, optional (default=None)
@@ -830,6 +838,32 @@ def solve_SDP_by_cutting_plane(block_list: list, A_list: list, b_list: list, sol
             purge_inactive_linear_cuts for why SOC cuts aren't purged and why Gurobi is unaffected.
     cut_dual_tol : float, optional (default=1e-8)
             Dual magnitude below which a linear cut is considered non-binding for purge purposes.
+    ansatz_mode : str, optional (default='fixed')
+            'fixed' (original fixed-depth ansatz), 'adaptive_depth' (grows depth up to max_reps
+            only as far as needed), or 'adapt_pool' (ADAPT-VQE-lite, grown from the Hamiltonian's
+            own Pauli terms). See VQESubroutine's docstring for details of each.
+    max_reps : int, optional (default=6)
+            Depth/operator-count ceiling for 'adaptive_depth' and 'adapt_pool'.
+    adapt_grad_tol : float, optional (default=1e-3)
+            Gradient-magnitude stopping threshold for 'adapt_pool' growth.
+    adapt_pool_size : int, optional (default=30)
+            Cap on candidate pool operators considered per 'adapt_pool' growth step.
+    enable_pruning : bool, optional (default=False)
+            If True, a 'fixed'-mode ansatz whose final rotation layer converges to ~0 has that
+            layer dropped from the cached ansatz for that block shape on the next iteration.
+    pruning_threshold : float, optional (default=0.05)
+            Angular tolerance (radians) for treating a rotation as "prunable".
+    parallel_separation : bool, optional (default=True)
+            If True, each iteration's independent per-block PSD/separation calls are dispatched
+            concurrently via a thread pool instead of one after another. Set False for strictly
+            sequential execution (useful when debugging or comparing timings block-by-block).
+    adaptive_stop : bool, optional (default=True)
+            If True, the VQE optimizer stops as soon as it clears energy_threshold rather than
+            always running to its full maxiter. Set False for full, comparable-length runs (e.g.
+            when benchmarking optimizers against each other).
+    max_cuts_per_block : int or None, optional (default=None)
+            If set, caps how many of a block's collected (already most-violated-first-ranked)
+            cuts are actually added to the master problem in a given iteration.
     """
     #
     # \max { A_0 \cdot X : A_k \cdot X = b_k, k=1,\dots,m + valid ineq + cutting planes } 
@@ -862,7 +896,11 @@ def solve_SDP_by_cutting_plane(block_list: list, A_list: list, b_list: list, sol
     # VQE setup for separation
     optimizer = optimizer if optimizer is not None else COBYLA(maxiter=100) # default optimizer for VQE, can be overridden by user input; COBYLA is a good general-purpose choice for small to medium-sized problems, but users may want to experiment with others (e.g., SLSQP, SPSA) depending on the problem structure and size. Note that the choice of optimizer can significantly impact the convergence and solve times of the VQE-based separation step, so it may be beneficial to allow for flexibility here.
     last_optimal_points = [None] * nblocks # we keep track of the last optimal parameters (angles) found for each block to warm-start the VQE in the next iteration, which can speed up convergence and reduce solve times.
-    vqe_instance = VQESubroutine(ansatz_type=ansatz_type, execution_mode=execution_mode, backend_name=backend_name, reps=reps) # create an instance of the VQESubroutine class to be used for the PSD checks in the separation step.
+    last_optimizer_states = [None] * nblocks # Change #4: same idea, but for optimizer-internal state (e.g. QNSPSA's running metric-tensor estimate) rather than the ansatz parameters themselves.
+    vqe_instance = VQESubroutine(ansatz_type=ansatz_type, execution_mode=execution_mode, backend_name=backend_name,
+                                  reps=reps, ansatz_mode=ansatz_mode, max_reps=max_reps, adapt_grad_tol=adapt_grad_tol,
+                                  adapt_pool_size=adapt_pool_size, enable_pruning=enable_pruning,
+                                  pruning_threshold=pruning_threshold) # create an instance of the VQESubroutine class to be used for the PSD checks in the separation step. One instance is shared across all blocks and iterations, which is what makes the ansatz/parameter/optimizer-state caching (Change #3/#4) and its Change #5 thread-safety lock meaningful.
     ####################################################################
     # Dicts to store histories of VQE estimates and exact eigenvalues for analysis and plotting after runs
     for b in range(nblocks):
@@ -872,100 +910,151 @@ def solve_SDP_by_cutting_plane(block_list: list, A_list: list, b_list: list, sol
         leaked_amplitudes[b] = [] # initialize empty list for each block to store the history of leaked amplitudes (padding-subspace probability mass) across iterations
     ####################################################################
     # main cutting-plane loop
-    while itr < itr_limit and not is_optimal:
-        itr += 1
-        logger.info("Iteration %d", itr)
-        ####################################################################
-        # solve master problem
-        status, X_values, objVal, master_solve_time = solve_master_problem(model, X, block_list, solver)
-        master_total_time += master_solve_time
-        if objVal is not None:
-            master_objective_values.append(objVal) # record this iteration's master objective for the objective-trajectory plots/analysis
-        logger.info("Time(master)= %f", master_solve_time)
-        logger.info("ObjVal %s", str(objVal))
-        logger.info("Peak RSS(MB)= %.1f", peak_rss_mb())
-        # model.write("lp "+sepMethod + " " + str(itr) + ".lp")
-        ####################################################################
-        # separation step
-        #
-        # MOSEK - incorporate infesible or unknown status etc. !!!!!!!!!!!!
-        #
-        if solver == "Gurobi" and status == GRB.INFEASIBLE:
-            termination_reason = "The original problem is proven to be infeasible since the master problem is infeasible."
-            break
-        elif solver == "Gurobi" and status == GRB.NUMERIC:
-            termination_reason = "Numeric difficulties encountered!" # Should we do something in this case?
-            break
-        elif X_values is None:
-            # MOSEK returned neither an optimal solution nor a certificate (e.g. infeasible/unknown status)
-            termination_reason = f"Master problem returned no solution (solver={solver}, status={status})."
-            break
-        else:
-            # drop linear cuts that have gone non-binding for `cut_purge_patience` consecutive
-            # iterations, using duals from the solve just above, before adding this iteration's cuts
-            linear_cuts_purged += purge_inactive_linear_cuts(cut_registry, solver, cut_purge_patience, cut_dual_tol, itr, logger)
-            # check positive-semidefiniteness of each block matrix
-            num_violating_vectors = 0
-            for b in range(nblocks): # this could be parallelized !!!
-                is_psd, u_vectors, sep_time, last_optimal_points[b], leaked_amplitude, optimizer_nfev = psd_check(X_values[b], b, vqe_instance, optimizer, last_optimal_points[b], collect_multiple_cuts) # we pass the last optimal point for warm-starting
-                num_violating_vectors += len(u_vectors)
-                sep_total_time += sep_time
-                logger.info("Time(sep)= %f", sep_time)
-                logger.info("Block %d is PSD?: %s", b, str(is_psd))
-                # add cutting planes if block is not PSD
-                if not is_psd:
-                    logger.info("Adding cutting planes for block %d", b)
-                    # add linear (and SOC) cuts based on the violating vectors found
-                    for u in u_vectors:
-                        con = add_linear_cut(model, X[b], u, block_list[b], solver) # add linear cut
-                        linear_cuts_added += 1
-                        if solver == "MOSEK" and cut_purge_patience is not None:
-                            cut_registry[b].append({"con": con, "inactive_streak": 0})
-                    if add_soc_cuts:
-                        if len(u_vectors) >= 2: # need at least two negative eigenvectors for SOC cut
-                            add_soc_cut(model, X[b], u_vectors[-2:], block_list[b], solver) # only use the last two vectors (they have the smallest eigenvalues returned by VQE) 
-                            soc_cuts_added += 1
-                else: # no cutting planes added
-                    logger.info("No cutting planes added for block %d", b)
+    try:
+        while itr < itr_limit and not is_optimal:
+            itr += 1
+            logger.info("Iteration %d", itr)
+            ####################################################################
+            # solve master problem
+            rss_before_master = current_rss_mb()
+            status, X_values, objVal, master_solve_time = solve_master_problem(model, X, block_list, solver)
+            rss_after_master = current_rss_mb()
+            master_total_time += master_solve_time
+            if objVal is not None:
+                master_objective_values.append(objVal) # record this iteration's master objective for the objective-trajectory plots/analysis
+            logger.info("Time(master)= %f", master_solve_time)
+            logger.info("ObjVal %s", str(objVal))
+            logger.info("Peak RSS(MB)= %.1f", peak_rss_mb())
+            # model.write("lp "+sepMethod + " " + str(itr) + ".lp")
+            ####################################################################
+            # separation step
+            #
+            # MOSEK - incorporate infesible or unknown status etc. !!!!!!!!!!!!
+            #
+            if solver == "Gurobi" and status == GRB.INFEASIBLE:
+                termination_reason = "The original problem is proven to be infeasible since the master problem is infeasible."
+                break
+            elif solver == "Gurobi" and status == GRB.NUMERIC:
+                termination_reason = "Numeric difficulties encountered!" # Should we do something in this case?
+                break
+            elif X_values is None:
+                # MOSEK returned neither an optimal solution nor a certificate (e.g. infeasible/unknown status)
+                termination_reason = f"Master problem returned no solution (solver={solver}, status={status})."
+                break
+            else:
+                # drop linear cuts that have gone non-binding for `cut_purge_patience` consecutive
+                # iterations, using duals from the solve just above, before adding this iteration's cuts
+                linear_cuts_purged += purge_inactive_linear_cuts(cut_registry, solver, cut_purge_patience, cut_dual_tol, itr, logger)
+                # check positive-semidefiniteness of each block matrix
+                #
+                # Change #5 ("parallel separation of independent PSD blocks"): each block's VQE
+                # separation call is independent of every other block's -- they read different
+                # slices of X_values and don't touch the master model -- so all nblocks calls are
+                # dispatched together via a thread pool (bounded to nblocks workers) instead of
+                # running strictly one after another. cudaq's C++ extension calls release the GIL
+                # while the GPU/simulator is doing work, so this genuinely overlaps blocks rather
+                # than serializing them behind Python's interpreter lock; the shared vqe_instance's
+                # caches (ansatz_cache, param_memory, opt_state_memory) are protected by its own
+                # lock (see VQESubroutine.__init__) for exactly this situation. Model mutation
+                # (add_linear_cut/add_soc_cut) still happens afterward, in block order, on this
+                # (the only) thread -- Mosek/Gurobi model objects are not meant to be touched
+                # concurrently. Set parallel_separation=False to fall back to the original strictly
+                # sequential loop (e.g. for easier debugging or exact reproducibility of timing logs).
+                num_violating_vectors = 0
+                rss_before_sep = current_rss_mb()
 
-                # incremental, crash-safe per-block/per-iteration logging
-                if log_filepath is not None:
-                    n_original = block_list[b]
-                    n_padded = next_power_of_two(n_original)
-                    row = dict(log_context or {})
-                    row.update({
-                        "timestamp": time.time(),
-                        "iteration": itr,
-                        "block_id": b,
-                        "n_original": n_original,
-                        "n_padded": n_padded,
-                        "padding_overhead": n_padded - n_original,
-                        "true_min_eigenvalue": exact_min_eigenvalues[b][-1] if exact_min_eigenvalues[b] else None,
-                        "vqe_min_eigenvalue_estimate": vqe_min_eigenvalue_estimates[b][-1] if vqe_min_eigenvalue_estimates[b] else None,
-                        "leaked_amplitude": leaked_amplitude,
-                        "optimizer_nfev": optimizer_nfev,
-                        "master_objective": objVal,
-                        "master_solve_time": master_solve_time,
-                        "separation_time": sep_time,
-                        "num_cuts_added_this_iter": len(u_vectors),
-                        "is_psd": is_psd,
-                    })
-                    log_row(log_filepath, row, ITERATION_LOG_FIELDNAMES)
-            # check termination condition
-            if num_violating_vectors == 0:
-                is_optimal = True
-                # Diagnostic only: cross-check the VQE-based PSD claim against the exact eigenvalues
-                # already computed by psd_check this iteration (see exact_min_eigenvalues). VQE is a
-                # heuristic oracle and can miss a real negative eigenvalue (false PSD certificate);
-                # this never changes is_optimal or the returned solution, only the reported reason.
-                false_psd_certificate = any(exact_min_eigenvalues[b] and exact_min_eigenvalues[b][-1] < -TOL for b in range(nblocks))
-                if false_psd_certificate:
-                    termination_reason = "Terminating because all blocks are PSD (per VQE oracle). WARNING: false_psd_certificate=True -- exact EVD found a block with a negative eigenvalue that VQE missed."
-                    logger.warning("False PSD certificate detected at termination! Exact min eigenvalues per block: %s", [exact_min_eigenvalues[b][-1] if exact_min_eigenvalues[b] else None for b in range(nblocks)])
+                def _separate_block(b):
+                    return psd_check(X_values[b], b, vqe_instance, optimizer, last_optimal_points[b],
+                                      collect_multiple_cuts, opt_state=last_optimizer_states[b])
+
+                if parallel_separation and nblocks > 1:
+                    with ThreadPoolExecutor(max_workers=nblocks) as pool:
+                        block_results = list(pool.map(_separate_block, range(nblocks)))
                 else:
-                    termination_reason = "Terminating because all blocks are PSD. Optimal solution found."
-            elif itr == itr_limit:
-                termination_reason = "Terminating because iteration limit was reached."
+                    block_results = [_separate_block(b) for b in range(nblocks)]
+
+                rss_after_sep = current_rss_mb()
+
+                for b in range(nblocks):
+                    (is_psd, u_vectors, sep_time, last_optimal_points[b], leaked_amplitude,
+                     optimizer_nfev, num_pauli_terms, last_optimizer_states[b]) = block_results[b]
+                    num_violating_vectors += len(u_vectors)
+                    sep_total_time += sep_time
+                    logger.info("Time(sep)= %f", sep_time)
+                    logger.info("Block %d is PSD?: %s", b, str(is_psd))
+                    # add cutting planes if block is not PSD
+                    cuts_this_block = []
+                    if not is_psd:
+                        logger.info("Adding cutting planes for block %d", b)
+                        # add linear (and SOC) cuts based on the violating vectors found.
+                        # u_vectors is already ranked most-violated-first by VQESubroutine.solve
+                        # (Change #5's "ranking cuts according to violation magnitude"); optionally
+                        # cap how many of them get added this iteration via max_cuts_per_block.
+                        cuts_this_block = u_vectors if max_cuts_per_block is None else u_vectors[:max_cuts_per_block]
+                        for u in cuts_this_block:
+                            con = add_linear_cut(model, X[b], u, block_list[b], solver) # add linear cut
+                            linear_cuts_added += 1
+                            if solver == "MOSEK" and cut_purge_patience is not None:
+                                cut_registry[b].append({"con": con, "inactive_streak": 0})
+                        if add_soc_cuts:
+                            if len(cuts_this_block) >= 2: # need at least two negative eigenvectors for SOC cut
+                                add_soc_cut(model, X[b], cuts_this_block[:2], block_list[b], solver) # the two *most* violated vectors, now that u_vectors is ranked most-violated-first
+                                soc_cuts_added += 1
+                    else: # no cutting planes added
+                        logger.info("No cutting planes added for block %d", b)
+
+                    # incremental, crash-safe per-block/per-iteration logging
+                    if log_filepath is not None:
+                        n_original = block_list[b]
+                        n_padded = next_power_of_two(n_original)
+                        row = dict(log_context or {})
+                        row.update({
+                            "timestamp": time.time(),
+                            "iteration": itr,
+                            "block_id": b,
+                            "n_original": n_original,
+                            "n_padded": n_padded,
+                            "padding_overhead": n_padded - n_original,
+                            "true_min_eigenvalue": exact_min_eigenvalues[b][-1] if exact_min_eigenvalues[b] else None,
+                            "vqe_min_eigenvalue_estimate": vqe_min_eigenvalue_estimates[b][-1] if vqe_min_eigenvalue_estimates[b] else None,
+                            "leaked_amplitude": leaked_amplitude,
+                            "optimizer_nfev": optimizer_nfev,
+                            "num_pauli_terms": num_pauli_terms,
+                            "master_objective": objVal,
+                            "master_solve_time": master_solve_time,
+                            "separation_time": sep_time,
+                            "num_cuts_added_this_iter": len(cuts_this_block),
+                            "is_psd": is_psd,
+                            "rss_before_sep": rss_before_sep,
+                            "rss_after_sep": rss_after_sep,
+                            "rss_before_master": rss_before_master,
+                            "rss_after_master": rss_after_master,
+                        })
+                        log_row(log_filepath, row, ITERATION_LOG_FIELDNAMES)
+                # check termination condition
+                if num_violating_vectors == 0:
+                    is_optimal = True
+                    # Diagnostic only: cross-check the VQE-based PSD claim against the exact eigenvalues
+                    # already computed by psd_check this iteration (see exact_min_eigenvalues). VQE is a
+                    # heuristic oracle and can miss a real negative eigenvalue (false PSD certificate);
+                    # this never changes is_optimal or the returned solution, only the reported reason.
+                    false_psd_certificate = any(exact_min_eigenvalues[b] and exact_min_eigenvalues[b][-1] < -TOL for b in range(nblocks))
+                    if false_psd_certificate:
+                        termination_reason = "Terminating because all blocks are PSD (per VQE oracle). WARNING: false_psd_certificate=True -- exact EVD found a block with a negative eigenvalue that VQE missed."
+                        logger.warning("False PSD certificate detected at termination! Exact min eigenvalues per block: %s", [exact_min_eigenvalues[b][-1] if exact_min_eigenvalues[b] else None for b in range(nblocks)])
+                    else:
+                        termination_reason = "Terminating because all blocks are PSD. Optimal solution found."
+                elif itr == itr_limit:
+                    termination_reason = "Terminating because iteration limit was reached."
+    finally:
+        # Release the master model's native (Gurobi/MOSEK) resources as soon as this run ends,
+        # regardless of how it ended (normal termination, early break, or an exception propagating
+        # out of the loop, e.g. from psd_check_vqe's RuntimeError on VQE failure) -- otherwise
+        # repeated runs in the __main__ sweep leak one model's worth of native memory per run.
+        # Model.dispose() is the same call a `with msk.Model(...)` block makes on __exit__ (used
+        # for the one-shot MOSEK solve above); this model is created without a `with` block since
+        # it needs to stay open across iterations.
+        model.dispose()
 
     # end of cutting-plane loop, print summary and update logger
     print("*** Cutting plane terminated ***")
@@ -1092,10 +1181,21 @@ def write_results_to_file(results, filename="results.xlsx"):
         print("No results collected; nothing to write.")
 
 if __name__ == "__main__":
-    instances = [f'control{i}' for i in [2, 6, 10]]  # list of instance filenames to process
+    # Define the instances to run the experiments on
+    instances = [f'control{i}' for i in range(1,6)]
+    # Define experiment parameters
+    solvers = ["MOSEK"] # solvers to use for the master problem (Gurobi or MOSEK)
+    initial_valid_cut_type = ["soc"] # initial valid inequalities to add to the master problem (linear or soc)
+    soc_cuts_added_options = [True] # whether to add SOC cuts in addition to linear cuts (True or False)
+    collect_multiple_cuts_options = [True] # whether to collect multiple violating vectors per block (True or False)
+    optimizers = [COBYLA(maxiter=200)] # optimizers for VQE (COBYLA(maxiter=200), SPSA(maxiter=200) etc.)
+    ansatz_types = ['sparsity_aware'] # ansatz types for VQE (hardware_efficient or sparsity_aware)
+    execution_modes = ['noiseless'] # execution modes for VQE (noiseless, noisy, or hardware)
+    ansatz_layers = [3] # number of ansatz layers (any integer >= 1)
+    num_repeats = 1 # number of repeats for each (instance, configuration) to average over VQE stochasticity (any integer >= 1)
 
     # configure logging; functions use module-level `logger`
-    logging.basicConfig(filename='control_prelim_stage2-vm2.txt', level=logging.INFO,
+    logging.basicConfig(filename='vqe_control1-5_log.txt', level=logging.INFO,
                         format='%(asctime)s %(levelname)s:%(name)s:%(message)s')
     # logging.basicConfig(filename='control_prelim_stage2-vm2_log_cp_vqe_wo_thermal_noise.txt', level=logging.INFO,
     #                     format='%(asctime)s %(levelname)s:%(name)s:%(message)s')
@@ -1112,9 +1212,9 @@ if __name__ == "__main__":
 
     # Crash-safe, append-only CSV logs written incrementally as the experiment progresses (see log_row).
     # Convert to Excel afterwards (or at any time, mid-run, since it's a read-only operation) with csv_to_excel().
-    ITERATION_LOG_PATH = "control_prelim_stage2-vm2_iterations.csv"
-    RESULTS_LOG_PATH = "control_prelim_stage2-vm2_results.csv"
-    ERROR_LOG_PATH = "control_prelim_stage2-vm2_errors.csv"
+    ITERATION_LOG_PATH = "vqe_control1-5_iterations.csv"
+    RESULTS_LOG_PATH = "vqe_control1-5_results.csv"
+    ERROR_LOG_PATH = "vqe_control1-5_errors.csv"
     ERROR_LOG_FIELDNAMES = [
         "timestamp", "vm_id", "instance", "config_hash", "solver", "valid_cut_type", "add_soc_cuts",
         "collect_multiple_cuts", "ansatz_type", "ansatz_layers", "execution_mode", "optimizer_name",
@@ -1137,16 +1237,6 @@ if __name__ == "__main__":
             log_row(ERROR_LOG_PATH, {"timestamp": time.time(), "vm_id": VM_ID, "instance": instance, "error": str(e)}, ERROR_LOG_FIELDNAMES)
             continue
 
-        # Define experiment parameters
-        solvers = ["MOSEK"] # solvers to use for the master problem
-        initial_valid_cut_type = ["soc"] # initial valid inequalities to add to the master problem
-        soc_cuts_added_options = [False] #[True, False] # whether to add SOC cuts in addition to linear cuts
-        collect_multiple_cuts_options = [True] # whether to collect multiple violating vectors per block
-        optimizers = [COBYLA(maxiter=200)] # [COBYLA(maxiter=200), COBYLA(maxiter=500)]#, SPSA(maxiter=200), SPSA(maxiter=500)] # optimizers for VQE
-        ansatz_types = ['sparsity_aware'] #['hardware_efficient']#, 'sparsity_aware'] # ansatz types for VQE
-        execution_modes = ['noiseless'] # execution modes for VQE
-        ansatz_layers = [3] # number of ansatz layers
-
         all_vqe_min_eigenvalue_avg_estimates = dict() # store the VQE lowest energy estimates for all runs with different experiment configurations (for analysing the effect of different settings on the VQE convergence behavior)
 
         # run experiments with different settings
@@ -1160,14 +1250,12 @@ if __name__ == "__main__":
                                 #for optimizer, p in zip(optimizers, ansatz_layers, strict=False):
                                 for optimizer in optimizers:
                                     for p in ansatz_layers:
-                                        print(f"=== Instance: {instance}, Solver: {solver}, Valid Cut Type: {valid}, Add SOC Cuts: {add_soc_cuts}, Collect Multiple Cuts: {collect_multiple_cuts}, Optimizer: {optimizer.__class__.__name__}, Optimizer Maxiter: {optimizer.settings['maxiter']}, Ansatz Type: {ansatz_type}, Ansatz Layers: {p}, Execution Mode: {execution_mode} ===")
-                                        logger.info(f"=== Instance: {instance}, Solver: {solver}, Valid Cut Type: {valid}, Add SOC Cuts: {add_soc_cuts}, Collect Multiple Cuts: {collect_multiple_cuts}, Optimizer: {optimizer.__class__.__name__}, Optimizer Maxiter: {optimizer.settings['maxiter']}, Ansatz Type: {ansatz_type}, Ansatz Layers: {p}, Execution Mode: {execution_mode} ===")
+                                        print(f"=== Instance: {instance}, Solver: {solver}, Valid Cut Type: {valid}, Add SOC Cuts: {add_soc_cuts}, Collect Multiple Cuts: {collect_multiple_cuts}, Optimizer: {optimizer.__class__.__name__}, Optimizer Maxiter: {optimizer.settings["maxiter"]}, Ansatz Type: {ansatz_type}, Ansatz Layers: {p}, Execution Mode: {execution_mode} ===")
+                                        logger.info(f"=== Instance: {instance}, Solver: {solver}, Valid Cut Type: {valid}, Add SOC Cuts: {add_soc_cuts}, Collect Multiple Cuts: {collect_multiple_cuts}, Optimizer: {optimizer.__class__.__name__}, Optimizer Maxiter: {optimizer.settings["maxiter"]}, Ansatz Type: {ansatz_type}, Ansatz Layers: {p}, Execution Mode: {execution_mode} ===")
                                         
-                                        optimizer_maxiter = optimizer.settings['maxiter'] # varies across optimizer instances of the same class (e.g. COBYLA(maxiter=200) vs COBYLA(maxiter=500)), so it must be tracked alongside optimizer_name to distinguish configs
+                                        optimizer_maxiter = optimizer.settings["maxiter"] # varies across optimizer instances of the same class (e.g. COBYLA(maxiter=200) vs COBYLA(maxiter=500)), so it must be tracked alongside optimizer_name to distinguish configs
                                         experiment_config = (solver, valid, add_soc_cuts, collect_multiple_cuts, ansatz_type, execution_mode, p, optimizer.__class__.__name__, optimizer_maxiter)
 
-                                        # determine number of repeats
-                                        num_repeats = 1 # will increase this later since we are using VQE
                                         # Eigenvalue histories for all repeats with this experiment configuration
                                         all_eigenvalue_trajectories = {repeat: {"exact": dict(), "vqe": dict()} for repeat in range(1, num_repeats + 1)} # store exact and VQE eigenvalues for each block and iteration
                                         all_master_objective_values = {repeat: [] for repeat in range(1, num_repeats + 1)} # store master objective values for each iteration to analyze convergence behavior across different runs with the same experiment configuration
@@ -1184,8 +1272,9 @@ if __name__ == "__main__":
                                         for repeat in range(1, num_repeats + 1):
                                             logger.info(f"--- Run {repeat}/{num_repeats} ---")
                                             log_context = {**config_dict, "config_hash": config_hash, "random_seed": RANDOM_SEED, "repeat": repeat}
+                                            rss_at_run_start_mb = current_rss_mb()
                                             try:
-                                                termination_reason, itr, linear_cuts_added, linear_cuts_purged, soc_cuts_added, master_total_time, sep_total_time, X_values, objVal = solve_SDP_by_cutting_plane(block_list, A_list, b_list, solver, valid=valid, add_soc_cuts=add_soc_cuts, collect_multiple_cuts=collect_multiple_cuts, optimizer=optimizer, itr_limit=250, ansatz_type=ansatz_type, execution_mode=execution_mode, backend_name="ibm_fez", reps=p, log_filepath=ITERATION_LOG_PATH, log_context=log_context, cut_purge_patience=CUT_PURGE_PATIENCE)
+                                                termination_reason, itr, linear_cuts_added, linear_cuts_purged, soc_cuts_added, master_total_time, sep_total_time, X_values, objVal = solve_SDP_by_cutting_plane(block_list, A_list, b_list, solver, valid=valid, add_soc_cuts=add_soc_cuts, collect_multiple_cuts=collect_multiple_cuts, optimizer=optimizer, itr_limit=250, ansatz_type=ansatz_type, execution_mode=execution_mode, backend_name="quantinuum", reps=p, log_filepath=ITERATION_LOG_PATH, log_context=log_context, cut_purge_patience=CUT_PURGE_PATIENCE)
                                                 all_eigenvalue_trajectories[repeat]["exact"] = exact_min_eigenvalues.copy() # store the trajectory of exact min eigenvalues for this run
                                                 all_eigenvalue_trajectories[repeat]["vqe"] = vqe_min_eigenvalue_estimates.copy() # store the trajectory of VQE eigenvalue estimates for this run
                                                 all_master_objective_values[repeat].extend(master_objective_values.copy()) # store the master objective values history for this run
@@ -1198,7 +1287,7 @@ if __name__ == "__main__":
                                                 leaked_amplitudes.clear() # clear the global history of leaked amplitudes for the next experiment configuration
                                             except Exception as e:
                                                 # record failure and continue, so one bad instance/config doesn't lose the rest of an overnight batch
-                                                print(f"Run failed for {instance} with SOC cuts {add_soc_cuts}, collect multiple cuts option {collect_multiple_cuts}, optimizer {optimizer.__class__.__name__}, ansatz type {ansatz_type}, ansatz layers {p}, execution mode {execution_mode}, in (repeat {repeat}): {e}")
+                                                print(f"Run failed with solver {solver} for {instance} with initial valid cuts {valid}, with SOC cuts added {add_soc_cuts}, collect multiple cuts option {collect_multiple_cuts}, optimizer {optimizer.__class__.__name__} with maxiter {optimizer_maxiter}, ansatz type {ansatz_type}, ansatz layers {p}, execution mode {execution_mode}, in (repeat {repeat}): {e}")
                                                 logger.exception("Run failed (repeat %d)", repeat)
                                                 log_row(ERROR_LOG_PATH, {**log_context, "timestamp": time.time(), "vm_id": VM_ID, "error": str(e)}, ERROR_LOG_FIELDNAMES)
                                                 termination_reason = str(e)
@@ -1235,7 +1324,9 @@ if __name__ == "__main__":
                                                 "soc_cuts_added": soc_cuts_added,
                                                 "master_total_time": master_total_time,
                                                 "sep_total_time": sep_total_time,
-                                                "objVal": objVal
+                                                "objVal": objVal,
+                                                "rss_at_run_start_mb": rss_at_run_start_mb,
+                                                "peak_rss_mb": peak_rss_mb(),
                                             }
                                             results.append(result_row)
                                             log_row(RESULTS_LOG_PATH, result_row, list(result_row.keys()))
@@ -1295,4 +1386,4 @@ if __name__ == "__main__":
         generate_VQE_comparison_plots(instance, all_vqe_min_eigenvalue_avg_estimates) # generate comparison plots of the average VQE minimum eigenvalue trajectories across iterations for different experiment configurations to analyze the effect of different settings on the VQE convergence behavior.                    
 
     # After all experiments are done, write the collected results to a file for analysis.
-    write_results_to_file(results, filename="control_prelim_stage2-vm2.xlsx")
+    write_results_to_file(results, filename="vqe_control1-5_results.xlsx")
