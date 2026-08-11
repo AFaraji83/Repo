@@ -780,7 +780,7 @@ def purge_inactive_linear_cuts(cut_registry: list, solver: str, patience: int, d
         logger.info("Iteration %d: purged %d inactive linear cuts", itr, num_removed)
     return num_removed
 
-def solve_SDP_by_cutting_plane(block_list: list, A_list: list, b_list: list, solver: str, valid = "linear", add_soc_cuts=False, optimizer=None, collect_multiple_cuts=False, itr_limit = 10, ansatz_type='hardware_efficient', execution_mode='noiseless', backend_name=None, reps=2, log_filepath=None, log_context=None, cut_purge_patience=5, cut_dual_tol=1e-8, ansatz_mode='fixed', max_reps=6, adapt_grad_tol=1e-3, adapt_pool_size=30, enable_pruning=False, pruning_threshold=0.05, parallel_separation=True, adaptive_stop=True, max_cuts_per_block=None):
+def solve_SDP_by_cutting_plane(block_list: list, A_list: list, b_list: list, solver: str, valid = "linear", add_soc_cuts=False, optimizer=None, collect_multiple_cuts=False, itr_limit = 10, ansatz_type='hardware_efficient', execution_mode='noiseless', backend_name=None, reps=2, log_filepath=None, log_context=None, cut_purge_patience=5, cut_dual_tol=1e-8, ansatz_mode='fixed', max_reps=6, adapt_grad_tol=1e-3, adapt_pool_size=30, enable_pruning=False, pruning_threshold=0.05, parallel_separation=False, adaptive_stop=True, max_cuts_per_block=None):
     """
     Solve a block-structured semidefinite program (SDP) using a cutting-plane master/separation approach.
     This routine constructs an initial (relaxed) master problem for a block-diagonal SDP, then iteratively:
@@ -860,10 +860,17 @@ def solve_SDP_by_cutting_plane(block_list: list, A_list: list, b_list: list, sol
             layer dropped from the cached ansatz for that block shape on the next iteration.
     pruning_threshold : float, optional (default=0.05)
             Angular tolerance (radians) for treating a rotation as "prunable".
-    parallel_separation : bool, optional (default=True)
+    parallel_separation : bool, optional (default=False)
             If True, each iteration's independent per-block PSD/separation calls are dispatched
-            concurrently via a thread pool instead of one after another. Set False for strictly
-            sequential execution (useful when debugging or comparing timings block-by-block).
+            via a thread pool instead of strictly one after another. Defaults to False: real runs
+            showed that concurrent threads sharing cudaq's single global GPU context eventually
+            produces "No QPUs are available for this target" errors and, under sustained load, a
+            segfault. VQESubroutine now serializes every actual GPU call behind an internal lock
+            (self._gpu_lock) specifically so this option can no longer crash if you do enable it --
+            but with that lock in place, enabling it buys little to no real concurrency for the
+            GPU work itself (only the surrounding Python bookkeeping between blocks can overlap).
+            Genuine concurrent GPU dispatch across blocks would need cudaq's 'nvidia-mqpu' target
+            with each thread pinned to its own QPU id, which hasn't been implemented or tested here.
     adaptive_stop : bool, optional (default=True)
             If True, the VQE optimizer stops as soon as it clears energy_threshold rather than
             always running to its full maxiter. Set False for full, comparable-length runs (e.g.
@@ -956,17 +963,20 @@ def solve_SDP_by_cutting_plane(block_list: list, A_list: list, b_list: list, sol
                 #
                 # Change #5 ("parallel separation of independent PSD blocks"): each block's VQE
                 # separation call is independent of every other block's -- they read different
-                # slices of X_values and don't touch the master model -- so all nblocks calls are
-                # dispatched together via a thread pool (bounded to nblocks workers) instead of
-                # running strictly one after another. cudaq's C++ extension calls release the GIL
-                # while the GPU/simulator is doing work, so this genuinely overlaps blocks rather
-                # than serializing them behind Python's interpreter lock; the shared vqe_instance's
-                # caches (ansatz_cache, param_memory, opt_state_memory) are protected by its own
-                # lock (see VQESubroutine.__init__) for exactly this situation. Model mutation
-                # (add_linear_cut/add_soc_cut) still happens afterward, in block order, on this
-                # (the only) thread -- Mosek/Gurobi model objects are not meant to be touched
-                # concurrently. Set parallel_separation=False to fall back to the original strictly
-                # sequential loop (e.g. for easier debugging or exact reproducibility of timing logs).
+                # slices of X_values and don't touch the master model -- so when
+                # parallel_separation=True, all nblocks calls are dispatched via a thread pool
+                # instead of running strictly one after another. IMPORTANT CORRECTION: an earlier
+                # version of this comment claimed cudaq's calls release the GIL cleanly enough for
+                # this to safely overlap GPU work across threads -- that was untested and turned
+                # out to be wrong; real runs hit "No QPUs are available for this target" and then a
+                # segfault under concurrent load. VQESubroutine now serializes every actual GPU
+                # call behind its own internal lock, so this no longer crashes, but also no longer
+                # gives real GPU-level concurrency -- which is why parallel_separation now defaults
+                # to False. The shared vqe_instance's caches (ansatz_cache, param_memory,
+                # opt_state_memory) are still protected by their own separate lock regardless.
+                # Model mutation (add_linear_cut/add_soc_cut) always happens afterward, in block
+                # order, on this (the only) thread -- Mosek/Gurobi model objects are not meant to
+                # be touched concurrently, independent of the GPU-locking question above.
                 num_violating_vectors = 0
                 rss_before_sep = current_rss_mb()
 

@@ -129,6 +129,8 @@ class VQESubroutine:
         self._lock = threading.Lock()  # ansatz_cache/param_memory/opt_state_memory are shared across
                                         # blocks if the caller parallelizes separation (Change #5's
                                         # "parallel separation of independent PSD blocks")
+        self._gpu_lock = threading.Lock()  # serializes every actual cudaq/GPU call across threads --
+                                            # see _observe_one's docstring for why this exists.
 
         self._setup_engine(backend_name)
 
@@ -327,22 +329,24 @@ class VQESubroutine:
             eps_grad = eps
             # Screen every remaining candidate operator's gradient at theta=0, all in one
             # async-dispatched batch (Change #2's concurrent evaluation across the pool scan).
+            # Serialized across threads via self._gpu_lock -- see _observe_one's docstring.
             plus_futures, minus_futures = [], []
-            cudaq.set_target(self.target_name)
-            for idx in available:
-                cand_kernel, cand_thetas = cudaq.make_kernel(list)
-                cand_qubits = cand_kernel.qalloc(num_qubits)
-                for q in range(num_qubits):
-                    cand_kernel.h(cand_qubits[q])
-                for w, val in zip(selected_words, self._fitted_angles):
-                    cand_kernel.exp_pauli(val, cand_qubits, w)
-                cand_kernel.exp_pauli(cand_thetas[0], cand_qubits, pool_words[idx])
-                plus_futures.append((idx, cudaq.observe_async(cand_kernel, hamiltonian, [eps_grad])))
-                minus_futures.append((idx, cudaq.observe_async(cand_kernel, hamiltonian, [-eps_grad])))
+            with self._gpu_lock:
+                cudaq.set_target(self.target_name)
+                for idx in available:
+                    cand_kernel, cand_thetas = cudaq.make_kernel(list)
+                    cand_qubits = cand_kernel.qalloc(num_qubits)
+                    for q in range(num_qubits):
+                        cand_kernel.h(cand_qubits[q])
+                    for w, val in zip(selected_words, self._fitted_angles):
+                        cand_kernel.exp_pauli(val, cand_qubits, w)
+                    cand_kernel.exp_pauli(cand_thetas[0], cand_qubits, pool_words[idx])
+                    plus_futures.append((idx, cudaq.observe_async(cand_kernel, hamiltonian, [eps_grad])))
+                    minus_futures.append((idx, cudaq.observe_async(cand_kernel, hamiltonian, [-eps_grad])))
 
-            grads = {}
-            plus_vals = {idx: fut.get().expectation() for idx, fut in plus_futures}
-            minus_vals = {idx: fut.get().expectation() for idx, fut in minus_futures}
+                grads = {}
+                plus_vals = {idx: fut.get().expectation() for idx, fut in plus_futures}
+                minus_vals = {idx: fut.get().expectation() for idx, fut in minus_futures}
             for idx in available:
                 grads[idx] = abs((plus_vals[idx] - minus_vals[idx]) / (2 * eps_grad))
 
@@ -380,12 +384,27 @@ class VQESubroutine:
         return final_kernel, len(selected_words)
 
     def _observe_one(self, kernel, hamiltonian, params):
-        cudaq.set_target(self.target_name)
-        observe_kwargs = {}
-        if self.noise_model is not None:
-            observe_kwargs["noise_model"] = self.noise_model
-            observe_kwargs["num_trajectories"] = self.num_trajectories
-        return cudaq.observe(kernel, hamiltonian, list(params), **observe_kwargs).expectation()
+        """
+        IMPORTANT: cudaq.set_target()/observe() operate on a single global, process-wide GPU
+        context. Earlier versions of this file let ThreadPoolExecutor-parallelized block
+        separation (Change #5's parallel_separation option) call this concurrently from multiple
+        threads, on the assumption that cudaq's C-extension calls release the GIL cleanly enough
+        for that to be safe. That assumption was wrong -- under real concurrent load this produced
+        'No QPUs are available for this target' errors and, eventually, a segfault. Every actual
+        GPU call in this class is now serialized through self._gpu_lock as a result. This means
+        parallel_separation=True no longer crashes, but it also no longer gets real GPU-level
+        concurrency for the compute itself (only the surrounding Python bookkeeping can overlap).
+        Genuine concurrent GPU dispatch across blocks would need cudaq's 'nvidia-mqpu' target with
+        each thread pinned to its own QPU id -- not attempted here since it needs real multi-GPU
+        (or mqpu-partitioned) hardware to validate, which wasn't available to test against.
+        """
+        with self._gpu_lock:
+            cudaq.set_target(self.target_name)
+            observe_kwargs = {}
+            if self.noise_model is not None:
+                observe_kwargs["noise_model"] = self.noise_model
+                observe_kwargs["num_trajectories"] = self.num_trajectories
+            return cudaq.observe(kernel, hamiltonian, list(params), **observe_kwargs).expectation()
 
     def _batch_observe(self, kernel, hamiltonian, param_list):
         """
@@ -396,31 +415,37 @@ class VQESubroutine:
         evaluations and L-BFGS-B/SLSQP's finite-difference gradients are routed through (see
         vqe_optimizers.py's batch_fun usage) -- the GPU stops sitting idle between sequential
         single-point calls, which was the exact gap the task description flagged.
+        See _observe_one's docstring: every actual GPU call, including this batch's async
+        dispatch and gather, is serialized through self._gpu_lock across threads -- necessary
+        for correctness (concurrent access to cudaq's global GPU context is not safe), at the
+        cost of losing GPU-level concurrency when parallel_separation is also enabled.
         """
-        cudaq.set_target(self.target_name)
-        observe_kwargs = {}
-        if self.noise_model is not None:
-            observe_kwargs["noise_model"] = self.noise_model
-            observe_kwargs["num_trajectories"] = self.num_trajectories
-        futures = [cudaq.observe_async(kernel, hamiltonian, list(p), **observe_kwargs) for p in param_list]
-        return [f.get().expectation() for f in futures]
+        with self._gpu_lock:
+            cudaq.set_target(self.target_name)
+            observe_kwargs = {}
+            if self.noise_model is not None:
+                observe_kwargs["noise_model"] = self.noise_model
+                observe_kwargs["num_trajectories"] = self.num_trajectories
+            futures = [cudaq.observe_async(kernel, hamiltonian, list(p), **observe_kwargs) for p in param_list]
+            return [f.get().expectation() for f in futures]
 
     def _bind_circuit_and_extract_state(self, kernel, params):
         ideal_target = 'nvidia'
-        current_target = cudaq.get_target().name
-        try:
-            if current_target != ideal_target:
-                cudaq.set_target(ideal_target)
-            state = cudaq.get_state(kernel, list(params))
-            # cudaq's GPU ('nvidia') target uses single-precision complex64 statevectors by
-            # default, unlike CPU targets (complex128) -- downstream consumers (MOSEK's Fusion
-            # Expr.mul in configurable_VQE_based_CP.add_linear_cut/add_soc_cut, in particular)
-            # only accept float64 arrays, so this must be cast explicitly here rather than left
-            # to flow through as whatever precision the target happens to produce.
-            return np.array(state, copy=True).real.astype(np.float64)
-        finally:
-            if current_target != ideal_target:
-                cudaq.set_target(current_target)
+        with self._gpu_lock:  # see _observe_one's docstring for why every GPU call is serialized
+            current_target = cudaq.get_target().name
+            try:
+                if current_target != ideal_target:
+                    cudaq.set_target(ideal_target)
+                state = cudaq.get_state(kernel, list(params))
+                # cudaq's GPU ('nvidia') target uses single-precision complex64 statevectors by
+                # default, unlike CPU targets (complex128) -- downstream consumers (MOSEK's Fusion
+                # Expr.mul in configurable_VQE_based_CP.add_linear_cut/add_soc_cut, in particular)
+                # only accept float64 arrays, so this must be cast explicitly here rather than left
+                # to flow through as whatever precision the target happens to produce.
+                return np.array(state, copy=True).real.astype(np.float64)
+            finally:
+                if current_target != ideal_target:
+                    cudaq.set_target(current_target)
 
     def _check_diversity_and_save_state(self, state, magnitude, collected_state_vectors,
                                          collected_magnitudes, global_pool, overlap_threshold=0.9,
