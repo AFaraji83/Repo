@@ -7,14 +7,17 @@ violated constraints using a variational quantum eigensolver (VQE).
 """
 
 import csv
+import glob
 import hashlib
 import logging
 import os
+import re
 import resource
 import socket
 import time
 from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor
+from datetime import datetime
 
 import mosek.fusion as msk
 import numpy as np
@@ -105,7 +108,58 @@ def next_power_of_two(n: int) -> int:
     """Smallest power of two >= n (the padded dimension a block of size n is zero-padded up to for VQE)."""
     return n if (n & (n - 1)) == 0 else 1 << (n - 1).bit_length()
 
-def read_instance(instance: str):
+def _natural_sort_key(name: str):
+    """Sorts 'control2' before 'control10' (plain string sort would put control10 first)."""
+    return [int(part) if part.isdigit() else part for part in re.split(r"(\d+)", name)]
+
+
+def discover_instances(data_dir="./instances/sdplib"):
+    """
+    Auto-discovers every SDPLIB instance available to read_instance(), instead of the previous
+    hardcoded `[f'control{i}' for i in range(1,6)]`. Scans data_dir for every "*.dat-s" file and
+    returns the base names (what read_instance() expects), naturally sorted.
+
+    Raises FileNotFoundError with a clear message if the directory is missing or empty, rather
+    than silently running zero instances.
+    """
+    pattern = os.path.join(data_dir, "*.dat-s")
+    paths = glob.glob(pattern)
+    if not paths:
+        raise FileNotFoundError(
+            f"No '*.dat-s' instance files found under {os.path.abspath(data_dir)!r}. "
+            f"Check that the instance data is present at that path relative to your current "
+            f"working directory (run from the directory containing 'instances/sdplib/', or "
+            f"adjust discover_instances(data_dir=...))."
+        )
+    names = sorted((os.path.splitext(os.path.basename(p))[0] for p in paths), key=_natural_sort_key)
+    return names
+
+
+def _run_label(instances):
+    """
+    Builds a short, human-readable label for a set of instances, used in output filenames.
+    Collapses a contiguous 'controlN..controlM' range to 'control{N}-{M}' (matching the old
+    hardcoded 'control1-5' naming); otherwise falls back to '{first}_and_{n-1}_more' so the
+    filename stays short even when discover_instances() finds many differently-named instances.
+    """
+    if not instances:
+        return "no_instances"
+    match = [re.fullmatch(r"control(\d+)", name) for name in instances]
+    if all(match) and len(instances) > 1:
+        nums = sorted(int(m.group(1)) for m in match)
+        if nums == list(range(nums[0], nums[-1] + 1)):
+            return f"control{nums[0]}-{nums[-1]}"
+    if len(instances) == 1:
+        return instances[0]
+    return f"{instances[0]}_and_{len(instances) - 1}_more"
+
+
+def _timestamp_suffix():
+    """Filesystem-safe run timestamp, e.g. '4:49-11-8-26' for 4:49am on 11 Aug 2026."""
+    now = datetime.now()
+    return f"{now.hour}:{now.minute:02d}-{now.day}-{now.month}-{now.strftime('%y')}"
+
+
     """
     ReadInstance(instance)
     Read and parse an SDP instance file from the local sdplib directory and build
@@ -1185,6 +1239,7 @@ def write_results_to_file(results, filename="results.xlsx"):
             df = pd.DataFrame(results)
             df.to_excel(filename, index=False)
             print(f"Wrote {filename}")
+            print(f"  -> full path: {os.path.abspath(filename)}")
         except Exception:
             import csv
 
@@ -1194,12 +1249,19 @@ def write_results_to_file(results, filename="results.xlsx"):
                 writer.writeheader()
                 writer.writerows(results)
             print(f"Pandas not available or write failed; wrote {csv_path} instead")
+            print(f"  -> full path: {os.path.abspath(csv_path)}")
     else:
         print("No results collected; nothing to write.")
 
 if __name__ == "__main__":
-    # Define the instances to run the experiments on
-    instances = [f'control{i}' for i in range(1,6)]
+    # Auto-discovers every instance under ./instances/sdplib/ (previously hardcoded to just
+    # control1..control5). To run a specific subset instead, replace this with an explicit
+    # list, e.g.: instances = ['control1', 'control2']
+    instances = discover_instances()
+    print(f"Discovered {len(instances)} instance(s): {instances}")
+
+    RUN_LABEL = _run_label(instances)          # e.g. "control1-5", derived from whatever ran
+    RUN_TIMESTAMP = _timestamp_suffix()         # e.g. "4:49-11-8-26"
     # Define experiment parameters
     solvers = ["MOSEK"] # solvers to use for the master problem (Gurobi or MOSEK)
     initial_valid_cut_type = ["soc"] # initial valid inequalities to add to the master problem (linear or soc)
@@ -1212,7 +1274,7 @@ if __name__ == "__main__":
     num_repeats = 1 # number of repeats for each (instance, configuration) to average over VQE stochasticity (any integer >= 1)
 
     # configure logging; functions use module-level `logger`
-    logging.basicConfig(filename='vqe_control1-5_log.txt', level=logging.INFO,
+    logging.basicConfig(filename=f'vqe_{RUN_LABEL}_log.txt', level=logging.INFO,
                         format='%(asctime)s %(levelname)s:%(name)s:%(message)s')
     # logging.basicConfig(filename='control_prelim_stage2-vm2_log_cp_vqe_wo_thermal_noise.txt', level=logging.INFO,
     #                     format='%(asctime)s %(levelname)s:%(name)s:%(message)s')
@@ -1228,10 +1290,15 @@ if __name__ == "__main__":
     CUT_PURGE_PATIENCE = None
 
     # Crash-safe, append-only CSV logs written incrementally as the experiment progresses (see log_row).
+    # Named after RUN_LABEL (derived from whatever instances actually ran, not hardcoded) so the
+    # filenames stay accurate if you point this at a different instance set later. Deliberately NOT
+    # timestamped, unlike the final .xlsx below: the point of these is to accumulate rows across
+    # repeated invocations of the same instance set (e.g. after a crash), which a fresh timestamp
+    # per run would defeat by starting a new file every time instead of resuming the same one.
     # Convert to Excel afterwards (or at any time, mid-run, since it's a read-only operation) with csv_to_excel().
-    ITERATION_LOG_PATH = "vqe_control1-5_iterations.csv"
-    RESULTS_LOG_PATH = "vqe_control1-5_results.csv"
-    ERROR_LOG_PATH = "vqe_control1-5_errors.csv"
+    ITERATION_LOG_PATH = f"vqe_{RUN_LABEL}_iterations.csv"
+    RESULTS_LOG_PATH = f"vqe_{RUN_LABEL}_results.csv"
+    ERROR_LOG_PATH = f"vqe_{RUN_LABEL}_errors.csv"
     ERROR_LOG_FIELDNAMES = [
         "timestamp", "vm_id", "instance", "config_hash", "solver", "valid_cut_type", "add_soc_cuts",
         "collect_multiple_cuts", "ansatz_type", "ansatz_layers", "execution_mode", "optimizer_name",
@@ -1403,4 +1470,11 @@ if __name__ == "__main__":
         generate_VQE_comparison_plots(instance, all_vqe_min_eigenvalue_avg_estimates) # generate comparison plots of the average VQE minimum eigenvalue trajectories across iterations for different experiment configurations to analyze the effect of different settings on the VQE convergence behavior.                    
 
     # After all experiments are done, write the collected results to a file for analysis.
-    write_results_to_file(results, filename="vqe_control1-5_results.xlsx")
+    # Filename includes both the run label (which instances) and a timestamp (when), e.g.
+    # "results/vqe_control1-5_results_4:49-11-8-26.xlsx" -- unlike the incremental CSV logs
+    # above, this one file is a complete end-of-run snapshot, so overwriting it on a later
+    # run would silently lose the previous run's summary; the timestamp prevents that.
+    RESULTS_DIR = "results"
+    os.makedirs(RESULTS_DIR, exist_ok=True)
+    xlsx_filename = os.path.join(RESULTS_DIR, f"vqe_{RUN_LABEL}_results_{RUN_TIMESTAMP}.xlsx")
+    write_results_to_file(results, filename=xlsx_filename)
