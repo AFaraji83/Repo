@@ -160,6 +160,7 @@ def _timestamp_suffix():
     return f"{now.hour}:{now.minute:02d}-{now.day}-{now.month}-{now.strftime('%y')}"
 
 
+def read_instance(instance: str):
     """
     ReadInstance(instance)
     Read and parse an SDP instance file from the local sdplib directory and build
