@@ -1255,13 +1255,11 @@ def write_results_to_file(results, filename="results.xlsx"):
         print("No results collected; nothing to write.")
 
 if __name__ == "__main__":
-    # Auto-discovers every instance under ./instances/sdplib/ (previously hardcoded to just
-    # control1..control5). To run a specific subset instead, replace this with an explicit
-    # list, e.g.: instances = ['control1', 'control2']
-    instances = discover_instances()
-    print(f"Discovered {len(instances)} instance(s): {instances}")
+    # --- MODIFIED: run only hinf1..hinf15 instead of all 92 instances ---
+    instances = [f'hinf{i}' for i in range(1, 16)]
+    print(f"Running {len(instances)} instance(s): {instances}")
 
-    RUN_LABEL = _run_label(instances)          # e.g. "control1-5", derived from whatever ran
+    RUN_LABEL = _run_label(instances)          # e.g. "hinf1_and_14_more"
     RUN_TIMESTAMP = _timestamp_suffix()         # e.g. "4:49-11-8-26"
     # Define experiment parameters
     solvers = ["MOSEK"] # solvers to use for the master problem (Gurobi or MOSEK)
