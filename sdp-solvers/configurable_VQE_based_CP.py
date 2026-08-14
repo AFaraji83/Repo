@@ -59,6 +59,8 @@ ITERATION_LOG_FIELDNAMES = [
     "shots", "vqe_seed", "backend_name", "thermal_relaxation",
     "num_candidates_seen", "num_candidates_accepted", "max_energy_true_quad_gap",
     "qiskit_version", "qiskit_aer_version", "qiskit_ibm_runtime_version",
+    # Added for adaptive/improved runs
+    "ansatz_mode", "max_reps", "adapt_grad_tol", "leakage_penalty",
 ]
 
 # Fixed schema for the snapshot manifest (Task 4): maps each saved snapshot file pair
@@ -83,6 +85,7 @@ CANDIDATE_LOG_FIELDNAMES = [
     "optimizer_maxiter", "random_seed", "repeat", "iteration", "block_id", "eval_index",
     "estimator_energy", "true_quad", "accepted", "shots", "vqe_seed", "backend_name",
     "thermal_relaxation", "qiskit_version", "qiskit_aer_version", "qiskit_ibm_runtime_version",
+    "ansatz_mode", "max_reps", "adapt_grad_tol", "leakage_penalty",
 ]
 
 def peak_rss_mb() -> float:
@@ -583,6 +586,11 @@ def solve_SDP_by_cutting_plane(block_list: list, A_list: list, b_list: list, sol
                             "qiskit_version": QISKIT_VERSION,
                             "qiskit_aer_version": QISKIT_AER_VERSION,
                             "qiskit_ibm_runtime_version": QISKIT_IBM_RUNTIME_VERSION,
+                            # The following are already in log_context, but we explicitly add them for safety
+                            "ansatz_mode": ansatz_mode,
+                            "max_reps": max_reps,
+                            "adapt_grad_tol": adapt_grad_tol,
+                            "leakage_penalty": leakage_penalty,
                         })
                         log_row(log_filepath, row, ITERATION_LOG_FIELDNAMES)
                     if candidate_log_filepath is not None:
@@ -605,6 +613,10 @@ def solve_SDP_by_cutting_plane(block_list: list, A_list: list, b_list: list, sol
                                 "qiskit_version": QISKIT_VERSION,
                                 "qiskit_aer_version": QISKIT_AER_VERSION,
                                 "qiskit_ibm_runtime_version": QISKIT_IBM_RUNTIME_VERSION,
+                                "ansatz_mode": ansatz_mode,
+                                "max_reps": max_reps,
+                                "adapt_grad_tol": adapt_grad_tol,
+                                "leakage_penalty": leakage_penalty,
                             })
                             log_row(candidate_log_filepath, candidate_row, CANDIDATE_LOG_FIELDNAMES)
                 if num_violating_vectors == 0:
@@ -747,6 +759,7 @@ if __name__ == "__main__":
         "timestamp", "vm_id", "instance", "config_hash", "solver", "valid_cut_type", "add_soc_cuts",
         "collect_multiple_cuts", "ansatz_type", "ansatz_layers", "execution_mode", "optimizer_name",
         "optimizer_maxiter", "random_seed", "repeat", "error",
+        "ansatz_mode", "max_reps", "adapt_grad_tol", "leakage_penalty",
     ]
 
     results = []
@@ -782,6 +795,7 @@ if __name__ == "__main__":
                                             "execution_mode": execution_mode, "optimizer_name": optimizer.__class__.__name__,
                                             "optimizer_maxiter": optimizer_maxiter,
                                             "ansatz_mode": ansatz_mode, "max_reps": max_reps,
+                                            "adapt_grad_tol": adapt_grad_tol, "leakage_penalty": leakage_penalty,
                                         }
                                         config_hash = compute_config_hash(config_dict)
 
@@ -821,6 +835,7 @@ if __name__ == "__main__":
                                             except Exception as e:
                                                 print(f"Run failed with solver {solver} for {instance} with initial valid cuts {valid}, with SOC cuts added {add_soc_cuts}, collect multiple cuts option {collect_multiple_cuts}, optimizer {optimizer.__class__.__name__} with maxiter {optimizer_maxiter}, ansatz type {ansatz_type}, ansatz layers {p}, execution mode {execution_mode}, in (repeat {repeat}): {e}")
                                                 logger.exception("Run failed (repeat %d)", repeat)
+                                                # Ensure log_context includes the extra fields for error log
                                                 log_row(ERROR_LOG_PATH, {**log_context, "timestamp": time.time(), "vm_id": VM_ID, "error": str(e)}, ERROR_LOG_FIELDNAMES)
                                                 termination_reason = str(e)
                                                 itr = None
