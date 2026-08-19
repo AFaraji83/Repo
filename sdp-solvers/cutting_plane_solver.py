@@ -10,20 +10,12 @@ import csv
 import hashlib
 import logging
 import os
+import resource
 import socket
 import time
+from collections import defaultdict
 
 import mosek.fusion as msk
-
-try:
-    import resource
-except ImportError:  # Windows / non-Unix platforms
-    resource = None
-
-try:
-    import psutil
-except ImportError:  # Optional fallback
-    psutil = None
 import numpy as np
 from gurobipy import GRB, Model, quicksum
 from scipy.linalg import eigh
@@ -34,34 +26,40 @@ TOL = 1.0e-6
 # module-level logger used across functions (configured in __main__)
 logger = logging.getLogger(__name__)
 
+# Global history of all violating vectors collected across iterations for each block (used for
+# diversity checks to avoid adding cuts from vectors that overlap ones already found)
+violating_vectors = defaultdict(list)
+
 # Fixed schema for per-iteration (per-block) result rows, written incrementally to CSV as each iteration completes.
 ITERATION_LOG_FIELDNAMES = [
     "timestamp", "instance", "config_hash", "solver", "valid_cut_type", "add_soc_cuts",
     "random_seed", "iteration", "block_id", "n_original",
     "true_min_eigenvalue", "master_objective", "master_solve_time", "separation_time",
     "num_cuts_added_this_iter", "is_psd",
+    "rss_before_sep", "rss_after_sep", "rss_before_master", "rss_after_master",
 ]
 
 
 def peak_rss_mb() -> float:
     """
     Peak resident-set size (high-water mark, not current usage) of this process in MiB,
-    for diagnosing memory growth across cutting-plane iterations.
-    Falls back to psutil on platforms where the Unix-only resource module is unavailable.
+    for diagnosing memory growth across cutting-plane iterations. ru_maxrss is reported
+    in KiB on Linux.
     """
-    if resource is not None:
-        try:
-            return resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024
-        except Exception:
-            pass
+    return resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024
 
-    if psutil is not None:
-        try:
-            return psutil.Process().memory_info().rss / (1024 * 1024)
-        except Exception:
-            pass
-
-    return 0.0
+def current_rss_mb() -> float:
+    """
+    Current (not peak) resident-set size of this process in MiB, read directly from
+    /proc/self/status (VmRSS). Used to sample memory at specific points within a single
+    cutting-plane iteration (before/after separation, before/after the master solve) so
+    memory growth can be attributed to a specific step rather than just the run as a whole.
+    Linux-only (procfs).
+    """
+    with open('/proc/self/status') as f:
+        for line in f:
+            if line.startswith('VmRSS:'):
+                return int(line.split()[1]) / 1024
 
 def log_row(filepath, row: dict, fieldnames: list):
     """
@@ -166,13 +164,42 @@ def read_instance(instance: str):
                 # print(line.strip())
         return block_list, A_list, b_list
         
-def PSD_check_EVD(A: np.ndarray):
+def check_diversity_and_save_eigenvector(vector, collected_vectors, block_id, overlap_threshold=0.9):
+    """
+    Checks if a (unit-norm) eigenvector is diverse against violating_vectors[block_id] via cosine
+    similarity -- since eigh returns unit-norm eigenvectors, a plain dot product already is the
+    cosine similarity. A diverse vector is appended to both collected_vectors (this call's cuts)
+    and violating_vectors[block_id] (seeding future diversity comparisons, both later in this call
+    and in later cutting-plane iterations); a non-diverse vector is dropped and touches neither
+    list. Mirrors the intent of VQESubroutine._check_diversity_and_save_state, though PSD_check_EVD
+    handles that routine's force-collect case itself (see its docstring) rather than this helper,
+    since EVD -- unlike VQE's online optimization -- already has every candidate in hand up front.
+    """
+    is_diverse = True
+    if len(violating_vectors[block_id]) > 0:
+        # Compute inner product against ALL vectors in pool
+        overlaps = np.abs(np.dot(violating_vectors[block_id], vector))
+        # If all overlaps are strictly less than the threshold, the vector passes the diversity check
+        is_diverse = bool(np.all(overlaps < overlap_threshold))
+
+    if is_diverse:
+        collected_vectors.append(vector)
+        violating_vectors[block_id].append(vector)
+
+def PSD_check_EVD(A: np.ndarray, block_id):
     """
     Check whether a matrix is positive semidefinite using eigenvalue decomposition.
     Parameters
     ----------
     A : array_like (n x n)
-        Square matrix to test for positive semidefiniteness. 
+        Square matrix to test for positive semidefiniteness.
+    block_id : hashable
+        Key into the module-level violating_vectors pool, which persists previously collected
+        violating vectors for this block across cutting-plane iterations. Candidate eigenvectors
+        that overlap (cosine similarity >= 0.9, see check_diversity_and_save_eigenvector) any
+        vector already in violating_vectors[block_id] are dropped, unless dropping every candidate
+        would leave a genuinely non-PSD matrix with no reported cut, in which case the
+        most-violating candidate is force-collected as a cut without being added to the pool.
     Returns
     -------
     is_psd : bool
@@ -180,7 +207,8 @@ def PSD_check_EVD(A: np.ndarray):
           False otherwise.
     u_vectors : list[numpy.ndarray]
         List of eigenvectors (as numpy ndarrays) corresponding to negative eigenvalues
-        of A (i.e., violating vectors u with u^T A u < 0). If A is PSD, the list is empty.
+        of A (i.e., violating vectors u with u^T A u < 0), filtered for diversity against
+        violating_vectors[block_id]. If A is PSD, the list is empty.
     sep_time : float
         Time taken (in seconds) to perform the eigenvalue decomposition and identify
         violating vectors.
@@ -213,16 +241,32 @@ def PSD_check_EVD(A: np.ndarray):
         # negative eigenvalues are at the low end (vals sorted ascending),
         # compute only that contiguous range of eigenpairs
         w, v = eigh(A, subset_by_index=(neg_idx[0], neg_idx[-1]))
-        u_vectors = [v[:, i] for i, val in enumerate(w) if val < -TOL]
+        candidate_vectors = [v[:, i] for i, val in enumerate(w) if val < -TOL]
+
+        # Apply the diversity filter to each candidate (most-violating first, since w is ascending),
+        # dropping ones that overlap a vector already in violating_vectors[block_id].
+        for vec in candidate_vectors:
+            check_diversity_and_save_eigenvector(vec, u_vectors, block_id)
+
+        # Guarantee a genuine PSD violation is always reported: if every candidate duplicated a
+        # vector already in the pool (u_vectors ended up empty) the matrix is still provably
+        # non-PSD, so force-collect the most-violating candidate (smallest eigenvalue) rather than
+        # let the diversity filter turn a real violation into a false PSD certificate.
+        if not u_vectors:
+            u_vectors.append(candidate_vectors[0])
     return is_psd, u_vectors, time.time() - start_time, min_eigenvalue
 
-def PSD_check(A: np.ndarray):
+def PSD_check(A: np.ndarray, block_id):
     """
     Check whether a matrix is positive semidefinite using eigenvalue decomposition.
     Parameters
     ----------
     A : array-like (n x n)
         Square matrix to test for positive semidefiniteness.
+    block_id : hashable
+        Key into the module-level violating_vectors pool, forwarded to PSD_check_EVD for
+        diversity filtering (see its docstring). Trivial cases (1x1 blocks, effectively-zero
+        matrices) bypass the diversity filter entirely, same as the VQE-based psd_check.
     Returns
     -------
     is_psd : bool
@@ -258,8 +302,8 @@ def PSD_check(A: np.ndarray):
         return True, [], 0.0, 0.0
     else: # Scrub the noise out to reduce numerical noise
         matrix_for_psd_check = np.where(np.abs(A) < TOL, 0, A)
-        
-    return PSD_check_EVD(matrix_for_psd_check)
+
+    return PSD_check_EVD(matrix_for_psd_check, block_id)
     
 def _as_mosek_matrix(A: np.ndarray):
     """
@@ -758,8 +802,12 @@ def solve_SDP_by_cutting_plane(block_list: list, A_list: list, b_list: list, sol
                 -> returns (model, X) where model is a solver model and X is a list/structure of block matrix variables.
         - solve_master_problem(model, X)
                 -> returns (status, X_values, objVal, master_solve_time).
-        - PSD_check(X_value)
-                -> returns (is_psd: bool, u_vectors: list of violating vectors, sep_time: float).
+        - PSD_check(X_value, block_id)
+                -> returns (is_psd: bool, u_vectors: list of violating vectors, sep_time: float, min_eigenvalue: float).
+                   u_vectors is diversity-filtered against violating_vectors[block_id] (see
+                   PSD_check_EVD / check_diversity_and_save_eigenvector) so cuts that overlap a
+                   vector already found in an earlier iteration are dropped, except when doing so
+                   would leave a genuinely non-PSD block with no reported cut.
         - add_linear_cut(model, X_block_var, u, block_spec)
                 -> adds a linear (hyperplane) cut corresponding to vector u for the given block variable.
         - add_soc_cut(model, X_block_var, [u1, u2], block_spec)
@@ -823,84 +871,106 @@ def solve_SDP_by_cutting_plane(block_list: list, A_list: list, b_list: list, sol
     # used by purge_inactive_linear_cuts to drop cuts that stop being binding (see its docstring)
     cut_registry = [[] for _ in range(nblocks)]
     ####################################################################
+    # Reset the per-block diversity pool for this run: it accumulates violating vectors across all
+    # iterations below, seeding future diversity comparisons (see PSD_check_EVD).
+    for b in range(nblocks):
+        violating_vectors[b] = []
+    ####################################################################
     # main cutting-plane loop
-    while itr < itr_limit and not is_optimal:
-        itr += 1
-        logger.info("Iteration %d", itr)
-        ####################################################################
-        # solve master problem
-        status, X_values, objVal, master_solve_time = solve_master_problem(model, X, block_list, solver)
-        master_total_time += master_solve_time
-        logger.info("Time(master)= %f", master_solve_time)
-        logger.info("ObjVal %s", str(objVal))
-        logger.info("Peak RSS(MB)= %.1f", peak_rss_mb())
-        # model.write("lp "+sepMethod + " " + str(itr) + ".lp")
-        ####################################################################
-        # separation step
-        #
-        # MOSEK - incorporate infesible or unknown status etc. !!!!!!!!!!!!
-        #
-        if solver == "Gurobi" and status == GRB.INFEASIBLE:
-            termination_reason = "The original problem is proven to be infeasible since the master problem is infeasible."
-            break
-        elif solver == "Gurobi" and status == GRB.NUMERIC:
-            termination_reason = "Numeric difficulties encountered!" # Should we do something in this case?
-            break
-        elif X_values is None:
-            # Covers MOSEK's non-Optimal/non-Certificate primal solution statuses (e.g. infeasible,
-            # unknown, near-optimal), which solve_master_problem signals by returning X_values=None.
-            termination_reason = f"Master problem returned no solution (solver={solver}, status={status})."
-            break
-        else:
-            # drop linear cuts that have gone non-binding for `cut_purge_patience` consecutive
-            # iterations, using duals from the solve just above, before adding this iteration's cuts
-            linear_cuts_purged += purge_inactive_linear_cuts(cut_registry, solver, cut_purge_patience, cut_dual_tol, itr, logger)
-            # check positive-semidefiniteness of each block matrix
-            all_u_vectors = []
-            for b in range(nblocks): # this could be parallelized !!!
-                is_psd, u_vectors, sep_time, min_eigenvalue = PSD_check(X_values[b])
-                all_u_vectors.append(u_vectors)
-                sep_total_time += sep_time
-                logger.info("Time(sep)= %f", sep_time)
-                logger.info("Block %d is PSD?: %s", b, str(is_psd))
-                # add cutting planes if block is not PSD
-                if not is_psd:
-                    logger.info("Adding cutting planes for block %d", b)
-                    # add linear (and SOC) cuts based on the violating vectors found
-                    for u in u_vectors:
-                        con = add_linear_cut(model, X[b], u, block_list[b], solver) # add linear cut
-                        linear_cuts_added += 1
-                        if solver == "MOSEK" and cut_purge_patience is not None:
-                            cut_registry[b].append({"con": con, "inactive_streak": 0})
-                    if add_soc_cuts:
-                        if len(u_vectors) >= 2: # need at least two negative eigenvectors for SOC cut
-                            add_soc_cut(model, X[b], u_vectors[:2], block_list[b], solver) # only use first two vectors (they have the smallest eigenvalues if from EVD)
-                            soc_cuts_added += 1
-                else: # no cutting planes added
-                    logger.info("No cutting planes added for block %d", b)
+    try:
+        while itr < itr_limit and not is_optimal:
+            itr += 1
+            logger.info("Iteration %d", itr)
+            ####################################################################
+            # solve master problem
+            rss_before_master = current_rss_mb()
+            status, X_values, objVal, master_solve_time = solve_master_problem(model, X, block_list, solver)
+            rss_after_master = current_rss_mb()
+            master_total_time += master_solve_time
+            logger.info("Time(master)= %f", master_solve_time)
+            logger.info("ObjVal %s", str(objVal))
+            logger.info("Peak RSS(MB)= %.1f", peak_rss_mb())
+            # model.write("lp "+sepMethod + " " + str(itr) + ".lp")
+            ####################################################################
+            # separation step
+            #
+            # MOSEK - incorporate infesible or unknown status etc. !!!!!!!!!!!!
+            #
+            if solver == "Gurobi" and status == GRB.INFEASIBLE:
+                termination_reason = "The original problem is proven to be infeasible since the master problem is infeasible."
+                break
+            elif solver == "Gurobi" and status == GRB.NUMERIC:
+                termination_reason = "Numeric difficulties encountered!" # Should we do something in this case?
+                break
+            elif X_values is None:
+                # Covers MOSEK's non-Optimal/non-Certificate primal solution statuses (e.g. infeasible,
+                # unknown, near-optimal), which solve_master_problem signals by returning X_values=None.
+                termination_reason = f"Master problem returned no solution (solver={solver}, status={status})."
+                break
+            else:
+                # drop linear cuts that have gone non-binding for `cut_purge_patience` consecutive
+                # iterations, using duals from the solve just above, before adding this iteration's cuts
+                linear_cuts_purged += purge_inactive_linear_cuts(cut_registry, solver, cut_purge_patience, cut_dual_tol, itr, logger)
+                # check positive-semidefiniteness of each block matrix
+                all_u_vectors = []
+                for b in range(nblocks): # this could be parallelized !!!
+                    rss_before_sep = current_rss_mb()
+                    is_psd, u_vectors, sep_time, min_eigenvalue = PSD_check(X_values[b], b)
+                    rss_after_sep = current_rss_mb()
+                    all_u_vectors.append(u_vectors)
+                    sep_total_time += sep_time
+                    logger.info("Time(sep)= %f", sep_time)
+                    logger.info("Block %d is PSD?: %s", b, str(is_psd))
+                    # add cutting planes if block is not PSD
+                    if not is_psd:
+                        logger.info("Adding cutting planes for block %d", b)
+                        # add linear (and SOC) cuts based on the violating vectors found
+                        for u in u_vectors:
+                            con = add_linear_cut(model, X[b], u, block_list[b], solver) # add linear cut
+                            linear_cuts_added += 1
+                            if solver == "MOSEK" and cut_purge_patience is not None:
+                                cut_registry[b].append({"con": con, "inactive_streak": 0})
+                        if add_soc_cuts:
+                            if len(u_vectors) >= 2: # need at least two negative eigenvectors for SOC cut
+                                add_soc_cut(model, X[b], u_vectors[:2], block_list[b], solver) # only use first two vectors (they have the smallest eigenvalues if from EVD)
+                                soc_cuts_added += 1
+                    else: # no cutting planes added
+                        logger.info("No cutting planes added for block %d", b)
 
-                # incremental, crash-safe per-block/per-iteration logging
-                if log_filepath is not None:
-                    row = dict(log_context or {})
-                    row.update({
-                        "timestamp": time.time(),
-                        "iteration": itr,
-                        "block_id": b,
-                        "n_original": block_list[b],
-                        "true_min_eigenvalue": min_eigenvalue,
-                        "master_objective": objVal,
-                        "master_solve_time": master_solve_time,
-                        "separation_time": sep_time,
-                        "num_cuts_added_this_iter": len(u_vectors),
-                        "is_psd": is_psd,
-                    })
-                    log_row(log_filepath, row, ITERATION_LOG_FIELDNAMES)
-            # check termination condition
-            if all(len(u_vectors) == 0 for u_vectors in all_u_vectors):
-                is_optimal = True
-                termination_reason = "Terminating because all blocks are PSD. Optimal solution found."
-            elif itr == itr_limit:
-                termination_reason = "Terminating because iteration limit was reached."
+                    # incremental, crash-safe per-block/per-iteration logging
+                    if log_filepath is not None:
+                        row = dict(log_context or {})
+                        row.update({
+                            "timestamp": time.time(),
+                            "iteration": itr,
+                            "block_id": b,
+                            "n_original": block_list[b],
+                            "true_min_eigenvalue": min_eigenvalue,
+                            "master_objective": objVal,
+                            "master_solve_time": master_solve_time,
+                            "separation_time": sep_time,
+                            "num_cuts_added_this_iter": len(u_vectors),
+                            "is_psd": is_psd,
+                            "rss_before_sep": rss_before_sep,
+                            "rss_after_sep": rss_after_sep,
+                            "rss_before_master": rss_before_master,
+                            "rss_after_master": rss_after_master,
+                        })
+                        log_row(log_filepath, row, ITERATION_LOG_FIELDNAMES)
+                # check termination condition
+                if all(len(u_vectors) == 0 for u_vectors in all_u_vectors):
+                    is_optimal = True
+                    termination_reason = "Terminating because all blocks are PSD. Optimal solution found."
+                elif itr == itr_limit:
+                    termination_reason = "Terminating because iteration limit was reached."
+    finally:
+        # Release the master model's native (Gurobi/MOSEK) resources as soon as this run ends,
+        # regardless of how it ended (normal termination, early break, or an exception propagating
+        # out of the loop) -- otherwise repeated runs in a batch (see __main__) leak one model's
+        # worth of native memory per run. Model.dispose() is the same call a `with msk.Model(...)`
+        # block would make on __exit__ (used elsewhere for the one-shot MOSEK solve); this model
+        # is created without a `with` block since it needs to stay open across iterations.
+        model.dispose()
 
     # end of cutting-plane loop, print summary and update logger
     print("*** Cutting plane terminated ***")
@@ -926,9 +996,16 @@ def solve_SDP_by_cutting_plane(block_list: list, A_list: list, b_list: list, sol
     return termination_reason, itr, linear_cuts_added, linear_cuts_purged, soc_cuts_added, master_total_time, sep_total_time, X_values, objVal            
 
 if __name__ == "__main__":
-    instances = [f'control{i}' for i in [2,6]]
+    # Define the instances to run the experiments on
+    instances = [f'control{i}' for i in range(1,6)]
+    # Define experiment parameters
+    solvers = ["MOSEK"] # solvers to use for the master problem (Gurobi or MOSEK)
+    initial_valid_cut_type = ["soc"] # initial valid inequalities to add to the master problem (linear or soc)
+    soc_cuts_added_options = [True] # whether to add SOC cuts in addition to linear cuts (True or False)
+    
+
     # configure logging to write to log.txt; functions use module-level `logger`
-    logging.basicConfig(filename='control2-6_log.txt', level=logging.INFO,
+    logging.basicConfig(filename='evd_control1-5_log.txt', level=logging.INFO,
                         format='%(asctime)s %(levelname)s:%(name)s:%(message)s')
     logger.setLevel(logging.INFO)
 
@@ -943,9 +1020,9 @@ if __name__ == "__main__":
 
     # Crash-safe, append-only CSV logs written incrementally as the experiment progresses (see log_row).
     # Convert to Excel afterwards (or at any time, mid-run, since it's a read-only operation) with csv_to_excel().
-    ITERATION_LOG_PATH = "control2-6_cutting_plane_iterations.csv"
-    RESULTS_LOG_PATH = "control2-6_cutting_plane_results.csv"
-    ERROR_LOG_PATH = "control2-6_cutting_plane_errors.csv"
+    ITERATION_LOG_PATH = "evd_control1-5_cutting_plane_iterations.csv"
+    RESULTS_LOG_PATH = "evd_control1-5_cutting_plane_results.csv"
+    ERROR_LOG_PATH = "evd_control1-5_cutting_plane_errors.csv"
     ERROR_LOG_FIELDNAMES = [
         "timestamp", "vm_id", "instance", "config_hash", "solver", "valid_cut_type",
         "add_soc_cuts", "random_seed", "error",
@@ -954,8 +1031,7 @@ if __name__ == "__main__":
     # Collect results in memory for a final Excel export.
     results = []
 
-    cutting_plane_iterations = [500, 250]
-    for instance, iteration_limit in zip(instances, cutting_plane_iterations, strict=False):
+    for instance in instances:
         try:
             # read instance
             block_list, A_list, b_list = read_instance(instance)
@@ -969,21 +1045,16 @@ if __name__ == "__main__":
             log_row(ERROR_LOG_PATH, {"timestamp": time.time(), "vm_id": VM_ID, "instance": instance, "error": str(e)}, ERROR_LOG_FIELDNAMES)
             continue
 
-        # Define experiment parameters
-        valid = ["linear", "soc"] #["linear", "soc"] # types of valid inequalities to use in creating the initial master problem
-        soc_cuts_added_options = [False, True] # whether to add SOC cuts in addition to linear cuts
-        solvers = ["Gurobi", "MOSEK"]
-
         # run experiments for all combinations -- some combinations may not be possible with Gurobi
         for solver in solvers:
-            for cut_type in valid:
+            for valid in initial_valid_cut_type:
                 for add_soc_cuts in soc_cuts_added_options:
-                    print(f"=== Instance: {instance}, Solver: {solver}, Valid: {cut_type}, Add SOC Cuts: {add_soc_cuts} ===")
-                    logger.info(f"=== Instance: {instance}, Solver: {solver}, Valid: {cut_type}, Add SOC Cuts: {add_soc_cuts} ===")
+                    print(f"=== Instance: {instance}, Solver: {solver}, Valid: {valid}, Add SOC Cuts: {add_soc_cuts} ===")
+                    logger.info(f"=== Instance: {instance}, Solver: {solver}, Valid: {valid}, Add SOC Cuts: {add_soc_cuts} ===")
 
                     # Config identity shared by every row (iteration/result/error) produced by this experiment configuration.
                     config_dict = {
-                        "instance": instance, "solver": solver, "valid_cut_type": cut_type, 
+                        "instance": instance, "solver": solver, "valid_cut_type": valid, 
                         "add_soc_cuts": add_soc_cuts, "cut_purge_patience": CUT_PURGE_PATIENCE,
                     }
                     config_hash = compute_config_hash(config_dict)
@@ -992,14 +1063,15 @@ if __name__ == "__main__":
                     # are fixed column lists that don't include the cut-management knob (it only
                     # feeds compute_config_hash above), and csv.DictWriter raises on unlisted keys.
                     log_context = {
-                        "instance": instance, "solver": solver, "valid_cut_type": cut_type, "add_soc_cuts": add_soc_cuts,
+                        "instance": instance, "solver": solver, "valid_cut_type": valid, "add_soc_cuts": add_soc_cuts,
                         "config_hash": config_hash, "random_seed": RANDOM_SEED
                     }
+                    rss_at_run_start_mb = current_rss_mb()
                     try:
-                        termination_reason, itr, linear_cuts_added, linear_cuts_purged, soc_cuts_added, master_total_time, sep_total_time, X_values, objVal = solve_SDP_by_cutting_plane(block_list, A_list, b_list, solver, cut_type, add_soc_cuts, itr_limit=iteration_limit, log_filepath=ITERATION_LOG_PATH, log_context=log_context, cut_purge_patience=CUT_PURGE_PATIENCE)
+                        termination_reason, itr, linear_cuts_added, linear_cuts_purged, soc_cuts_added, master_total_time, sep_total_time, X_values, objVal = solve_SDP_by_cutting_plane(block_list, A_list, b_list, solver, valid, add_soc_cuts, itr_limit=250, log_filepath=ITERATION_LOG_PATH, log_context=log_context, cut_purge_patience=CUT_PURGE_PATIENCE)
                     except Exception as e:
                         # record failure and continue, so one bad config doesn't lose the rest of an overnight batch
-                        print(f"Run failed on {instance}: {e}")
+                        print(f"Run failed with solver {solver} for {instance} with initial valid cuts {valid} and with SOC cuts added {add_soc_cuts}: {e}")
                         logger.exception("Run failed")
                         log_row(ERROR_LOG_PATH, {**log_context, "timestamp": time.time(), "vm_id": VM_ID, "error": str(e)}, ERROR_LOG_FIELDNAMES)
                         termination_reason = str(e)
@@ -1020,7 +1092,7 @@ if __name__ == "__main__":
                         "random_seed": RANDOM_SEED,
                         "instance": instance,
                         "solver": solver,
-                        "valid": cut_type,
+                        "valid": valid,
                         "add_soc_cuts": add_soc_cuts,
                         "termination_reason": termination_reason,
                         "iterations": itr,
@@ -1030,6 +1102,8 @@ if __name__ == "__main__":
                         "master_total_time": master_total_time,
                         "sep_total_time": sep_total_time,
                         "objVal": objVal,
+                        "rss_at_run_start_mb": rss_at_run_start_mb,
+                        "peak_rss_mb": peak_rss_mb(),
                     }
                     results.append(result_row)
                     log_row(RESULTS_LOG_PATH, result_row, list(result_row.keys()))
@@ -1045,10 +1119,10 @@ if __name__ == "__main__":
             import pandas as pd
 
             df = pd.DataFrame(results)
-            df.to_excel("control2-6_results.xlsx", index=False)
-            print("Wrote control2-6_results.xlsx")
+            df.to_excel("evd_control1-5_results.xlsx", index=False)
+            print("Wrote evd_control1-5_results.xlsx")
         except Exception:
-            csv_path = "control2-6_results.csv"
+            csv_path = "evd_control1-5_results.csv"
             with open(csv_path, "w", newline="") as f:
                 writer = csv.DictWriter(f, fieldnames=list(results[0].keys()))
                 writer.writeheader()
