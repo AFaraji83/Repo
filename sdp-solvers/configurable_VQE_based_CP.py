@@ -1268,7 +1268,19 @@ if __name__ == "__main__":
     initial_valid_cut_type = ["soc"] # initial valid inequalities to add to the master problem (linear or soc)
     soc_cuts_added_options = [True] # whether to add SOC cuts in addition to linear cuts (True or False)
     collect_multiple_cuts_options = [True] # whether to collect multiple violating vectors per block (True or False)
-    optimizers = [COBYLA(maxiter=200)] # optimizers for VQE (COBYLA(maxiter=200), SPSA(maxiter=200) etc.)
+    # Which optimizer(s) to sweep per (instance, config) combination -- each one listed here
+    # multiplies total runtime by that many, since the loop below runs every instance through
+    # every optimizer in this list. Previously hardcoded to [COBYLA(maxiter=200)] only, despite
+    # vqe_optimizers.OPTIMIZER_REGISTRY having all 6 (COBYLA, Powell, SPSA, QNSPSA, L-BFGS-B,
+    # SLSQP) -- that's why every run so far only ever used COBYLA. Set to all 6 here now that
+    # the comparison is the point, but this is the single biggest runtime multiplier in this
+    # whole config block: on a 92-instance batch, going from 1 optimizer to 6 means ~6x the
+    # wall-clock time of what you've already been running. If that's too much to commit to
+    # blindly, either trim this list to a smaller subset (e.g. [COBYLA(maxiter=200),
+    # SPSA(maxiter=200)]), restrict `instances` to a handful for a first look, or use
+    # optimizer_benchmark.py instead -- it compares all 6 on the separation oracle alone (no
+    # master problem, no full cutting-plane loop), which is far cheaper per data point.
+    optimizers = [cls(maxiter=200) for cls in OPTIMIZER_REGISTRY.values()]
     ansatz_types = ['sparsity_aware'] # ansatz types for VQE (hardware_efficient or sparsity_aware)
     execution_modes = ['noiseless'] # execution modes for VQE (noiseless, noisy, or hardware)
     ansatz_layers = [3] # number of ansatz layers (any integer >= 1)
